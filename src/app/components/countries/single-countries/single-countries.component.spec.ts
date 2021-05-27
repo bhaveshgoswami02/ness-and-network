@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SingleCountryComponent } from './single-country.component';
+import { SingleCountriesComponent } from './single-countries.component';
 
-describe('SingleCountryComponent', () => {
-  let component: SingleCountryComponent;
-  let fixture: ComponentFixture<SingleCountryComponent>;
+describe('SingleCountriesComponent', () => {
+  let component: SingleCountriesComponent;
+  let fixture: ComponentFixture<SingleCountriesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SingleCountryComponent ]
+      declarations: [ SingleCountriesComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SingleCountryComponent);
+    fixture = TestBed.createComponent(SingleCountriesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

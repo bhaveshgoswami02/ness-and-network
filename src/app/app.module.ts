@@ -20,29 +20,27 @@ import { SidebarComponent } from './share/sidebar/sidebar.component';
 import { SuccessComponent } from './share/success/success.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CountriesComponent } from './components/countries/countries.component';
-import { SingleCountryComponent } from './components/countries/single-country/single-country.component';
 import { AllCountriesComponent } from './components/countries/all-countries/all-countries.component';
+import { SingleCountriesComponent } from './components/countries/single-countries/single-countries.component';
 import { PlayersComponent } from './components/players/players.component';
 import { AllPlayersComponent } from './components/players/all-players/all-players.component';
-import { SinglePlayerComponent } from './components/players/single-player/single-player.component';
+import { SinglePlayersComponent } from './components/players/single-players/single-players.component';
 import { PlayerDetailsComponent } from './components/players/player-details/player-details.component';
 import { ScoutingComponent } from './components/scouting/scouting.component';
-import { AllScoutingComponent } from './components/all-scouting/all-scouting.component';
-import { SingleScoutingComponent } from './components/single-scouting/single-scouting.component';
+import { SingleScoutingComponent } from './components/scouting/single-scouting/single-scouting.component';
+import { AllScoutingComponent } from './components/scouting/all-scouting/all-scouting.component';
 import { AgenciesComponent } from './components/agencies/agencies.component';
-import { AllAgenciesComponent } from './components/all-agencies/all-agencies.component';
-import { SingleAgenciesComponent } from './components/single-agencies/single-agencies.component';
-import { AgencyDetailsComponent } from './components/agency-details/agency-details.component';
+import { AllAgenciesComponent } from './components/agencies/all-agencies/all-agencies.component';
+import { SingleAgenciesComponent } from './components/agencies/single-agencies/single-agencies.component';
+import { AgencyDetailsComponent } from './components/agencies/agency-details/agency-details.component';
 import { SponsorsComponent } from './components/sponsors/sponsors.component';
-import { AllSponsorsComponent } from './components/all-sponsors/all-sponsors.component';
-import { SingleSponsorComponent } from './components/single-sponsor/single-sponsor.component';
+import { AllSponsorsComponent } from './components/sponsors/all-sponsors/all-sponsors.component';
+import { SingleSponsorComponent } from './components/sponsors/single-sponsor/single-sponsor.component';
 import { DocumentsComponent } from './components/documents/documents.component';
-import { AllDocumentsComponent } from './components/all-documents/all-documents.component';
-import { SingleDocumentComponent } from './components/single-document/single-document.component';
+import { AllDocumentsComponent } from './components/documents/all-documents/all-documents.component';
+import { SingleDocumentComponent } from './components/documents/single-document/single-document.component';
 import { SettingComponent } from './components/setting/setting.component';
 import { SubAdminComponent } from './components/sub-admin/sub-admin.component';
-import { SingleSubAdminComponent } from './components/single-sub-admin/single-sub-admin.component';
-import { AllSubAdminComponent } from './components/all-sub-admin/all-sub-admin.component';
 
 @NgModule({
   declarations: [
@@ -57,15 +55,15 @@ import { AllSubAdminComponent } from './components/all-sub-admin/all-sub-admin.c
     SuccessComponent,
     DashboardComponent,
     CountriesComponent,
-    SingleCountryComponent,
     AllCountriesComponent,
+    SingleCountriesComponent,
     PlayersComponent,
     AllPlayersComponent,
-    SinglePlayerComponent,
+    SinglePlayersComponent,
     PlayerDetailsComponent,
     ScoutingComponent,
-    AllScoutingComponent,
     SingleScoutingComponent,
+    AllScoutingComponent,
     AgenciesComponent,
     AllAgenciesComponent,
     SingleAgenciesComponent,
@@ -78,8 +76,6 @@ import { AllSubAdminComponent } from './components/all-sub-admin/all-sub-admin.c
     SingleDocumentComponent,
     SettingComponent,
     SubAdminComponent,
-    SingleSubAdminComponent,
-    AllSubAdminComponent
   ],
   imports: [
     BrowserModule,
