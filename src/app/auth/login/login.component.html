@@ -1,1 +1,48 @@
-<p>login works!</p>
+<div class="container">
+    <div class="row min-height-80">
+        <div class="col-md-5 my-auto mx-auto">
+            <div class="text-center">
+                <img src="assets/images/logo.jpeg" class="w-25" alt="">
+            </div>
+            <div class="border">
+                <div class="border-bottom text-center py-2">
+                    <h4>Login</h4>
+                </div>
+                <div class="p-4">
+                    <form [formGroup]="data" (ngSubmit)="onSubmit()">
+                        <label>Email Address</label>
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                            <input type="email" formControlName="email" class="w-100" pInputText>
+                        </div>
+                        <div *ngIf="validation.email.errors && validation.email.dirty">
+                            <div class="text-danger" *ngIf="validation.email?.errors?.required">Email is required</div>
+                            <div class="text-danger" *ngIf="validation.email?.errors?.pattern">Email must be a valid email
+                                address</div>
+                        </div>
+                        <!-- <p class="text-danger"
+                            *ngIf="!data.get('email')?.valid && (data.get('email')?.touched || data.get('email')?.dirty)">
+                            This field is required!</p>
+                        <br> -->
+                        <br>
+                        <label>Password</label>
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon"><i class="pi pi-key"></i></span>
+                            <p-password class="w-100" formControlName="password" [feedback]="false"></p-password>
+                        </div>
+                        <div *ngIf="validation.password.errors && validation.password.dirty">
+                            <div class="text-danger" *ngIf="validation.password?.errors?.required">Password is required</div>
+                        </div>
+                        <div class="text-right">
+                            <a class="underline" routerLink="/auth/forgot-password">Forgot Password?</a>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-primary mt-4" type="submit" [disabled]="data.invalid">Log In</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

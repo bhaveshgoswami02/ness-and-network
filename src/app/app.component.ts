@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CommonService } from './services/common.service';
 
 @Component({
   selector: 'app-root',
@@ -7,17 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ness-and-network';
-  cities:any = [];
 
-  selectedCity:any;
-
-  constructor() {
-    this.cities = [
-      { name: 'New York', code: 'NY' },
-      { name: 'Rome', code: 'RM' },
-      { name: 'London', code: 'LDN' },
-      { name: 'Istanbul', code: 'IST' },
-      { name: 'Paris', code: 'PRS' }
-    ];
+  constructor(public common:CommonService) {
+    this.common.showToast("success","sdob","csdv")
   }
+
 }

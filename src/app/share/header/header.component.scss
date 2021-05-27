@@ -1,0 +1,14 @@
+.header {
+    position: static;
+    top: 0;
+    background-color: var(--primary);
+    padding: 5px 25px;
+    border-bottom: 1px solid #000;
+}
+
+.btn-login {
+    background-color: #fff;
+    border: 1px solid var(--blue);
+    padding: 3px 15px; 
+    cursor: pointer;
+}

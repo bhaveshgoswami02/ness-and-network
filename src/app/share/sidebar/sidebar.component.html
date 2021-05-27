@@ -1,1 +1,6 @@
-<p>sidebar works!</p>
+<div class="sidebar-container">
+    <div class="mt-2"></div>
+    <div class="tab" *ngFor="let item of menu" [routerLink]="item.route" routerLinkActive="active">
+        <i [class]="item.icon"></i>&nbsp;&nbsp;<span>{{item.title}}</span>
+    </div>
+</div>

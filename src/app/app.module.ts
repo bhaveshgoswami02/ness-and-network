@@ -41,6 +41,12 @@ import { AllDocumentsComponent } from './components/documents/all-documents/all-
 import { SingleDocumentComponent } from './components/documents/single-document/single-document.component';
 import { SettingComponent } from './components/setting/setting.component';
 import { SubAdminComponent } from './components/sub-admin/sub-admin.component';
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
+import { ToastModule } from 'primeng/toast';
+import {RippleModule} from 'primeng/ripple';
+import { MessageService } from 'primeng/api';
+import {PasswordModule} from 'primeng/password';
+import {InputTextModule} from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
@@ -85,9 +91,14 @@ import { SubAdminComponent } from './components/sub-admin/sub-admin.component';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    NgxUiLoaderModule,
+    ToastModule,
+    RippleModule,
+    PasswordModule,
+    InputTextModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

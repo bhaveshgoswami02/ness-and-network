@@ -26,57 +26,77 @@ import { SingleScoutingComponent } from './components/scouting/single-scouting/s
 import { SettingComponent } from './components/setting/setting.component';
 import { AllSponsorsComponent } from './components/sponsors/all-sponsors/all-sponsors.component';
 import { SingleSponsorComponent } from './components/sponsors/single-sponsor/single-sponsor.component';
+import { SponsorsComponent } from './components/sponsors/sponsors.component';
 import { AllSubAdminComponent } from './components/sub-admin/all-sub-admin/all-sub-admin.component';
 import { SingleSubAdminComponent } from './components/sub-admin/single-sub-admin/single-sub-admin.component';
 import { SubAdminComponent } from './components/sub-admin/sub-admin.component';
 
 const routes: Routes = [
-  {path:'',component:ComponentsComponent,children:[
-    {path:'',component:DashboardComponent},
-    {path:'agencies',component:AgenciesComponent,children:[
-      {path:'',component:AllAgenciesComponent},
-      {path:'add',component:SingleAgenciesComponent},
-      {path:'edit/:id',component:SingleAgenciesComponent},
-      {path:'detail/:id',component:AgencyDetailsComponent},
-    ]},
-    {path:'countries',component:CountriesComponent,children:[
-      {path:'',component:AllCountriesComponent},
-      {path:'add',component:SingleCountriesComponent},
-      {path:'edit/:id',component:SingleCountriesComponent},
-    ]},
-    {path:'documents',component:DocumentsComponent,children:[
-      {path:'',component:AllDocumentsComponent},
-      {path:'add',component:SingleDocumentComponent},
-      {path:'edit/:id',component:SingleDocumentComponent},
-    ]},
-    {path:'players',component:PlayersComponent,children:[
-      {path:'',component:AllPlayersComponent},
-      {path:'add',component:SinglePlayersComponent},
-      {path:'edit/:id',component:SinglePlayersComponent},
-      {path:'detail/:id',component:PlayerDetailsComponent},
-    ]},
-    {path:'scouting',component:ScoutingComponent,children:[
-      {path:'',component:AllScoutingComponent},
-      {path:'add',component:SingleScoutingComponent},
-      {path:'edit/:id',component:SingleScoutingComponent}
-    ]},
-    {path:'setting',component:SettingComponent},
-    {path:'sponsors',component:SettingComponent,children:[
-      {path:'',component:AllSponsorsComponent},
-      {path:'add',component:SingleSponsorComponent},
-      {path:'edit/:id',component:SingleSponsorComponent},
-    ]},
-    {path:'sub-admin',component:SubAdminComponent,children:[
-      {path:'',component:AllSubAdminComponent},
-      {path:'add',component:SingleSubAdminComponent},
-      {path:'edit/:id',component:SingleSubAdminComponent},
-    ]}
-  ]},
-  {path:'auth',component:AuthComponent,children:[
-    {path:'',component:LoginComponent},
-    {path:'forgot-password',component:ForgotPasswordComponent},
-    {path:'reset-password',component:ResetPasswordComponent},
-  ]}
+  { path: '', redirectTo: 'auth', pathMatch: "full" },
+  {
+    path: '', component: ComponentsComponent, children: [
+      { path: 'dashboard', component: DashboardComponent },
+      {
+        path: 'agencies', component: AgenciesComponent, children: [
+          { path: '', component: AllAgenciesComponent },
+          { path: 'add', component: SingleAgenciesComponent },
+          { path: 'edit/:id', component: SingleAgenciesComponent },
+          { path: 'detail/:id', component: AgencyDetailsComponent },
+        ]
+      },
+      {
+        path: 'countries', component: CountriesComponent, children: [
+          { path: '', component: AllCountriesComponent },
+          { path: 'add', component: SingleCountriesComponent },
+          { path: 'edit/:id', component: SingleCountriesComponent },
+        ]
+      },
+      {
+        path: 'documents', component: DocumentsComponent, children: [
+          { path: '', component: AllDocumentsComponent },
+          { path: 'add', component: SingleDocumentComponent },
+          { path: 'edit/:id', component: SingleDocumentComponent },
+        ]
+      },
+      {
+        path: 'players', component: PlayersComponent, children: [
+          { path: '', component: AllPlayersComponent },
+          { path: 'add', component: SinglePlayersComponent },
+          { path: 'edit/:id', component: SinglePlayersComponent },
+          { path: 'detail/:id', component: PlayerDetailsComponent },
+        ]
+      },
+      {
+        path: 'scouting', component: ScoutingComponent, children: [
+          { path: '', component: AllScoutingComponent },
+          { path: 'add', component: SingleScoutingComponent },
+          { path: 'edit/:id', component: SingleScoutingComponent }
+        ]
+      },
+      { path: 'setting', component: SettingComponent },
+      {
+        path: 'sponsors', component: SponsorsComponent, children: [
+          { path: '', component: AllSponsorsComponent },
+          { path: 'add', component: SingleSponsorComponent },
+          { path: 'edit/:id', component: SingleSponsorComponent },
+        ]
+      },
+      {
+        path: 'sub-admin', component: SubAdminComponent, children: [
+          { path: '', component: AllSubAdminComponent },
+          { path: 'add', component: SingleSubAdminComponent },
+          { path: 'edit/:id', component: SingleSubAdminComponent },
+        ]
+      }
+    ]
+  },
+  {
+    path: 'auth', component: AuthComponent, children: [
+      { path: '', component: LoginComponent },
+      { path: 'forgot-password', component: ForgotPasswordComponent },
+      { path: 'reset-password', component: ResetPasswordComponent },
+    ]
+  }
 ];
 
 @NgModule({

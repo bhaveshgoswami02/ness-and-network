@@ -1,0 +1,25 @@
+.sidebar-container {
+    background-color: var(--secondary);
+    min-height: 80vh;
+    border: 1px solid #000;
+}
+
+.tab {
+    padding: 5px 15px; 
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+    margin-bottom: 5px;
+    span {
+        color: var(--primary-contrast);
+        font-weight: 500;
+    }
+    &:hover {
+        background-color: rgba(116,27,71,0.4);
+    }
+}
+
+.active {
+    background-color: rgba(116,27,71,0.4);
+    // border-top: 1px solid var(--tertiary);
+    // border-bottom: 1px solid var(--tertiary);
+}
