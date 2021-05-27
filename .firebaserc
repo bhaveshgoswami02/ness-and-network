@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "ness-and-network": {
+      "hosting": {
+        "ness-and-network": [
+          "ness-and-network"
+        ]
+      }
+    }
+  }
+}
