@@ -1,9 +1,11 @@
 .header {
-    position: static;
+    position: fixed;
+    width: 100%;
     top: 0;
     background-color: var(--primary);
     padding: 5px 25px;
     border-bottom: 1px solid #000;
+    z-index: 111;
 }
 
 .btn-login {

@@ -1,1 +1,44 @@
-<p>single-countries works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 breadcumb">
+            <a class="link" routerLink="/dashboard">Dashboard</a>
+            <i class="pi pi-angle-right"></i>
+            <a class="link" routerLink="/countries">Country</a>
+            <i class="pi pi-angle-right"></i>
+            <span>Add Country</span>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-6 my-auto">
+            <h5 class="my-auto">Add Country</h5>
+        </div>
+    </div>
+    <form [formGroup]="formData" (ngSubmit)="onSubmit()">
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <div class="p-fluid">
+                    <div class="p-field">
+                        <label>Country Name</label>
+                        <input type="text" formControlName="name" pInputText placeholder="Enter Country Name">
+                    </div>
+                    <div *ngIf="validation.name.errors && validation.name.dirty">
+                        <div class="text-danger" *ngIf="validation.name?.errors?.required">Field is required!</div>
+                    </div>
+                    <div class="p-field mt-3">
+                        <img [src]="imageSrc" class="cursor-pointer" (click)="file.click()" width="40%" alt=""><br>
+                        <label>Upload Country Flag</label>
+                        <input #file type="file" formControlName="file" class="d-none" (change)="onSelectFile($event)">
+                    </div>
+                    <div *ngIf="validation.file.errors && validation.file.dirty">
+                        <div class="text-danger" *ngIf="validation.file?.errors?.required">Field is required!</div>
+                    </div>
+                    <div class="text-left">
+                        <button class="btn btn-primary mt-4" type="submit" [disabled]="formData.invalid">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <br><br><br>
+</div>

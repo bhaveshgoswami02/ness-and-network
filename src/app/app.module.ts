@@ -43,10 +43,14 @@ import { SettingComponent } from './components/setting/setting.component';
 import { SubAdminComponent } from './components/sub-admin/sub-admin.component';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { ToastModule } from 'primeng/toast';
-import {RippleModule} from 'primeng/ripple';
+import { RippleModule } from 'primeng/ripple';
 import { MessageService } from 'primeng/api';
-import {PasswordModule} from 'primeng/password';
-import {InputTextModule} from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
+import { InputTextModule } from 'primeng/inputtext';
+import { NgxEchartsModule } from 'ngx-echarts';
+import { TableModule } from 'primeng/table';
+import { CalendarModule } from 'primeng/calendar';
+import {InputTextareaModule} from 'primeng/inputtextarea';
 
 @NgModule({
   declarations: [
@@ -97,7 +101,12 @@ import {InputTextModule} from 'primeng/inputtext';
     RippleModule,
     PasswordModule,
     InputTextModule,
-    
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    }),
+    TableModule,
+    CalendarModule,
+    InputTextareaModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

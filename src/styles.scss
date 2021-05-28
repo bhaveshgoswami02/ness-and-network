@@ -16,7 +16,6 @@
 }
 
 p,
-span,
 h1,
 h2,
 h3,
@@ -29,11 +28,11 @@ button {
 }
 
 .bg-primary {
-    background-color: var(--primary);
+    background-color: var(--primary)!important;
 }
 
 .bg-secondary {
-    background-color: var(--secondary);
+    background-color: var(--secondary)!important;
 }
 
 .min-height-100 {
@@ -84,4 +83,59 @@ button {
 
 .underline {
     text-decoration: underline;
+}
+
+.p-datatable .p-datatable-header {
+    background: var(--secondary)!important;
+    color: var(--secondary-contrast);
+    border: 1px solid #e9ecef;
+    border-width: 1px 0 1px 0;
+    padding: 1rem 1rem;
+    font-weight: 600;
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+    text-align: left;
+    padding: 1rem 1rem;
+    border: 1px solid #e9ecef;
+    border-width: 0 0 1px 0;
+    font-weight: 600;
+    background: var(--secondary)!important;
+    color: var(--secondary-contrast)!important;
+    transition: box-shadow 0.2s;
+}
+
+.p-datatable.p-datatable-striped .p-datatable-tbody > tr:nth-child(even) {
+    background-color: var(--primary)!important;
+}
+
+.add-btn {
+    background: var(--tertiary)!important;
+    color: var(--tertiary-contrast)!important;
+    text-transform: capitalize;
+}
+
+.link {
+    color: var(--blue);
+    text-decoration: underline;
+}
+
+.breadcumb i {
+    color: var(--primary-contrast)!important;
+}
+
+.cursor-pointer {
+    cursor: pointer!important;
+}
+
+.capitalize {
+    text-transform: capitalize!important;
+}
+
+.font-large {
+    font-size: large;
+}
+
+.font-larger {
+    font-size: larger;
 }

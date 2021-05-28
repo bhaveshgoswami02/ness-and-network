@@ -2,12 +2,13 @@
     background-color: var(--primary);
     border: 1px solid var(--secondary-contrast);
     width: 75%;
+
     .card-header {
         background-color: var(--secondary);
         text-align: center;
         padding: 5px 0;
         border-bottom: 1px solid var(--secondary-contrast);
-        
+
         b {
             font-size: var(--primary-font-size) !important;
         }
@@ -21,6 +22,7 @@
                 font-size: 40px;
             }
         }
+
         .card-footer {
             border: 1px dashed var(--primary-contrast);
             border-radius: 25px;
@@ -31,5 +33,10 @@
             padding: 5px 0;
         }
     }
-    
+
+}
+
+.chart {
+    height: 250px;
+    width: 100%;
 }
