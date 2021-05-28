@@ -1,0 +1,35 @@
+.custom-card {
+    background-color: var(--primary);
+    border: 1px solid var(--secondary-contrast);
+    width: 75%;
+    .card-header {
+        background-color: var(--secondary);
+        text-align: center;
+        padding: 5px 0;
+        border-bottom: 1px solid var(--secondary-contrast);
+        
+        b {
+            font-size: var(--primary-font-size) !important;
+        }
+    }
+
+    .card-container {
+        .card-icon {
+            text-align: right;
+
+            i {
+                font-size: 40px;
+            }
+        }
+        .card-footer {
+            border: 1px dashed var(--primary-contrast);
+            border-radius: 25px;
+            max-width: 85%;
+            text-align: center;
+            color: var(--blue);
+            text-decoration: underline;
+            padding: 5px 0;
+        }
+    }
+    
+}

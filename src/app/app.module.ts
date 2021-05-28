@@ -96,7 +96,8 @@ import {InputTextModule} from 'primeng/inputtext';
     ToastModule,
     RippleModule,
     PasswordModule,
-    InputTextModule
+    InputTextModule,
+    
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]
