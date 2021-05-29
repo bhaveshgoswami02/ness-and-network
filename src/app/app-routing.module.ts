@@ -41,6 +41,7 @@ const routes: Routes = [
           { path: '', component: AllAgenciesComponent },
           { path: 'add', component: SingleAgenciesComponent },
           { path: 'edit/:id', component: SingleAgenciesComponent },
+          { path: 'detail', component: AgencyDetailsComponent },
           { path: 'detail/:id', component: AgencyDetailsComponent },
         ]
       },
@@ -63,6 +64,7 @@ const routes: Routes = [
           { path: '', component: AllPlayersComponent },
           { path: 'add', component: SinglePlayersComponent },
           { path: 'edit/:id', component: SinglePlayersComponent },
+          { path: 'detail', component: PlayerDetailsComponent },
           { path: 'detail/:id', component: PlayerDetailsComponent },
         ]
       },

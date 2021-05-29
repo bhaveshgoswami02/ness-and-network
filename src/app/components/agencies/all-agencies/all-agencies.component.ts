@@ -27,11 +27,13 @@ export class AllAgenciesComponent implements OnInit {
   }
 
   edit(id?: any) {
-    this.router.navigateByUrl("/" + this.collection + "/" + id)
+    this.router.navigateByUrl("/" + this.collection + "/detail" + "id")
+    // this.router.navigateByUrl("/" + this.collection + "/detail" + id)
   }
 
   view(id?: any) {
-    this.router.navigateByUrl("/" + this.collection + "/detail/" + id)
+    this.router.navigateByUrl("/" + this.collection + "/detail")
+    // this.router.navigateByUrl("/" + this.collection + "/detail/" + id)
   }
 
   delete() {

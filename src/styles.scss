@@ -23,6 +23,7 @@ h4,
 h5,
 b,
 a,
+small,
 button {
     font-family: var(--primary-font) !important;
 }
@@ -120,6 +121,10 @@ button {
     text-decoration: underline;
 }
 
+.text-blue {
+    color: var(--blue);
+}
+
 .breadcumb i {
     color: var(--primary-contrast)!important;
 }
@@ -138,4 +143,26 @@ button {
 
 .font-larger {
     font-size: larger;
+}
+
+.font-weight-500 {
+    font-weight: 500;
+}
+
+.font-weight-600 {
+    font-weight: 600;
+}
+
+.p-dropdown {
+    background: #ffffff;
+    border: 1px solid #ced4da;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 3px;
+    width: 100%!important;
+}
+
+.p-calendar {
+    position: relative;
+    display: inline-flex;
+    width: 100%!important;
 }

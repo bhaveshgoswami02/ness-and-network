@@ -1,1 +1,71 @@
-<p>single-document works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 breadcumb">
+            <a class="link" routerLink="/dashboard">Dashboard</a>
+            <i class="pi pi-angle-right"></i>
+            <a class="link" routerLink="/{{collection}}">{{collection}}</a>
+            <i class="pi pi-angle-right"></i>
+            <span>Add {{pageTitle}}</span>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-6 my-auto">
+            <h5 class="my-auto">Add {{pageTitle}}</h5>
+        </div>
+    </div>
+    <form [formGroup]="formData" (ngSubmit)="onSubmit()">
+        
+        <div class="row mt-3">
+            <div class="col-md-8">
+                <div class="row my-3">
+                    <div class="col-md-6">
+                        <label>Document Type</label> <br>
+                        <p-dropdown [options]="documentTypes" class="w-100" formControlName="files" optionLabel="name"
+                            [filter]="true" filterBy="name" placeholder="Select Type"></p-dropdown>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-field">
+                            <label>Document Name</label> <br>
+                            <input type="text" class="w-100" formControlName="name" pInputText>
+                        </div>
+                        <div *ngIf="validation.name.errors && validation.name.dirty">
+                            <div class="text-danger" *ngIf="validation.name?.errors?.required">Field is required!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="px-3">
+            <div class="row mt-3 border-bottom">
+                <div class="col-md-6 p-0">
+                    <i class="my-auto font-larger">Upload Documents</i>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 mt-3">
+                    <img [src]="documentSrc" class="cursor-pointer" (click)="files.click()" width="30%"
+                        alt=""><br>
+                    <label class="text-center mr-2">Upload Document</label>
+                    <input #files type="file" formControlName="files" class="d-none" (change)="onSelectFile($event)">
+                </div>
+                <div *ngIf="validation.files.errors && validation.files.dirty">
+                    <div class="text-danger" *ngIf="validation.files?.errors?.required">Field is required!</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="text-left">
+                    <button class="btn btn-primary mt-4" type="submit" [disabled]="formData.invalid">Save</button>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+
+    <br><br><br>
+</div>

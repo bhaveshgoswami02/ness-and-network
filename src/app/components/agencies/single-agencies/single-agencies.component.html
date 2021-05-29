@@ -1,1 +1,155 @@
-<p>single-agencies works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 breadcumb">
+            <a class="link" routerLink="/dashboard">Dashboard</a>
+            <i class="pi pi-angle-right"></i>
+            <a class="link" routerLink="/{{collection}}">{{collection}}</a>
+            <i class="pi pi-angle-right"></i>
+            <span>Add {{pageTitle}}</span>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-6 my-auto">
+            <h5 class="my-auto">Add {{pageTitle}}</h5>
+        </div>
+    </div>
+    <form [formGroup]="formData" (ngSubmit)="onSubmit()">
+        <div class="row px-3 mt-3">
+            <div class="col-md-12 border-bottom my-auto px-0 font-larger">
+                <i class="my-auto">Basic Details</i>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-8">
+                <div class="row my-3">
+                    <div class="col-md-6">
+                        <div class="p-field">
+                            <label>{{pageTitle}} Name</label> <br>
+                            <input type="text" class="w-100" formControlName="name" pInputText>
+                        </div>
+                        <div *ngIf="validation.name.errors && validation.name.dirty">
+                            <div class="text-danger" *ngIf="validation.name?.errors?.required">Field is required!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-field">
+                            <label>{{pageTitle}} Owner Name</label> <br>
+                            <input type="text" class="w-100" formControlName="owner_name" pInputText>
+                        </div>
+                        <div *ngIf="validation.owner_name.errors && validation.owner_name.dirty">
+                            <div class="text-danger" *ngIf="validation.owner_name?.errors?.required">Field is required!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row my-3">
+                    <div class="col-md-6">
+                        <label>Country</label> <br>
+                        <p-dropdown [options]="countries" class="w-100" formControlName="nationality" optionLabel="name"
+                            [filter]="true" filterBy="name" placeholder="Select a Country"></p-dropdown>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-field">
+                            <label>Phone No</label> <br>
+                            <input type="number" class="w-100" formControlName="mobile_no" pInputText>
+                        </div>
+                        <div *ngIf="validation.mobile_no.errors && validation.mobile_no.dirty">
+                            <div class="text-danger" *ngIf="validation.mobile_no?.errors?.required">Field is required!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row my-3">
+                    <div class="col-md-6">
+                        <label>Full Address</label> <br>
+                        <textarea [rows]="3" class="w-100" formControlName="full_address" pInputTextarea></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 text-center mt-3">
+                <img [src]="imageSrc" class="cursor-pointer rounded-circle" (click)="file.click()" width="30%"
+                    alt=""><br>
+                <label class="text-center mr-2">Upload {{pageTitle}} Logo</label>
+                <input #file type="file" formControlName="file" class="d-none" (change)="onSelectFile($event)">
+            </div>
+            <div *ngIf="validation.file.errors && validation.file.dirty">
+                <div class="text-danger" *ngIf="validation.file?.errors?.required">Field is required!</div>
+            </div>
+        </div>
+
+        <div class="px-3">
+            <div class="row mt-3 border-bottom">
+                <div class="col-md-6 p-0">
+                    <i class="my-auto font-larger">Contract Details</i>
+                </div>
+                <div class="col-md-6 text-right p-0">
+                    <button class="btn btn-primary">
+                        <i class="pi pi-plus"></i>
+                        Add More Contract
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-8">
+                <div class="row my-3">
+                    <div class="col-md-6">
+                        <div class="p-field">
+                            <label>Contract Date</label> <br>
+                            <p-calendar formControlName="contract_date" class="w-100" [showIcon]="true"></p-calendar>
+                        </div>
+                        <div *ngIf="validation.contract_date.errors && validation.contract_date.dirty">
+                            <div class="text-danger" *ngIf="validation.contract_date?.errors?.required">Field is required!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-field">
+                            <label>Contract Due Date</label> <br>
+                            <p-calendar formControlName="contract_due_date" class="w-100" [showIcon]="true"></p-calendar>
+                        </div>
+                        <div *ngIf="validation.contract_due_date.errors && validation.contract_due_date.dirty">
+                            <div class="text-danger" *ngIf="validation.contract_due_date?.errors?.required">Field is required!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row my-3">
+                    <div class="col-md-8">
+                        <label>Contract Terms</label> <br>
+                        <textarea [rows]="5" class="w-100" formControlName="full_address" pInputTextarea></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h5>Upload Referance Document</h5>
+            </div>
+            <div class="col-md-3 mt-3">
+                <img [src]="documentSrc" class="cursor-pointer" (click)="files.click()" width="30%"
+                    alt=""><br>
+                <label class="text-center mr-2">Upload Document</label>
+                <input #files type="file" formControlName="files" class="d-none" (change)="onSelectFile($event)">
+            </div>
+            <div *ngIf="validation.files.errors && validation.files.dirty">
+                <div class="text-danger" *ngIf="validation.files?.errors?.required">Field is required!</div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="text-left">
+                    <button class="btn btn-primary mt-4" type="submit" [disabled]="formData.invalid">Save</button>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+
+    <br><br><br>
+</div>

@@ -1,1 +1,193 @@
-<p>player-details works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 breadcumb">
+            <a class="link" routerLink="/dashboard">Dashboard</a> <i class="pi pi-angle-right"></i>
+            <a class="capitalize link" routerLink="/{{collection}}">{{collection}}</a> <i class="pi pi-angle-right"></i>
+            <span class="capitalize">robert lewandowski</span>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-6 my-auto">
+            <h5 class="my-auto capitalize">{{pageTitle}} Details</h5>
+        </div>
+        <div class="col-md-6 float-right align-item-right">
+            <div class="d-flex" style="position: absolute;right: 0;">
+                <div class="text-center mx-3">
+                    <i class="pi pi-pencil cursor-pointer" style="font-size: 24px;" (click)="edit()"></i>
+                    <p>Edit</p>
+                </div>
+                <div class="text-center mx-3">
+                    <i class="pi pi-trash cursor-pointer" style="font-size: 24px;" (click)="delete()"></i>
+                    <p>Delete</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-12 d-flex">
+            <img src="../../../../assets/images/user.png" width="8%" class="rounded-circle" alt="">
+            <h1 class="capitalize my-auto ml-4">robert lewandowski</h1>
+        </div>
+    </div>
+
+    <div class="row my-5">
+        <div class="col-md-6">
+            <p-card class="min-height-50vh">
+                <i>Personal Details</i>
+                <div class="row mt-2">
+                    <div class="col-6">
+                        <i class="text-blue">Nationality</i>
+                    </div>
+                    <div class="col-6 text-right">
+                        <p class="font-weight-500">Poland</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <i class="text-blue">Date od Birth</i>
+                    </div>
+                    <div class="col-6 text-right">
+                        <p class="font-weight-500">23-Aug-1999</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <i class="text-blue">Height</i>
+                    </div>
+                    <div class="col-6 text-right">
+                        <p class="font-weight-500">181 Cm</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <i class="text-blue">Weight</i>
+                    </div>
+                    <div class="col-6 text-right">
+                        <p class="font-weight-500">68Kg</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <i class="text-blue">Nationality</i>
+                    </div>
+                    <div class="col-6 text-right">
+                        <p class="font-weight-500">Poland</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <i class="text-blue">preferred Foot</i>
+                    </div>
+                    <div class="col-6 text-right">
+                        <p class="font-weight-500">Right</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <i class="text-blue">Club</i>
+                    </div>
+                    <div class="col-6 text-right">
+                        <p class="font-weight-500">Bayern</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <i class="text-blue">League</i>
+                    </div>
+                    <div class="col-6 text-right">
+                        <p class="font-weight-500">Bundesliga</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <i class="text-blue">Position</i>
+                    </div>
+                    <div class="col-6 text-right">
+                        <p class="font-weight-500">Forward</p>
+                    </div>
+                </div>
+            </p-card>
+        </div>
+        <div class="col-md-6">
+            <p-card>
+                <i>Soccerment Performance Rating (SPR)</i>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <div echarts [options]="options" class="chart"></div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-3">
+                        <p>Defending</p>
+                    </div>
+                    <div class="col-6 text-right">
+                        <p-progressBar [value]="'28'"></p-progressBar>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <p>Heading</p>
+                    </div>
+                    <div class="col-6 text-right">
+                        <p-progressBar [value]="'50'"></p-progressBar>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <p>Passing</p>
+                    </div>
+                    <div class="col-6 text-right">
+                        <p-progressBar [value]="'40'"></p-progressBar>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <p>Dribbling</p>
+                    </div>
+                    <div class="col-6 text-right">
+                        <p-progressBar [value]="'39'"></p-progressBar>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <p>Vision</p>
+                    </div>
+                    <div class="col-6 text-right">
+                        <p-progressBar [value]="'47'"></p-progressBar>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <p>Attacking</p>
+                    </div>
+                    <div class="col-6 text-right">
+                        <p-progressBar [value]="'100'"></p-progressBar>
+                    </div>
+                </div>
+            </p-card>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h5>Season highlight</h5>
+            <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore natus repudiandae aperiam dicta ab
+                consequuntur suscipit ad officiis expedita odio quisquam impedit, cumque totam minima non molestias nemo
+                doloribus. Velit dicta quas, cupiditate harum doloribus quia sunt facere autem hic, eos asperiores ut
+                ratione officiis numquam culpa ea esse veniam?
+            </p>
+        </div>
+        <div class="col-md-6">
+            <h5>Career highlight</h5>
+            <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore natus repudiandae aperiam dicta ab
+                consequuntur suscipit ad officiis expedita odio quisquam impedit, cumque totam minima non molestias nemo
+                doloribus. Velit dicta quas, cupiditate harum doloribus quia sunt facere autem hic, eos asperiores ut
+                ratione officiis numquam culpa ea esse veniam?
+            </p>
+        </div>
+    </div>
+</div>
+<br><br><br>

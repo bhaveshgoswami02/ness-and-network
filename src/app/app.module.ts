@@ -51,6 +51,8 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { TableModule } from 'primeng/table';
 import { CalendarModule } from 'primeng/calendar';
 import {InputTextareaModule} from 'primeng/inputtextarea';
+import {CardModule} from 'primeng/card';
+import {ProgressBarModule} from 'primeng/progressbar';
 
 @NgModule({
   declarations: [
@@ -106,7 +108,9 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
     }),
     TableModule,
     CalendarModule,
-    InputTextareaModule
+    InputTextareaModule,
+    CardModule,
+    ProgressBarModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

@@ -1,1 +1,113 @@
-<p>agency-details works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 breadcumb">
+            <a class="link" routerLink="/dashboard">Dashboard</a> <i class="pi pi-angle-right"></i>
+            <a class="capitalize link" routerLink="/{{collection}}">{{collection}}</a> <i class="pi pi-angle-right"></i>
+            <span class="capitalize">XYZ Agency</span>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-6 my-auto">
+            <h5 class="my-auto capitalize">{{pageTitle}} Details</h5>
+        </div>
+        <div class="col-md-6 float-right align-item-right">
+            <div class="d-flex" style="position: absolute;right: 0;">
+                <div class="text-center mx-3">
+                    <i class="pi pi-pencil cursor-pointer" style="font-size: 24px;" (click)="edit()"></i>
+                    <p>Edit</p>
+                </div>
+                <div class="text-center mx-3">
+                    <i class="pi pi-trash cursor-pointer" style="font-size: 24px;" (click)="delete()"></i>
+                    <p>Delete</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-12 d-flex">
+            <img src="../../../../assets/images/user.png" width="8%" class="rounded-circle" alt="">
+            <h1 class="capitalize my-auto ml-4">XYZ Agency</h1>
+        </div>
+    </div>
+
+    <div class="row my-5">
+        <div class="col-md-3">
+            <label>{{pageTitle}} Owner Name</label> <br>
+            <b>Peter Thompson</b>
+        </div>
+        <div class="col-md-3">
+            <label>Phone No.</label> <br>
+            <b>+54 13456789</b>
+        </div>
+        <div class="col-md-3">
+            <label>Country</label> <br>
+            <b>Argentina</b>
+        </div>
+    </div>
+
+    <div class="row my-5">
+        <div class="col-md-3">
+            <label>Full Address</label> <br>
+            <b>
+                XYZ Agency <br>
+                Av. Rivadavia 2403 <br>
+                C1473GTH Buenos Aires
+            </b>
+        </div>
+    </div>
+
+
+    <div class="px-3">
+        <div class="row border-bottom my-auto">
+            <div class="col-md-6 p-0">
+                <i class="my-auto font-larger">Contact Details</i>
+            </div>
+            <div class="col-md-6 text-right px-0">
+                <button class="btn btn-primary">
+                    <i class="pi pi-plus"></i> Add More Contact
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col-md-3">
+            <label>Contract Date</label> <br>
+            <b>01-Apr-2020</b>
+        </div>
+        <div class="col-md-3">
+            <label>Contract Due Date</label> <br>
+            <b>01-Apr-2021</b>
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col-md-6">
+            <h5>Contract Terms</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias repudiandae minima architecto corporis,
+                non sed ex delectus ratione voluptatem inventore doloremque unde vel voluptatum ipsum accusamus corrupti
+                temporibus officia possimus provident deserunt cum quas. Veritatis voluptatem labore numquam quia, eius
+                atque sunt laborum velit magni dolore dolorem accusantium, assumenda maxime.</p>
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col-md-12">
+            <h5>Uploaded Referance Documents</h5>
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col-md-2 text-center">
+            <img src="../../../../assets/images/document.png" class="w-100" alt="">
+            <label>Document 1</label>
+        </div>
+        <div class="col-md-2 text-center">
+            <img src="../../../../assets/images/document.png" class="w-100" alt="">
+            <label>Document 2</label>
+        </div>
+        <div class="col-md-2 text-center">
+            <img src="../../../../assets/images/document.png" class="w-100" alt="">
+            <label>Document 3</label>
+        </div>
+    </div>
+</div>
+<br><br><br>

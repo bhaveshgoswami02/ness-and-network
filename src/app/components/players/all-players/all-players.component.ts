@@ -32,7 +32,8 @@ export class AllPlayersComponent implements OnInit {
   }
 
   view(id?: any) {
-    this.router.navigateByUrl("/" + this.collection + "/detail/" + id)
+    this.router.navigateByUrl("/" + this.collection + "/detail")
+    // this.router.navigateByUrl("/" + this.collection + "/detail/" + id)
   }
 
   delete() {
