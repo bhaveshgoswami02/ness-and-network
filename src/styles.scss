@@ -29,11 +29,11 @@ button {
 }
 
 .bg-primary {
-    background-color: var(--primary)!important;
+    background-color: var(--primary) !important;
 }
 
 .bg-secondary {
-    background-color: var(--secondary)!important;
+    background-color: var(--secondary) !important;
 }
 
 .min-height-100 {
@@ -87,7 +87,7 @@ button {
 }
 
 .p-datatable .p-datatable-header {
-    background: var(--secondary)!important;
+    background: var(--secondary) !important;
     color: var(--secondary-contrast);
     border: 1px solid #e9ecef;
     border-width: 1px 0 1px 0;
@@ -95,24 +95,24 @@ button {
     font-weight: 600;
 }
 
-.p-datatable .p-datatable-thead > tr > th {
+.p-datatable .p-datatable-thead>tr>th {
     text-align: left;
     padding: 1rem 1rem;
     border: 1px solid #e9ecef;
     border-width: 0 0 1px 0;
     font-weight: 600;
-    background: var(--secondary)!important;
-    color: var(--secondary-contrast)!important;
+    background: var(--secondary) !important;
+    color: var(--secondary-contrast) !important;
     transition: box-shadow 0.2s;
 }
 
-.p-datatable.p-datatable-striped .p-datatable-tbody > tr:nth-child(even) {
-    background-color: var(--primary)!important;
+.p-datatable.p-datatable-striped .p-datatable-tbody>tr:nth-child(even) {
+    background-color: var(--primary) !important;
 }
 
 .add-btn {
-    background: var(--tertiary)!important;
-    color: var(--tertiary-contrast)!important;
+    background: var(--tertiary) !important;
+    color: var(--tertiary-contrast) !important;
     text-transform: capitalize;
 }
 
@@ -126,15 +126,15 @@ button {
 }
 
 .breadcumb i {
-    color: var(--primary-contrast)!important;
+    color: var(--primary-contrast) !important;
 }
 
 .cursor-pointer {
-    cursor: pointer!important;
+    cursor: pointer !important;
 }
 
 .capitalize {
-    text-transform: capitalize!important;
+    text-transform: capitalize !important;
 }
 
 .font-large {
@@ -158,11 +158,16 @@ button {
     border: 1px solid #ced4da;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
     border-radius: 3px;
-    width: 100%!important;
+    width: 100% !important;
 }
 
 .p-calendar {
     position: relative;
     display: inline-flex;
-    width: 100%!important;
+    width: 100% !important;
+}
+
+.flag {
+    width: 35px;
+    margin-right: 10px;
 }

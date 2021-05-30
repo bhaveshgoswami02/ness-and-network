@@ -3,7 +3,7 @@
         <div class="col-md-12 breadcumb">
             <a class="link" routerLink="/dashboard">Dashboard</a> <i class="pi pi-angle-right"></i>
             <a class="capitalize link" routerLink="/{{collection}}">{{collection}}</a> <i class="pi pi-angle-right"></i>
-            <span class="capitalize">robert lewandowski</span>
+            <span class="capitalize">{{data.name}}</span>
         </div>
     </div>
     <div class="row mt-3">
@@ -26,8 +26,8 @@
 
     <div class="row mt-5">
         <div class="col-md-12 d-flex">
-            <img src="../../../../assets/images/user.png" width="8%" class="rounded-circle" alt="">
-            <h1 class="capitalize my-auto ml-4">robert lewandowski</h1>
+            <img [src]="data.imgUrl" width="100px" height="100px" class="rounded-circle" alt="">
+            <h1 class="capitalize my-auto ml-4">{{data.name}}</h1>
         </div>
     </div>
 
@@ -40,15 +40,15 @@
                         <i class="text-blue">Nationality</i>
                     </div>
                     <div class="col-6 text-right">
-                        <p class="font-weight-500">Poland</p>
+                        <p class="font-weight-500">{{data.nationality}}</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-6">
-                        <i class="text-blue">Date od Birth</i>
+                        <i class="text-blue">Date of Birth</i>
                     </div>
                     <div class="col-6 text-right">
-                        <p class="font-weight-500">23-Aug-1999</p>
+                        <p class="font-weight-500">{{data.dob}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -56,7 +56,7 @@
                         <i class="text-blue">Height</i>
                     </div>
                     <div class="col-6 text-right">
-                        <p class="font-weight-500">181 Cm</p>
+                        <p class="font-weight-500">{{data.spr?.height}} Cm</p>
                     </div>
                 </div>
                 <div class="row">
@@ -64,23 +64,15 @@
                         <i class="text-blue">Weight</i>
                     </div>
                     <div class="col-6 text-right">
-                        <p class="font-weight-500">68Kg</p>
+                        <p class="font-weight-500">{{data.spr?.weight}} Kg</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-6">
-                        <i class="text-blue">Nationality</i>
+                        <i class="text-blue">Preferred Foot</i>
                     </div>
                     <div class="col-6 text-right">
-                        <p class="font-weight-500">Poland</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <i class="text-blue">preferred Foot</i>
-                    </div>
-                    <div class="col-6 text-right">
-                        <p class="font-weight-500">Right</p>
+                        <p class="font-weight-500">{{data.other_details?.preferred_foot}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -88,7 +80,7 @@
                         <i class="text-blue">Club</i>
                     </div>
                     <div class="col-6 text-right">
-                        <p class="font-weight-500">Bayern</p>
+                        <p class="font-weight-500">{{data.other_details?.club}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -96,7 +88,7 @@
                         <i class="text-blue">League</i>
                     </div>
                     <div class="col-6 text-right">
-                        <p class="font-weight-500">Bundesliga</p>
+                        <p class="font-weight-500">{{data.other_details?.league}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -104,7 +96,7 @@
                         <i class="text-blue">Position</i>
                     </div>
                     <div class="col-6 text-right">
-                        <p class="font-weight-500">Forward</p>
+                        <p class="font-weight-500">{{data.other_details?.position}}</p>
                     </div>
                 </div>
             </p-card>
@@ -122,7 +114,7 @@
                         <p>Defending</p>
                     </div>
                     <div class="col-6 text-right">
-                        <p-progressBar [value]="'28'"></p-progressBar>
+                        <p-progressBar [value]="data.spr?.defending"></p-progressBar>
                     </div>
                 </div>
                 <div class="row">
@@ -130,7 +122,7 @@
                         <p>Heading</p>
                     </div>
                     <div class="col-6 text-right">
-                        <p-progressBar [value]="'50'"></p-progressBar>
+                        <p-progressBar [value]="data.spr?.heading"></p-progressBar>
                     </div>
                 </div>
                 <div class="row">
@@ -138,7 +130,7 @@
                         <p>Passing</p>
                     </div>
                     <div class="col-6 text-right">
-                        <p-progressBar [value]="'40'"></p-progressBar>
+                        <p-progressBar [value]="data.spr?.passing"></p-progressBar>
                     </div>
                 </div>
                 <div class="row">
@@ -146,7 +138,7 @@
                         <p>Dribbling</p>
                     </div>
                     <div class="col-6 text-right">
-                        <p-progressBar [value]="'39'"></p-progressBar>
+                        <p-progressBar [value]="data.spr?.dribbling"></p-progressBar>
                     </div>
                 </div>
                 <div class="row">
@@ -154,7 +146,7 @@
                         <p>Vision</p>
                     </div>
                     <div class="col-6 text-right">
-                        <p-progressBar [value]="'47'"></p-progressBar>
+                        <p-progressBar [value]="data.spr?.vision"></p-progressBar>
                     </div>
                 </div>
                 <div class="row">
@@ -162,7 +154,7 @@
                         <p>Attacking</p>
                     </div>
                     <div class="col-6 text-right">
-                        <p-progressBar [value]="'100'"></p-progressBar>
+                        <p-progressBar [value]="data.spr?.attacking"></p-progressBar>
                     </div>
                 </div>
             </p-card>
@@ -173,19 +165,13 @@
         <div class="col-md-6">
             <h5>Season highlight</h5>
             <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore natus repudiandae aperiam dicta ab
-                consequuntur suscipit ad officiis expedita odio quisquam impedit, cumque totam minima non molestias nemo
-                doloribus. Velit dicta quas, cupiditate harum doloribus quia sunt facere autem hic, eos asperiores ut
-                ratione officiis numquam culpa ea esse veniam?
+               {{data.spr?.season_highlights}}
             </p>
         </div>
         <div class="col-md-6">
             <h5>Career highlight</h5>
             <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore natus repudiandae aperiam dicta ab
-                consequuntur suscipit ad officiis expedita odio quisquam impedit, cumque totam minima non molestias nemo
-                doloribus. Velit dicta quas, cupiditate harum doloribus quia sunt facere autem hic, eos asperiores ut
-                ratione officiis numquam culpa ea esse veniam?
+                {{data.spr?.career_highlights}}
             </p>
         </div>
     </div>

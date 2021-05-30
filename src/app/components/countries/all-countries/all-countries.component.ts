@@ -1,10 +1,13 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CountryService } from 'src/app/services/country.service';
 
 @Component({
   selector: 'app-all-countries',
   templateUrl: './all-countries.component.html',
-  styleUrls: ['./all-countries.component.scss']
+  styleUrls: ['./all-countries.component.scss'],
+  providers: [DatePipe],
 })
 export class AllCountriesComponent implements OnInit {
   collection: string = "countries"
@@ -15,22 +18,32 @@ export class AllCountriesComponent implements OnInit {
     { field: 'timestamp', header: 'Registration Date' },
   ];
 
-  data = [
-    { id: "123456789", name: "Argentina", imgUrl: "ImgUrl", timestamp: "30-Mar-2021" },
-    { id: "789456123", name: "Brazil", imgUrl: "ImgUrl", timestamp: "30-Mar-2021" },
-  ]
+  data: any = []
 
-  constructor(public router: Router) { }
+  constructor(public router: Router, public service: CountryService) {
+    console.log()
+   }
 
   ngOnInit(): void {
+    this.getData()
   }
 
-  edit(id?:any) {
-    this.router.navigateByUrl("/" + this.collection + "/" + id)
+  getData() {
+    this.service.getAll(this.collection).subscribe(res => {
+      this.data = res
+      console.log("all", this.collection, this.data)
+    })
   }
 
-  delete() {
-    
+  edit(id?: any) {
+    this.router.navigateByUrl("/" + this.collection + "/edit/" + id)
+  }
+
+  delete(id?: any) {
+    console.log("id", id)
+    this.service.delete(this.collection,id).then(res=>{
+      this.getData()
+    })
   }
 
 }

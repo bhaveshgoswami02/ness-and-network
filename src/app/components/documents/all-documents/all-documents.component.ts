@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DocumentService } from 'src/app/services/document.service';
 
 @Component({
   selector: 'app-all-documents',
@@ -15,26 +16,34 @@ export class AllDocumentsComponent implements OnInit {
     { field: 'timestamp', header: 'Document Date' },
   ];
 
-  data = [
-    { id: "123456789", type: "Contract", name: "Contract with ABC Party", timestamp: "30-Mar-2021" },
-    { id: "123456789", type: "Documents", name: "Document123", timestamp: "30-Mar-2021" },
-  ]
-
-  constructor(public router: Router) { }
+  data:any = [ ]
+  constructor(public router: Router,public service:DocumentService) { }
 
   ngOnInit(): void {
+    this.getData()
+  }
+
+  getData() {
+    this.service.getAll().subscribe(res=>{
+      this.data = res
+      console.log("all data",this.data)
+    })
   }
 
   edit(id?: any) {
-    this.router.navigateByUrl("/" + this.collection + "/" + id)
+    this.router.navigateByUrl("/" + this.collection + "/edit/" + id)
   }
 
   view(id?: any) {
     this.router.navigateByUrl("/" + this.collection + "/detail/" + id)
   }
 
-  delete() {
-
+  delete(id?: any) {
+    console.log("id", id)
+    this.service.delete(id)
+    // .then(res=>{
+    //   this.getData()
+    // })
   }
 
 }

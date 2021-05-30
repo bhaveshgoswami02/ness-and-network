@@ -14,14 +14,18 @@
         </div>
     </div>
     <form [formGroup]="formData" (ngSubmit)="onSubmit()">
-        
+
         <div class="row mt-3">
             <div class="col-md-8">
                 <div class="row my-3">
                     <div class="col-md-6">
                         <label>Document Type</label> <br>
-                        <p-dropdown [options]="documentTypes" class="w-100" formControlName="files" optionLabel="name"
-                            [filter]="true" filterBy="name" placeholder="Select Type"></p-dropdown>
+                        <p-dropdown [options]="documentTypes" class="w-100" formControlName="type"
+                            placeholder="Select Type"></p-dropdown>
+                        <div *ngIf="validation.type.errors && validation.type.dirty">
+                            <div class="text-danger" *ngIf="validation.type?.errors?.required">Field is required!
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <div class="p-field">
@@ -45,21 +49,38 @@
             </div>
             <div class="row">
                 <div class="col-md-3 mt-3">
-                    <img [src]="documentSrc" class="cursor-pointer" (click)="files.click()" width="30%"
-                        alt=""><br>
-                    <label class="text-center mr-2">Upload Document</label>
-                    <input #files type="file" formControlName="files" class="d-none" (change)="onSelectFile($event)">
-                </div>
-                <div *ngIf="validation.files.errors && validation.files.dirty">
-                    <div class="text-danger" *ngIf="validation.files?.errors?.required">Field is required!</div>
+                    <div class="form-group">
+                        <img [src]="documentSrc" class="cursor-pointer" (click)="files.click()" width="30%" alt=""><br>
+                        <label class="text-center mr-2">Upload Document</label>
+                        <input type="file" id="file" #files accept='image/*' multiple
+                            (change)="multipleDocumentPreview($event)">
+                    </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-12 mb-3" *ngFor="let url of multipleDocumentUrls;let i = index">
+                    <img [src]="url" style="width: 100%;">
+                    <button class="btn btn-primary" type="button"
+                        (click)="deleteMultiplePreviewDocuments(i)">Delete</button>
+                </div>
+            </div>
+            <ng-container *ngIf="subCollectionData.length>0">
+                <label>Selected Multiple Documents</label>
+                <div class="row">
+                    <div class="col-md-4 my-2" *ngFor="let data of subCollectionData;let i = index">
+                        <img [src]="data.imgUrl" width="100%">
+                        <button class="btn btn-primary" type="button"
+                            (click)="deleteSubCollectionDocuments(data.id,data.imgPath,i)">Delete</button>
+                    </div>
+                </div>
+            </ng-container>
         </div>
 
         <div class="row">
             <div class="col-md-6">
                 <div class="text-left">
-                    <button class="btn btn-primary mt-4" type="submit" [disabled]="formData.invalid">Save</button>
+                    <button class="btn btn-primary mt-4" type="submit"
+                        [disabled]="formData.invalid || multipleDocumentFiles.length==0">Save</button>
                 </div>
             </div>
         </div>

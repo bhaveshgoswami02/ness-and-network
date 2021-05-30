@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EChartsOption } from 'echarts';
+import { PlayersService } from 'src/app/services/players.service';
 
 @Component({
   selector: 'app-player-details',
@@ -12,52 +13,11 @@ export class PlayerDetailsComponent implements OnInit {
   pageTitle = "Player"
   collection = "players"
   id: any = null
-  chartData: any[] = [{
-    "value": 28,
-    "name": "Defending"
-  },
-  {
-    "value": 50,
-    "name": "Heading"
-  },
-  {
-    "value": 40,
-    "name": "Passing"
-  },
-  {
-    "value": 39,
-    "name": "Dribbling"
-  },
-  {
-    "value": 47,
-    "name": "Vision"
-  },
-  {
-    "value": 100,
-    "name": "Attacking"
-  }
-  ];
-  options: EChartsOption = {
-    tooltip: {
-      trigger: 'item'
-    },
-    series: [
-      {
-        type: 'pie',
-        radius: '60%',
-        data: this.chartData,
-        emphasis: {
-          itemStyle: {
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowColor: 'rgba(0, 0, 0, 0.5)'
-          }
-        }
-      }
-    ]
-  };
+  chartData: any[] = [];
+  options: EChartsOption = {}
+  data: any = {}
 
-  constructor(public router: Router, public route: ActivatedRoute) { }
+  constructor(public router: Router, public route: ActivatedRoute, public service: PlayersService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get("id")
@@ -67,16 +27,62 @@ export class PlayerDetailsComponent implements OnInit {
   }
 
   getData() {
-
+    this.service.getSingle(this.id).subscribe(res => {
+      this.data = res
+      this.chartData = [{
+        "value": this.data.spr?.defending,
+        "name": "Defending"
+      },
+      {
+        "value": this.data.spr?.heading,
+        "name": "Heading"
+      },
+      {
+        "value": this.data.spr?.passing,
+        "name": "Passing"
+      },
+      {
+        "value": this.data.spr?.dribbling,
+        "name": "Dribbling"
+      },
+      {
+        "value": this.data.spr?.vision,
+        "name": "Vision"
+      },
+      {
+        "value": this.data.spr?.attacking,
+        "name": "Attacking"
+      }
+      ];
+      this.options = {
+        tooltip: {
+          trigger: 'item'
+        },
+        series: [
+          {
+            type: 'pie',
+            radius: '60%',
+            data: this.chartData,
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
+            }
+          }
+        ]
+      };
+    })
   }
 
-  edit(id?: any) {
-    this.router.navigateByUrl("/" + this.collection + "/edit/" +"id")
-    // this.router.navigateByUrl("/" + this.collection + "/edit/" + id)
+  edit() {
+    this.router.navigateByUrl("/" + this.collection + "/edit/" + this.id)
   }
 
-  delete(id?: any) {
-
+  delete() {
+    this.service.delete(this.id)
+    this.router.navigateByUrl("/" + this.collection)
   }
 
 }

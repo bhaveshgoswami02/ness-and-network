@@ -43,7 +43,12 @@
                                     <div class="col-md-6">
                                         <div class="p-field p-col">
                                             <label>Date of Birth</label>
-                                            <p-calendar formControlName="dob" [showIcon]="true"></p-calendar>
+                                            <p-calendar formControlName="dob" [yearNavigator]="true" yearRange="1950:2021" [showIcon]="true"></p-calendar>
+                                        </div>
+                                        <div *ngIf="validation.dob.errors && validation.dob.dirty">
+                                            <div class="text-danger" *ngIf="validation.dob?.errors?.required">Field is
+                                                required!
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -51,7 +56,28 @@
                                             <label>Nationality</label>
                                             <p-dropdown [options]="countries" formControlName="nationality"
                                                 optionLabel="name" [filter]="true" filterBy="name"
-                                                placeholder="Select a Country"></p-dropdown>
+                                                placeholder="Select a Country">
+                                                <ng-template pTemplate="selectedItem">
+                                                    <div class="country-item country-item-value d-flex"
+                                                        *ngIf="formData.value.nationality">
+                                                        <img [src]="formData.value.nationality.imgUrl" class="flag" />
+                                                        <div>{{formData.value.nationality.name}}</div>
+                                                    </div>
+                                                </ng-template>
+                                                <ng-template let-country pTemplate="item">
+                                                    <div class="d-flex">
+                                                        <img [src]="country.imgUrl" class="flag" />
+                                                        <div>{{country.name}}</div>
+                                                    </div>
+                                                </ng-template>
+                                            </p-dropdown>
+
+                                            <div *ngIf="validation.nationality.errors && validation.nationality.dirty">
+                                                <div class="text-danger"
+                                                    *ngIf="validation.nationality?.errors?.required">Field
+                                                    is required!
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -62,7 +88,7 @@
             </div>
             <div class="col-md-6 text-right">
                 <div class="p-field mt-3">
-                    <img [src]="imageSrc" class="cursor-pointer rounded-circle" (click)="file.click()" width="30%"
+                    <img [src]="imageSrc" class="cursor-pointer rounded-circle mr-5" (click)="file.click()" width="90px" height="90px"
                         alt=""><br>
                     <label class="text-center mr-2">Upload {{pageTitle}} Image</label>
                     <input #file type="file" formControlName="file" class="d-none" (change)="onSelectFile($event)">
@@ -81,7 +107,7 @@
         </div>
         <div class="row mt-3">
             <div class="col-md-8">
-                <div class="p-fluid">
+                <div class="p-fluid" formGroupName="other_details">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="p-fluid">
@@ -89,22 +115,34 @@
                                     <div class="col-md-4">
                                         <div class="p-field p-col">
                                             <label>Height (In Cm)</label>
-                                            <input type="text" formControlName="height" pInputText>
+                                            <input type="number" formControlName="height" pInputText>
                                         </div>
+                                        <!-- <div *ngIf="validation.other_details.controls.height.errors && validation.other_details.controls.height.dirty">
+                                            <div class="text-danger" *ngIf="validation.other_details.controls.height?.errors?.required">Field is required!
+                                            </div>
+                                        </div> -->
                                     </div>
                                     <div class="col-md-4">
                                         <div class="p-field p-col">
                                             <label>Weight (In KG)</label>
-                                            <input type="text" formControlName="weight" pInputText>
+                                            <input type="number" formControlName="weight" pInputText>
                                         </div>
+                                        <!-- <div *ngIf="validation.weight.errors && validation.weight.dirty">
+                                            <div class="text-danger" *ngIf="validation.weight?.errors?.required">Field is required!
+                                            </div>
+                                        </div> -->
                                     </div>
                                     <div class="col-md-4">
                                         <div class="p-field p-col">
                                             <label>Preferred Foot</label>
                                             <p-dropdown [options]="foot" formControlName="preferred_foot"
-                                                optionLabel="name" [filter]="true" filterBy="name"
-                                                placeholder="Select"></p-dropdown>
+                                                placeholder="Select">
+                                            </p-dropdown>
                                         </div>
+                                        <!-- <div *ngIf="validation.preferred_foot.errors && validation.preferred_foot.dirty">
+                                            <div class="text-danger" *ngIf="validation.preferred_foot?.errors?.required">Field is required!
+                                            </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -117,21 +155,33 @@
                                     <div class="col-md-4">
                                         <div class="p-field p-col">
                                             <label>Club</label>
-                                            <input type="text" formControlName="height" pInputText>
+                                            <input type="text" formControlName="club" pInputText>
                                         </div>
+                                        <!-- <div *ngIf="validation.club.errors && validation.club.dirty">
+                                            <div class="text-danger" *ngIf="validation.club?.errors?.required">Field is required!
+                                            </div>
+                                        </div> -->
                                     </div>
                                     <div class="col-md-4">
                                         <div class="p-field p-col">
                                             <label>League</label>
-                                            <input type="text" formControlName="weight" pInputText>
+                                            <input type="text" formControlName="league" pInputText>
+                                            <!-- <div *ngIf="validation.league.errors && validation.league.dirty">
+                                                <div class="text-danger" *ngIf="validation.league?.errors?.required">Field is required!
+                                                </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="p-field p-col">
                                             <label>Position</label>
                                             <p-dropdown [options]="position" formControlName="position"
-                                                optionLabel="name" [filter]="true" filterBy="name"
-                                                placeholder="Select"></p-dropdown>
+                                                placeholder="Select">
+                                            </p-dropdown>
+                                            <!-- <div *ngIf="validation.position.errors && validation.position.dirty">
+                                                <div class="text-danger" *ngIf="validation.position?.errors?.required">Field is required!
+                                                </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -148,7 +198,7 @@
                 <i class="my-auto">Soccerment Performance Rating (SPR)</i>
             </div>
         </div>
-        <div class="row mt-3">
+        <div class="row mt-3" formGroupName="spr">
             <div class="col-md-8">
                 <div class="p-fluid">
                     <div class="row">
@@ -158,20 +208,32 @@
                                     <div class="col-md-4">
                                         <div class="p-field p-col">
                                             <label>Defending (out of 100)</label>
-                                            <input type="text" formControlName="defending" pInputText>
+                                            <input type="number" formControlName="defending" pInputText>
                                         </div>
+                                        <!-- <div *ngIf="validation.defending.errors && validation.defending.dirty">
+                                            <div class="text-danger" *ngIf="validation.defending?.errors?.required">Field is required!
+                                            </div>
+                                        </div> -->
                                     </div>
                                     <div class="col-md-4">
                                         <div class="p-field p-col">
                                             <label>Heading (out of 100)</label>
-                                            <input type="text" formControlName="heading" pInputText>
+                                            <input type="number" formControlName="heading" pInputText>
                                         </div>
+                                        <!-- <div *ngIf="validation.heading.errors && validation.heading.dirty">
+                                            <div class="text-danger" *ngIf="validation.heading?.errors?.required">Field is required!
+                                            </div>
+                                        </div> -->
                                     </div>
                                     <div class="col-md-4">
                                         <div class="p-field p-col">
                                             <label>Passing (out of 100)</label>
-                                            <input type="text" formControlName="passing" pInputText>
+                                            <input type="number" formControlName="passing" pInputText>
                                         </div>
+                                        <!-- <div *ngIf="validation.passing.errors && validation.passing.dirty">
+                                            <div class="text-danger" *ngIf="validation.passing?.errors?.required">Field is required!
+                                            </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -184,25 +246,37 @@
                                     <div class="col-md-4">
                                         <div class="p-field p-col">
                                             <label>Dribbling (out of 100)</label>
-                                            <input type="text" formControlName="dribbling" pInputText>
+                                            <input type="number" formControlName="dribbling" pInputText>
                                         </div>
+                                        <!-- <div *ngIf="validation.dribbling.errors && validation.dribbling.dirty">
+                                            <div class="text-danger" *ngIf="validation.dribbling?.errors?.required">Field is required!
+                                            </div>
+                                        </div> -->
                                     </div>
                                     <div class="col-md-4">
                                         <div class="p-field p-col">
                                             <label>Vision (out of 100)</label>
-                                            <input type="text" formControlName="vision" pInputText>
+                                            <input type="number" formControlName="vision" pInputText>
                                         </div>
+                                        <!-- <div *ngIf="validation.vision.errors && validation.vision.dirty">
+                                            <div class="text-danger" *ngIf="validation.vision?.errors?.required">Field is required!
+                                            </div>
+                                        </div> -->
                                     </div>
                                     <div class="col-md-4">
                                         <div class="p-field p-col">
                                             <label>Attacking (out of 100)</label>
-                                            <input type="text" formControlName="attacking" pInputText>
+                                            <input type="number" formControlName="attacking" pInputText>
                                         </div>
+                                        <!-- <div *ngIf="validation.attacking.errors && validation.attacking.dirty">
+                                            <div class="text-danger" *ngIf="validation.attacking?.errors?.required">Field is required!
+                                            </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>                    
+                    </div>
                 </div>
             </div>
 
@@ -212,14 +286,24 @@
                         <div class="col-md-6">
                             <div class="p-field p-col">
                                 <label>Season highlights</label>
-                                <textarea [rows]="5" [cols]="30" formControlName="season_highlights" pInputTextarea></textarea>
+                                <textarea [rows]="5" [cols]="30" formControlName="season_highlights"
+                                    pInputTextarea></textarea>
                             </div>
+                            <!-- <div *ngIf="validation.season_highlights.errors && validation.season_highlights.dirty">
+                                <div class="text-danger" *ngIf="validation.season_highlights?.errors?.required">Field is required!
+                                </div>
+                            </div> -->
                         </div>
                         <div class="col-md-6">
                             <div class="p-field p-col">
                                 <label>Career highlights</label>
-                                <textarea [rows]="5" [cols]="30" formControlName="career_highlights" pInputTextarea></textarea>
+                                <textarea [rows]="5" [cols]="30" formControlName="career_highlights"
+                                    pInputTextarea></textarea>
                             </div>
+                            <!-- <div *ngIf="validation.career_highlights.errors && validation.career_highlights.dirty">
+                                <div class="text-danger" *ngIf="validation.career_highlights?.errors?.required">Field is required!
+                                </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -233,8 +317,6 @@
                 </div>
             </div>
         </div>
-
-
     </form>
 
     <br><br><br>

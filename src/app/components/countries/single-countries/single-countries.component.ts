@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { CountryService } from 'src/app/services/country.service';
 
 @Component({
   selector: 'app-single-countries',
@@ -14,7 +15,7 @@ export class SingleCountriesComponent implements OnInit {
   formData: FormGroup;
   imageSrc: any = "../../../../assets/images/upload.png";
   imageFile: any;
-  constructor(public route: ActivatedRoute, private fb: FormBuilder) {
+  constructor(public route: ActivatedRoute, private fb: FormBuilder,public service:CountryService) {
     this.formData = this.fb.group({
       'name': ['', [Validators.required]],
       'file': ['', [Validators.required]],
@@ -31,7 +32,15 @@ export class SingleCountriesComponent implements OnInit {
   get validation() { return this.formData?.controls; }
 
   getData() {
-
+    this.service.getSingle(this.collection,this.id).subscribe((res:any)=>{
+      let data = res
+      this.formData = this.fb.group({
+        'name': [data.name, [Validators.required]],
+        'file': [''],
+      })
+      this.imageSrc = data.imgUrl
+      console.log("all",this.collection,this.formData)
+    })
   }
 
   onSelectFile(event: any) {
@@ -54,9 +63,11 @@ export class SingleCountriesComponent implements OnInit {
     }
     if (this.id) {
       // console.log(this.formData.value,this.imageFile)
+      this.service.update(this.collection,this.id,this.formData.value,this.imageFile)
     }
     else {
       // console.log(this.formData.value,this.imageFile)
+      this.service.add(this.collection,this.formData.value,this.imageFile)
     }
   }
 

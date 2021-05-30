@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PlayersService } from 'src/app/services/players.service';
 
 @Component({
   selector: 'app-all-players',
@@ -17,27 +18,36 @@ export class AllPlayersComponent implements OnInit {
     { field: 'timestamp', header: 'Registration Date' },
   ];
 
-  data = [
-    { id: "123456789", name: "Neymar", nationality: "Indian", dob: "23-Aug-1999", spr:"77", timestamp: "30-Mar-2021" },
-    { id: "123456789", name: "Lionel Messi", nationality: "Brazil", dob: "23-Sep-1999", spr:"98", timestamp: "30-Mar-2021" },
-  ]
+  data:any = []
 
-  constructor(public router: Router) { }
+  constructor(public router: Router, public service: PlayersService) {
+    console.log()
+   }
 
   ngOnInit(): void {
+    this.getData()
+  }
+
+  getData() {
+    this.service.getAll().subscribe(res => {
+      this.data = res
+      console.log("all", this.collection, this.data)
+    })
   }
 
   edit(id?: any) {
-    this.router.navigateByUrl("/" + this.collection + "/" + id)
+    this.router.navigateByUrl("/" + this.collection + "/edit/" + id)
+  }
+
+  delete(id?: any) {
+    console.log("id", id)
+    this.service.delete(id).then(res=>{
+      this.getData()
+    })
   }
 
   view(id?: any) {
-    this.router.navigateByUrl("/" + this.collection + "/detail")
-    // this.router.navigateByUrl("/" + this.collection + "/detail/" + id)
-  }
-
-  delete() {
-
+    this.router.navigateByUrl("/" + this.collection + "/detail/" + id)
   }
 
 }

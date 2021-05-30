@@ -53,6 +53,7 @@ import { CalendarModule } from 'primeng/calendar';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {CardModule} from 'primeng/card';
 import {ProgressBarModule} from 'primeng/progressbar';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -112,7 +113,7 @@ import {ProgressBarModule} from 'primeng/progressbar';
     CardModule,
     ProgressBarModule
   ],
-  providers: [MessageService],
+  providers: [MessageService,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

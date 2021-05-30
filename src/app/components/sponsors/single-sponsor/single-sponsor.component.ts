@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SingleSponsorComponent implements OnInit {
   pageTitle: string = "Sponsor"
-  collection: string = "sponsers";
+  collection: string = "sponsors";
   id: any = null;
   formData: FormGroup;
   countries = [
