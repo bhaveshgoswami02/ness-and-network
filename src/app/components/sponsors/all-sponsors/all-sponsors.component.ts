@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SponsorService } from 'src/app/services/sponsor.service';
 
 @Component({
   selector: 'app-all-sponsors',
@@ -9,33 +10,40 @@ import { Router } from '@angular/router';
 export class AllSponsorsComponent implements OnInit {
   collection: string = "sponsors"
   cols = [
-    { field: 'id', header: 'Agency ID' },
-    { field: 'name', header: 'Agency Name' },
+    { field: 'id', header: 'Sponsor ID' },
+    { field: 'name', header: 'Sponsor Name' },
     { field: 'nationality', header: 'Country' },
-    { field: 'contract_due', header: 'Contract Due' },
+    { field: 'contracts', header: 'Contract Due' },
     { field: 'timestamp', header: 'Registration Date' },
   ];
 
-  data = [
-    { id: "123456789", name: "XYZ Agency", nationality: "India", contract_due: "30-Mar-2021", timestamp: "30-Mar-2021" },
-    { id: "123456789", name: "ABC Agency", nationality: "India", contract_due: "30-Mar-2021", timestamp: "30-Mar-2021" },
-  ]
+  data:any = []
 
-  constructor(public router: Router) { }
+
+  constructor(public router: Router,public service:SponsorService) { }
 
   ngOnInit(): void {
+    this.getData()
+  }
+
+  getData() {
+    this.service.getAll().subscribe(res => {
+      this.data = res
+      console.log("all", this.collection, this.data)
+    })
   }
 
   edit(id?: any) {
-    this.router.navigateByUrl("/" + this.collection + "/" + id)
+    this.router.navigateByUrl("/" + this.collection + "/edit/" + id)
   }
 
   view(id?: any) {
     this.router.navigateByUrl("/" + this.collection + "/detail/" + id)
   }
 
-  delete() {
-
+  delete(id?: any) {
+    console.log("id", id)
+    this.service.delete(id)
   }
 
 }

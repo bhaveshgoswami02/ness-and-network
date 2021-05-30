@@ -26,6 +26,7 @@ import { SingleScoutingComponent } from './components/scouting/single-scouting/s
 import { SettingComponent } from './components/setting/setting.component';
 import { AllSponsorsComponent } from './components/sponsors/all-sponsors/all-sponsors.component';
 import { SingleSponsorComponent } from './components/sponsors/single-sponsor/single-sponsor.component';
+import { SponsorDetailsComponent } from './components/sponsors/sponsor-details/sponsor-details.component';
 import { SponsorsComponent } from './components/sponsors/sponsors.component';
 import { AllSubAdminComponent } from './components/sub-admin/all-sub-admin/all-sub-admin.component';
 import { SingleSubAdminComponent } from './components/sub-admin/single-sub-admin/single-sub-admin.component';
@@ -81,6 +82,7 @@ const routes: Routes = [
           { path: '', component: AllSponsorsComponent },
           { path: 'add', component: SingleSponsorComponent },
           { path: 'edit/:id', component: SingleSponsorComponent },
+          { path: 'detail/:id', component: SponsorDetailsComponent }
         ]
       },
       {

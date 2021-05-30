@@ -135,6 +135,8 @@ export class DocumentService {
     })
   }
 
+  // Multiple documents functions
+
   deleteMultipleDocument(collectionId: any, sub_collectionId:any,filePath: any) {
     this.common.showLoader()
     console.log("filePath", filePath, "collectionId", collectionId, "sub_collectionId", sub_collectionId)
@@ -154,13 +156,13 @@ export class DocumentService {
   }
 
   getSubCollectionData(id:any) {
-    return this.db.collection(this.collection).doc(id).collection(this.sub_collection).snapshotChanges().pipe(
-      map(actions => actions.map(a => {
-        const data = a.payload.doc.data() as any;
-        const id = a.payload.doc.id;
+    return this.db.collection(this.collection).doc(id).collection(this.sub_collection).get().pipe(
+      map(actions => actions.docs.map(a => {
+        const data = a.data() as any;
+        const id = a.id;
         return { id, ...data };
       }))
-    );
+    )
   }
 
 }

@@ -46,8 +46,26 @@
                 <div class="row my-3">
                     <div class="col-md-6">
                         <label>Country</label> <br>
-                        <p-dropdown [options]="countries" class="w-100" formControlName="nationality" optionLabel="name"
-                            [filter]="true" filterBy="name" placeholder="Select a Country"></p-dropdown>
+                        <p-dropdown [options]="countries" formControlName="nationality" optionLabel="name"
+                            [filter]="true" filterBy="name" placeholder="Select a Country">
+                            <ng-template pTemplate="selectedItem">
+                                <div class="country-item country-item-value d-flex" *ngIf="formData.value.nationality">
+                                    <img [src]="formData.value.nationality.imgUrl" class="flag" />
+                                    <div>{{formData.value.nationality.name}}</div>
+                                </div>
+                            </ng-template>
+                            <ng-template let-country pTemplate="item">
+                                <div class="d-flex">
+                                    <img [src]="country.imgUrl" class="flag" />
+                                    <div>{{country.name}}</div>
+                                </div>
+                            </ng-template>
+                        </p-dropdown>
+                        <div *ngIf="validation.nationality.errors && validation.nationality.dirty">
+                            <div class="text-danger" *ngIf="validation.nationality?.errors?.required">Field
+                                is required!
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <div class="p-field">
@@ -64,6 +82,11 @@
                     <div class="col-md-6">
                         <label>Full Address</label> <br>
                         <textarea [rows]="3" class="w-100" formControlName="full_address" pInputTextarea></textarea>
+                        <div *ngIf="validation.full_address.errors && validation.full_address.dirty">
+                            <div class="text-danger" *ngIf="validation.full_address?.errors?.required">Field is
+                                required!
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -84,66 +107,90 @@
                     <i class="my-auto font-larger">Contract Details</i>
                 </div>
                 <div class="col-md-6 text-right p-0">
-                    <button class="btn btn-primary">
+                    <button class="btn btn-primary" type="button" (click)="onAddContract()">
                         <i class="pi pi-plus"></i>
                         Add More Contract
                     </button>
                 </div>
             </div>
         </div>
-        <div class="row mt-3">
-            <div class="col-md-8">
-                <div class="row my-3">
-                    <div class="col-md-6">
-                        <div class="p-field">
-                            <label>Contract Date</label> <br>
-                            <p-calendar formControlName="contract_date" class="w-100" [showIcon]="true"></p-calendar>
+        <div formArrayName="contracts" *ngFor="let item of allContracts.controls; let i = index;">
+            <div class="row mt-3" [formGroupName]="i">
+                <div class="col-md-8">
+                    <div class="row my-3">
+                        <div class="col-md-6">
+                            <div class="p-field">
+                                <label>Contract Date</label> <br>
+                                <input type="date" formControlName="contract_date" class="form-control">
+                                <!-- <p-calendar formControlName="contract_date" class="w-100" [showIcon]="true"></p-calendar> -->
+                            </div>
                         </div>
-                        <div *ngIf="validation.contract_date.errors && validation.contract_date.dirty">
-                            <div class="text-danger" *ngIf="validation.contract_date?.errors?.required">Field is required!
+                        <div class="col-md-6">
+                            <div class="p-field">
+                                <label>Contract Due Date</label> <br>
+                                <input type="date" formControlName="contract_due_date" class="form-control">
+                                <!-- <p-calendar formControlName="contract_due_date" class="w-100" [showIcon]="true"></p-calendar> -->
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="p-field">
-                            <label>Contract Due Date</label> <br>
-                            <p-calendar formControlName="contract_due_date" class="w-100" [showIcon]="true"></p-calendar>
-                        </div>
-                        <div *ngIf="validation.contract_due_date.errors && validation.contract_due_date.dirty">
-                            <div class="text-danger" *ngIf="validation.contract_due_date?.errors?.required">Field is required!
-                            </div>
+                    <div class="row my-3">
+                        <div class="col-md-8">
+                            <label>Contract Terms</label> <br>
+                            <textarea [rows]="5" class="w-100" formControlName="contract_terms"
+                                pInputTextarea></textarea>
                         </div>
                     </div>
                 </div>
-                <div class="row my-3">
-                    <div class="col-md-8">
-                        <label>Contract Terms</label> <br>
-                        <textarea [rows]="5" class="w-100" formControlName="full_address" pInputTextarea></textarea>
-                    </div>
+                <div class="col-md-12">
+                    <button class="btn btn-primary" (click)="onDeleteContract(i)" type="button">
+                        Delete
+                    </button>
                 </div>
             </div>
+            <hr>
         </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <h5>Upload Referance Document</h5>
+        <div class="px-3 mt-5">
+            <div class="row mt-3 border-bottom">
+                <div class="col-md-6 p-0">
+                    <i class="my-auto font-larger">Upload Documents</i>
+                </div>
             </div>
-            <div class="col-md-3 mt-3">
-                <img [src]="documentSrc" class="cursor-pointer" (click)="files.click()" width="30%"
-                    alt=""><br>
-                <label class="text-center mr-2">Upload Document</label>
-                <input #files type="file" formControlName="files" class="d-none" (change)="onSelectFile($event)">
+            <div class="row">
+                <div class="col-md-3 mt-3">
+                    <div class="form-group">
+                        <img [src]="documentSrc" class="cursor-pointer" (click)="files.click()" width="30%" alt=""><br>
+                        <label class="text-center mr-2">Upload Document</label>
+                        <input type="file" id="file" #files accept='image/*' multiple
+                            (change)="multipleDocumentPreview($event)">
+                    </div>
+                </div>
             </div>
-            <div *ngIf="validation.files.errors && validation.files.dirty">
-                <div class="text-danger" *ngIf="validation.files?.errors?.required">Field is required!</div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-12 mb-3" *ngFor="let url of multipleDocumentUrls;let i = index">
+                    <img [src]="url" style="width: 100%;">
+                    <button class="btn btn-primary" type="button"
+                        (click)="deleteMultiplePreviewDocuments(i)">Delete</button>
+                </div>
             </div>
+            <ng-container *ngIf="subCollectionData.length>0">
+                <label>Selected Multiple Documents</label>
+                <div class="row">
+                    <div class="col-md-4 my-2" *ngFor="let data of subCollectionData;let i = index">
+                        <img [src]="data.imgUrl" width="100%">
+                        <button class="btn btn-primary" type="button"
+                            (click)="deleteSubCollectionDocuments(data.id,data.imgPath,i)">Delete</button>
+                    </div>
+                </div>
+            </ng-container>
         </div>
 
 
         <div class="row">
             <div class="col-md-6">
                 <div class="text-left">
-                    <button class="btn btn-primary mt-4" type="submit" [disabled]="formData.invalid">Save</button>
+                    <button class="btn btn-primary mt-4" *ngIf="!id" type="submit" [disabled]="formData.invalid || multipleDocumentFiles.length==0">Save</button>
+                    <button class="btn btn-primary mt-4" *ngIf="id" type="submit" [disabled]="formData.invalid">Save</button>
                 </div>
             </div>
         </div>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { CountryService } from 'src/app/services/country.service';
+import { SponsorService } from 'src/app/services/sponsor.service';
 
 @Component({
   selector: 'app-single-sponsor',
@@ -12,43 +14,26 @@ export class SingleSponsorComponent implements OnInit {
   collection: string = "sponsors";
   id: any = null;
   formData: FormGroup;
-  countries = [
-    { name: 'Australia', code: 'AU' },
-    { name: 'Brazil', code: 'BR' },
-    { name: 'China', code: 'CN' },
-    { name: 'Egypt', code: 'EG' },
-    { name: 'France', code: 'FR' },
-    { name: 'Germany', code: 'DE' },
-    { name: 'India', code: 'IN' },
-    { name: 'Japan', code: 'JP' },
-    { name: 'Spain', code: 'ES' },
-    { name: 'United States', code: 'US' }
-  ];
+  countries: any = []
   imageSrc: any = "../../../../assets/images/user.png";
   documentSrc: any = "../../../../assets/images/document.png";
   imageFile: any;
   documentFiles: any = [];
-
-  constructor(public route: ActivatedRoute, private fb: FormBuilder) {
+  contracts?: FormArray;
+  selectedCountry: any = { name: '', imgUrl: '' }
+  subCollectionData: any = []
+  multipleDocumentUrls: any = []
+  multipleDocumentFiles: any = []
+  singleData: any
+  constructor(public route: ActivatedRoute, private fb: FormBuilder, public countryService: CountryService, public service: SponsorService) {
     this.formData = this.fb.group({
       'name': ['', [Validators.required]],
-      'files': ['', [Validators.required]],
       'owner_name': ['', [Validators.required]],
-      'contract_date': ['', [Validators.required]],
-      'contract_due_date': ['', [Validators.required]],
-      'prepare': ['', [Validators.required]],
       'nationality': ['', [Validators.required]],
-      'system': ['', [Validators.required]],
-      'key_player1': ['', [Validators.required]],
       'mobile_no': ['', [Validators.required]],
-      'file': ['', [Validators.required]],
-      'note2': ['', [Validators.required]],
-      'attack': ['', [Validators.required]],
-      'other_system': ['', [Validators.required]],
-      'defend': ['', [Validators.required]],
-      'att_corners': ['', [Validators.required]],
-      'def_corners': ['', [Validators.required]],
       'full_address': ['', [Validators.required]],
+      'file': ['', [Validators.required]],
+      'contracts': this.fb.array([]),
     })
   }
 
@@ -56,13 +41,62 @@ export class SingleSponsorComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get("id")
     if (this.id) {
       this.getData()
+      this.getSubCollectionData()
     }
+    this.getCountries()
   }
 
-  get validation() { return this.formData?.controls; }
+  createContracts(): FormGroup {
+    return this.fb.group({
+      contract_date: '',
+      contract_due_date: '',
+      contract_terms: ''
+    });
+  }
+
+  onAddContract(): void {
+    this.contracts = this.formData.get('contracts') as FormArray;
+    this.contracts.push(this.createContracts());
+  }
+
+  get validation() { return this.formData?.controls }
 
   getData() {
+    this.service.getSingle(this.id).subscribe(res => {
+      this.singleData = res
+      this.formData = this.fb.group({
+        'name': [this.singleData.name, [Validators.required]],
+        'owner_name': [this.singleData.owner_name, [Validators.required]],
+        'nationality': [this.singleData.nationality, [Validators.required]],
+        'mobile_no': [this.singleData.mobile_no, [Validators.required]],
+        'full_address': [this.singleData.full_address, [Validators.required]],
+        'file': ['',],
+        'files': ['',],
+        'contracts': this.fb.array([]),
+      })
+      this.imageSrc = this.singleData.imgUrl
+      if (this.singleData.contracts.length != 0) {
+        this.editContracts()
+      }
+    })
+  }
 
+  getSubCollectionData() {
+    this.service.getSubCollectionData(this.id).subscribe(res => {
+      this.subCollectionData = res
+    })
+  }
+
+  editContracts() {
+    console.log("edit contracts", this.singleData.options)
+    this.singleData?.contracts.forEach((contract: any) => {
+      this.contracts = this.formData.get('contracts') as FormArray;
+      this.contracts.push(this.fb.group({
+        contract_date: contract.contract_date,
+        contract_due_date: contract.contract_due_date,
+        contract_terms: contract.contract_terms
+      }))
+    });
   }
 
   onSelectFile(event: any) {
@@ -79,16 +113,63 @@ export class SingleSponsorComponent implements OnInit {
     }
   }
 
+  getCountries() {
+    this.countryService.getAll().subscribe(res => {
+      this.countries = res
+      console.log("countries", this.countries)
+    })
+  }
+
   onSubmit() {
     if (this.formData.value.file) {
       delete this.formData.value.file
     }
     if (this.id) {
-      // console.log(this.formData.value,this.imageFile)
+      console.log(this.formData.value)
+      this.service.update(this.id, this.formData.value, this.imageFile, this.multipleDocumentFiles)
     }
     else {
-      // console.log(this.formData.value,this.imageFile)
+      console.log(this.formData.value)
+      this.service.add(this.formData.value, this.imageFile, this.multipleDocumentFiles)
     }
+  }
+
+  multipleDocumentPreview(event: any) {
+    this.multipleDocumentUrls = [];
+    this.multipleDocumentFiles = event.target.files;
+    console.log("multipleDocumentFiles", this.multipleDocumentFiles)
+    for (let file of this.multipleDocumentFiles) {
+      let reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.multipleDocumentUrls.push(e.target.result);
+      }
+      reader.readAsDataURL(file);
+    }
+  }
+
+  onDeleteContract(index: any) {
+    this.contracts?.removeAt(index);
+  }
+
+  get allContracts() {
+    console.log(this.formData.get('contracts') as FormArray)
+    return this.formData.get('contracts') as FormArray
+  }
+
+  deleteMultiplePreviewDocuments(i: any) {
+    var newFileList = Array.from(this.multipleDocumentFiles);
+    console.log("newFileList", newFileList)
+    newFileList.splice(i, 1)
+    console.log(this.multipleDocumentFiles)
+    this.multipleDocumentFiles = newFileList
+    console.log(this.multipleDocumentFiles)
+    this.multipleDocumentFiles.splice(i, 1)
+    this.multipleDocumentUrls.splice(i, 1)
+  }
+
+  deleteSubCollectionDocuments(documentId: string, documentPath: string, i: any) {
+    this.service.deleteMultipleDocument(this.id, documentId, documentPath)
+    this.subCollectionData.splice(i, 1)
   }
 
 }

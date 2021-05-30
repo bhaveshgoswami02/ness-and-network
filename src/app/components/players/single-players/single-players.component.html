@@ -43,7 +43,8 @@
                                     <div class="col-md-6">
                                         <div class="p-field p-col">
                                             <label>Date of Birth</label>
-                                            <p-calendar formControlName="dob" [yearNavigator]="true" yearRange="1950:2021" [showIcon]="true"></p-calendar>
+                                            <input type="date" class="form-control" formControlName="dob">
+                                            <!-- <p-calendar formControlName="dob" [yearNavigator]="true" yearRange="1950:2021" [showIcon]="true"></p-calendar> -->
                                         </div>
                                         <div *ngIf="validation.dob.errors && validation.dob.dirty">
                                             <div class="text-danger" *ngIf="validation.dob?.errors?.required">Field is

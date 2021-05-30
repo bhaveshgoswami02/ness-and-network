@@ -20,9 +20,7 @@ export class AllPlayersComponent implements OnInit {
 
   data:any = []
 
-  constructor(public router: Router, public service: PlayersService) {
-    console.log()
-   }
+  constructor(public router: Router, public service: PlayersService) { }
 
   ngOnInit(): void {
     this.getData()

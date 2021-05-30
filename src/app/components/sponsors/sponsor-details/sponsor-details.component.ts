@@ -1,20 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AgencyService } from 'src/app/services/agency.service';
+import { SponsorService } from 'src/app/services/sponsor.service';
 
 @Component({
-  selector: 'app-agency-details',
-  templateUrl: './agency-details.component.html',
-  styleUrls: ['./agency-details.component.scss']
+  selector: 'app-sponsor-details',
+  templateUrl: './sponsor-details.component.html',
+  styleUrls: ['./sponsor-details.component.scss']
 })
-export class AgencyDetailsComponent implements OnInit {
-  pageTitle = "Agency"
-  collection = "agencies"
+export class SponsorDetailsComponent implements OnInit {
+  pageTitle = "Sponsor"
+  collection = "sponsors"
   id: any = null
   data:any
   subCollectionData:any = []
-
-  constructor(public router: Router, public route: ActivatedRoute,public service:AgencyService) { }
+  constructor(public router: Router, public route: ActivatedRoute,public service:SponsorService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get("id")

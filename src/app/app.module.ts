@@ -54,6 +54,7 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
 import {CardModule} from 'primeng/card';
 import {ProgressBarModule} from 'primeng/progressbar';
 import { DatePipe } from '@angular/common';
+import { SponsorDetailsComponent } from './components/sponsors/sponsor-details/sponsor-details.component';
 
 @NgModule({
   declarations: [
@@ -89,6 +90,7 @@ import { DatePipe } from '@angular/common';
     SingleDocumentComponent,
     SettingComponent,
     SubAdminComponent,
+    SponsorDetailsComponent,
   ],
   imports: [
     BrowserModule,

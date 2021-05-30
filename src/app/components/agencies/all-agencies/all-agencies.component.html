@@ -42,12 +42,23 @@
                 <ng-template pTemplate="body" let-rowData let-columns="columns">
                     <tr>
                         <td *ngFor="let col of columns">
-                            {{rowData[col.field]}}
+                            <ng-container *ngIf="col.field == 'nationality'">
+                                {{rowData.nationality.name}}
+                            </ng-container>
+                            <ng-container *ngIf="col.field != 'nationality' && col.field != 'contracts'">
+                                {{rowData[col.field]}}
+                            </ng-container>
+                            <ng-container *ngIf="col.field == 'contracts'">
+                                {{rowData.contracts[0].contract_due_date}}
+                            </ng-container>
+                            <ng-container *ngIf="col.field == 'timestamp'">
+                                {{rowData.timestamp}}
+                            </ng-container>
                         </td>
                         <td>
-                            <i class="pi pi-eye mx-2 cursor-pointer" (click)="view()"></i>
-                            <i class="pi pi-pencil mx-2 cursor-pointer" (click)="edit()"></i>
-                            <i class="pi pi-trash mx-2 cursor-pointer" (click)="delete()"></i>
+                            <i class="pi pi-eye mx-2 cursor-pointer" (click)="view(rowData['id'])"></i>
+                            <i class="pi pi-pencil mx-2 cursor-pointer" (click)="edit(rowData['id'])"></i>
+                            <i class="pi pi-trash mx-2 cursor-pointer" (click)="delete(rowData['id'])"></i>
                         </td>
                     </tr>
                 </ng-template>
