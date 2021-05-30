@@ -9,16 +9,16 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class SubAdminService {
-  
+  collection:string = "sub-admin"
   constructor(public db: AngularFirestore, public storage: StorageService, public router: Router, public common: CommonService) { }
 
-  add(collection:string,data:any, Img?:any) {
+  add(data:any, Img?:any) {
     this.common.showLoader()
-    return this.db.collection(collection).add(data).then(res => {
-      let path = collection + "/" + res.id + "/" + collection
+    return this.db.collection(this.collection).add(data).then(res => {
+      let path = this.collection + "/" + res.id + "/" + this.collection
       if (Img) {
         this.storage.upload(path, Img).then(imgUrl => {
-          this.update(collection,res.id, { imgUrl: imgUrl })
+          this.update(res.id, { imgUrl: imgUrl })
         }).catch(err => {
           console.log(err)
         })
@@ -33,8 +33,8 @@ export class SubAdminService {
     })
   }
 
-  getAll(collection:string) {
-    return this.db.collection(collection).get().pipe(
+  getAll() {
+    return this.db.collection(this.collection).get().pipe(
       map(actions => actions.docs.map(a => {
         const data = a.data() as any;
         const id = a.id;
@@ -43,8 +43,8 @@ export class SubAdminService {
     )
   }
 
-  getSingle(collection:string,id:string) {
-    return this.db.collection(collection).doc(id).get().pipe(
+  getSingle(id:string) {
+    return this.db.collection(this.collection).doc(id).get().pipe(
       map(a => {
         const data = a.data() as any;
         const id = a.id;
@@ -53,36 +53,36 @@ export class SubAdminService {
     )
   }
 
-  update(collection:string,id:string, data:any, img?:any) {
+  update(id:string, data:any, img?:any) {
     this.common.showLoader()
-    let path = collection + "/" + id + "/" + collection;
+    let path = this.collection + "/" + id + "/" + this.collection;
     if (img) {
       return this.storage.upload(path, img).then(newUrl => {
-        this.update(collection,id, { imgUrl: newUrl, ...data });
+        this.update(id, { imgUrl: newUrl, ...data });
       }).catch(err => {
         this.common.showToast("error", "Error", err)
       }).finally(() => {
         this.common.stopLoader()
-        this.router.navigateByUrl("/"+collection)
+        this.router.navigateByUrl("/"+this.collection)
       })
     } else {
-      return this.db.collection(collection).doc(id).update(data).then(res => {
+      return this.db.collection(this.collection).doc(id).update(data).then(res => {
         return res
       }).catch(err => {
         this.common.showToast("error", "Error", err)
         return err;
       }).finally(() => {
-        this.router.navigateByUrl("/"+collection)
+        this.router.navigateByUrl("/"+this.collection)
         this.common.showToast("success", "Successful", "Banner Updated!")
         this.common.stopLoader()
       })
     }
   }
 
-  delete(collection:any,id:any) {
+  delete(id:any) {
     this.common.showLoader()
-    let path = collection + "/" + id + "/" + collection;
-    return this.db.collection(collection).doc(id).delete().then(res => {
+    let path = this.collection + "/" + id + "/" + this.collection;
+    return this.db.collection(this.collection).doc(id).delete().then(res => {
       this.storage.deleteImage(path);
       return res
     }).catch(err => {

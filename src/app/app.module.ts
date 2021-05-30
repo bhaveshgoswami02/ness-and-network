@@ -40,7 +40,6 @@ import { DocumentsComponent } from './components/documents/documents.component';
 import { AllDocumentsComponent } from './components/documents/all-documents/all-documents.component';
 import { SingleDocumentComponent } from './components/documents/single-document/single-document.component';
 import { SettingComponent } from './components/setting/setting.component';
-import { SubAdminComponent } from './components/sub-admin/sub-admin.component';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { ToastModule } from 'primeng/toast';
 import { RippleModule } from 'primeng/ripple';
@@ -55,6 +54,9 @@ import {CardModule} from 'primeng/card';
 import {ProgressBarModule} from 'primeng/progressbar';
 import { DatePipe } from '@angular/common';
 import { SponsorDetailsComponent } from './components/sponsors/sponsor-details/sponsor-details.component';
+import { SubAdminComponent } from './components/sub-admin/sub-admin.component';
+import { SingleSubAdminComponent } from './components/sub-admin/single-sub-admin/single-sub-admin.component';
+import { AllSubAdminComponent } from './components/sub-admin/all-sub-admin/all-sub-admin.component';
 
 @NgModule({
   declarations: [
@@ -89,8 +91,10 @@ import { SponsorDetailsComponent } from './components/sponsors/sponsor-details/s
     AllDocumentsComponent,
     SingleDocumentComponent,
     SettingComponent,
-    SubAdminComponent,
     SponsorDetailsComponent,
+    SubAdminComponent,
+    SingleSubAdminComponent,
+    AllSubAdminComponent,
   ],
   imports: [
     BrowserModule,

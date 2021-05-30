@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EChartsOption } from 'echarts';
+import { AgencyService } from 'src/app/services/agency.service';
+import { PlayersService } from 'src/app/services/players.service';
+import { ScoutingService } from 'src/app/services/scouting.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -34,9 +37,34 @@ export class DashboardComponent implements OnInit {
     { type: "Agency", company: "XYZ Agency", contact_date: "01-Apr-2020", contact_due_date: "30-Mar-2021" },
     { type: "Sponsor", company: "NYK Sponsor", contact_date: "01-Apr-2020", contact_due_date: "30-Mar-2021" },
   ]
-  constructor() { }
+
+  allPlayers:any = []
+  allScouts:any = []
+  allAgencies:any = []
+
+  constructor(public playerService:PlayersService,public scoutingService:ScoutingService,public agencyService:AgencyService) { }
 
   ngOnInit(): void {
+    this.getPlayers()
+    this.getAllScounts()
+    this.getAllAgencies()
   }
 
+  getPlayers() {
+    this.playerService.getAll().subscribe(res=>{
+      this.allPlayers = res
+    })
+  }
+
+  getAllScounts() {
+    this.scoutingService.getAll().subscribe(res=>{
+      this.allScouts = res
+    })
+  }
+
+  getAllAgencies() {
+    this.agencyService.getAll().subscribe(res=>{
+      this.allAgencies = res
+    })
+  }
 }

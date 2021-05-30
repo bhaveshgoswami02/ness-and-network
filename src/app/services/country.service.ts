@@ -96,5 +96,4 @@ export class CountryService {
       this.common.stopLoader()
     })
   }
-
 }

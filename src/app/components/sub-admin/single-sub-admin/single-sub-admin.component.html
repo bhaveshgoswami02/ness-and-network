@@ -1,1 +1,137 @@
-<p>single-sub-admin works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 breadcumb">
+            <a class="link" routerLink="/dashboard">Dashboard</a>
+            <i class="pi pi-angle-right"></i>
+            <a class="link" routerLink="/{{collection}}">{{collection}}</a>
+            <i class="pi pi-angle-right"></i>
+            <span>Add {{pageTitle}}</span>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-6 my-auto">
+            <h5 class="my-auto">Add {{pageTitle}}</h5>
+        </div>
+    </div>
+    <form [formGroup]="formData" (ngSubmit)="onSubmit()">
+        <div class="px-3">
+            <div class="row mt-3 border-bottom">
+                <div class="col-md-6 p-0">
+                    <i class="my-auto font-larger">Basic Details</i>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-8">
+                <div class="row my-3">
+                    <div class="col-md-6">
+                        <div class="p-field">
+                            <label>Full Name</label> <br>
+                            <input type="text" class="w-100" formControlName="name" pInputText>
+                        </div>
+                        <div *ngIf="validation.name.errors && validation.name.dirty">
+                            <div class="text-danger" *ngIf="validation.name?.errors?.required">Field is required!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-field">
+                            <label>Email Id</label> <br>
+                            <input type="email" class="w-100" formControlName="email" pInputText>
+                        </div>
+                        <div *ngIf="validation.email.errors && validation.email.dirty">
+                            <div class="text-danger" *ngIf="validation.email?.errors?.required">Field is required!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 my-2">
+                        <div class="p-field">
+                            <label>Mobile No</label> <br>
+                            <input type="text" class="w-100" formControlName="mobile_no" pInputText>
+                        </div>
+                        <div *ngIf="validation.mobile_no.errors && validation.mobile_no.dirty">
+                            <div class="text-danger" *ngIf="validation.mobile_no?.errors?.required">Field is required!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 my-2">
+                        <div class="p-field">
+                            <label>Password</label> <br>
+                            <input type="password" class="w-100" formControlName="password" pInputText>
+                        </div>
+                        <div *ngIf="validation.password.errors && validation.password.dirty">
+                            <div class="text-danger" *ngIf="validation.password?.errors?.required">Field is required!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="px-3">
+            <div class="row mt-3 border-bottom">
+                <div class="col-md-6 p-0">
+                    <i class="my-auto font-larger">Control</i>
+                </div>
+            </div>
+        </div>
+
+        <div class="px-3 mt-3">
+            <div class="row bg-secondary border">
+                <div class="col-md-5"></div>
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label>View</label>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Edit</label>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Add</label>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Delete</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row w-100 px-3" *ngFor="let item of menu">
+                    <div class="col-md-5">
+                        <div class="tab my-2">
+                            <i [class]="item.icon"></i>&nbsp;&nbsp;<b>{{item.title}}</b>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input type="checkbox" name="view">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="checkbox" name="edit">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="checkbox" name="add">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="checkbox" name="delete">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="text-left">
+                    <button class="btn btn-primary mt-4" *ngIf="!id" type="submit"
+                        [disabled]="formData.invalid">Save</button>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+
+    <br><br><br>
+</div>

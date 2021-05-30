@@ -9,13 +9,13 @@
             <h5 class="my-auto capitalize">{{collection}}</h5>
         </div>
         <div class="col-md-6 text-right">
-            <!-- <button class="btn add-btn" routerLink="/{{collection}}/add">Add New Document</button> -->
+            <button class="btn add-btn" routerLink="/{{collection}}/add">Add New Sub Admin</button>
         </div>
     </div>
 
     <!--------------------------------- Tables ------------------------------->
     <div class="row mt-5">
-        <!-- <div class="col-md-12 border p-0">
+        <div class="col-md-12 border p-0">
             <p-table #dt styleClass="p-datatable-striped" [columns]="cols" [value]="data"  dataKey="id" [rowHover]="true"
                 [paginator]="true" [rows]="10" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [resizableColumns]="true" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [showCurrentPageReport]="true"
                 [globalFilterFields]="['type','company','contact_date','contact_due_date']">
@@ -24,6 +24,7 @@
                         <span class="my-auto">List of {{collection}}</span>
                         <span class="p-input-icon-left float-right my-auto">
                             <i class="pi pi-search"></i>
+                            <!-- <input pInputText type="text" #search (input)="dt1.filterGlobal(search.value, 'contains')" placeholder="Search keyword" /> -->
                             <input pInputText type="text" placeholder="Global Search" />
                         </span>
                     </div>
@@ -41,16 +42,22 @@
                 <ng-template pTemplate="body" let-rowData let-columns="columns">
                     <tr>
                         <td *ngFor="let col of columns">
-                            {{rowData[col.field]}}
+                            <ng-container *ngIf="col.field != 'timestamp'">
+                                {{rowData[col.field]}}
+                            </ng-container>
+                            <ng-container *ngIf="col.field == 'timestamp'">
+                                {{rowData.timestamp}}
+                            </ng-container>
                         </td>
                         <td>
-                            <i class="pi pi-pencil mx-2 cursor-pointer" (click)="edit()"></i>
-                            <i class="pi pi-trash mx-2 cursor-pointer" (click)="delete()"></i>
+                            <!-- <i class="pi pi-eye mx-2 cursor-pointer" (click)="view()"></i> -->
+                            <i class="pi pi-pencil mx-2 cursor-pointer" (click)="edit(rowData['id'])"></i>
+                            <i class="pi pi-trash mx-2 cursor-pointer" (click)="delete(rowData['id'])"></i>
                         </td>
                     </tr>
                 </ng-template>
             </p-table>
-        </div> -->
+        </div>
     </div>
 
     <br><br><br>
