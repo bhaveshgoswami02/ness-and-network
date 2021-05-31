@@ -42,15 +42,22 @@
                 <ng-template pTemplate="body" let-rowData let-columns="columns">
                     <tr>
                         <td *ngFor="let col of columns">
-                            {{rowData[col.field]}}
+                            <ng-container *ngIf="col.field != 'timestamp'">
+                                {{rowData[col.field]}}
+                            </ng-container>
+                            <ng-container *ngIf="col.field == 'timestamp'">
+                                {{rowData.timestamp}}
+                            </ng-container>
                         </td>
                         <td>
-                            <!-- <i class="pi pi-eye mx-2 cursor-pointer" (click)="view()"></i> -->
+                            <ng-container *ngIf="auth.getSubAdminData().scouting?.view || auth.isSuperAdmin()">
+                                <i class="pi pi-eye mx-2 cursor-pointer" (click)="view(rowData['id'])"></i>
+                            </ng-container>
                             <ng-container *ngIf="auth.getSubAdminData().scouting?.edit || auth.isSuperAdmin()">
-                                <i class="pi pi-pencil mx-2 cursor-pointer" (click)="edit()"></i>
+                                <i class="pi pi-pencil mx-2 cursor-pointer" (click)="edit(rowData['id'])"></i>
                             </ng-container>
                             <ng-container *ngIf="auth.getSubAdminData().scouting?.delete || auth.isSuperAdmin()">
-                                <i class="pi pi-trash mx-2 cursor-pointer" (click)="delete()"></i>
+                                <i class="pi pi-trash mx-2 cursor-pointer" (click)="delete(rowData['id'])"></i>
                             </ng-container>
                         </td>
                     </tr>

@@ -58,6 +58,8 @@ import { SubAdminComponent } from './components/sub-admin/sub-admin.component';
 import { SingleSubAdminComponent } from './components/sub-admin/single-sub-admin/single-sub-admin.component';
 import { AllSubAdminComponent } from './components/sub-admin/all-sub-admin/all-sub-admin.component';
 import {CheckboxModule} from 'primeng/checkbox';
+import {CaptchaModule} from 'primeng/captcha';
+import { ViewScoutingComponent } from './components/scouting/view-scouting/view-scouting.component';
 
 @NgModule({
   declarations: [
@@ -96,6 +98,7 @@ import {CheckboxModule} from 'primeng/checkbox';
     SubAdminComponent,
     SingleSubAdminComponent,
     AllSubAdminComponent,
+    ViewScoutingComponent,
   ],
   imports: [
     BrowserModule,
@@ -119,7 +122,8 @@ import {CheckboxModule} from 'primeng/checkbox';
     InputTextareaModule,
     CardModule,
     ProgressBarModule,
-    CheckboxModule
+    CheckboxModule,
+    CaptchaModule
   ],
   providers: [MessageService,DatePipe],
   bootstrap: [AppComponent]
