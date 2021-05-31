@@ -41,8 +41,8 @@
                             <p-captcha class="w-100" [siteKey]="sitekey" (onResponse)="showResponse($event)"></p-captcha>
                         </div>
                         <div class="text-center">
-                            <button class="btn btn-primary mt-4" type="submit" [disabled]="data.invalid">Log In</button>
-                            <!-- <button class="btn btn-primary mt-4" type="submit" [disabled]="data.invalid || !isCapchaVerify">Log In</button> -->
+                            <!-- <button class="btn btn-primary mt-4" type="submit" [disabled]="data.invalid">Log In</button> -->
+                            <button class="btn btn-primary mt-4" type="submit" [disabled]="data.invalid || !isCapchaVerify">Log In</button>
                         </div>
                     </form>
                 </div>

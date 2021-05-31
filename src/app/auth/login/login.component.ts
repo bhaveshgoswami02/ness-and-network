@@ -32,7 +32,14 @@ export class LoginComponent implements OnInit {
   }
 
   showResponse(event:any) {
-    this.messageService.add({ severity: 'info', summary: 'Succees', detail: 'User Responded', sticky: true });
+    if(event) {
+     this.isCapchaVerify = true
+    }
+    else
+    {
+      this.isCapchaVerify = false
+    }
+    // this.messageService.add({ severity: 'info', summary: 'Succees', detail: 'User Responded', sticky: true });
   }
 
 }
