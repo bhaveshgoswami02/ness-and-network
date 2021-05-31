@@ -23,6 +23,7 @@ import { SinglePlayersComponent } from './components/players/single-players/sing
 import { AllScoutingComponent } from './components/scouting/all-scouting/all-scouting.component';
 import { ScoutingComponent } from './components/scouting/scouting.component';
 import { SingleScoutingComponent } from './components/scouting/single-scouting/single-scouting.component';
+import { ViewScoutingComponent } from './components/scouting/view-scouting/view-scouting.component';
 import { SettingComponent } from './components/setting/setting.component';
 import { AllSponsorsComponent } from './components/sponsors/all-sponsors/all-sponsors.component';
 import { SingleSponsorComponent } from './components/sponsors/single-sponsor/single-sponsor.component';
@@ -44,7 +45,6 @@ const routes: Routes = [
           { path: '', component: AllAgenciesComponent },
           { path: 'add', component: SingleAgenciesComponent },
           { path: 'edit/:id', component: SingleAgenciesComponent },
-          { path: 'detail', component: AgencyDetailsComponent },
           { path: 'detail/:id', component: AgencyDetailsComponent },
         ]
       },
@@ -75,7 +75,8 @@ const routes: Routes = [
         path: 'scouting', component: ScoutingComponent, children: [
           { path: '', component: AllScoutingComponent },
           { path: 'add', component: SingleScoutingComponent },
-          { path: 'edit/:id', component: SingleScoutingComponent }
+          { path: 'edit/:id', component: SingleScoutingComponent },
+          { path: 'detail/:id', component: ViewScoutingComponent },
         ]
       },
       { path: 'setting', component: SettingComponent },

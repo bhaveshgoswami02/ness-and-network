@@ -20,6 +20,7 @@ export class ScoutingService {
     data.timestamp = firebase.firestore.Timestamp.now()
     data.uid = this.auth.getUid()
     return this.db.collection(this.collection).add(data).then(res => {
+      this.router.navigateByUrl("/"+this.collection)
       let path = this.collection + "/" + res.id + "/" + this.collection
       if (Img) {
         this.storage.upload(path, Img).then(imgUrl => {

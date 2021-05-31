@@ -1,1 +1,170 @@
-<p>view-scouting works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 breadcumb">
+            <a class="link" routerLink="/dashboard">Dashboard</a>
+            <i class="pi pi-angle-right"></i>
+            <a class="link" routerLink="/{{collection}}">{{collection}}</a>
+            <i class="pi pi-angle-right"></i>
+            <span>{{data?.name}}</span>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-6 my-auto">
+            <h5 class="my-auto">Scout Detail</h5>
+        </div>
+    </div>
+    <div class="row px-3 mt-3">
+        <div class="col-md-12 border-bottom my-auto px-0 font-larger">
+            <i class="my-auto">Basic Details</i>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-4">
+            <div class="p-field">
+                <label>{{pageTitle}} Name</label> <br>
+                <p>{{data?.name}}</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-field">
+                <label>{{pageTitle}}ing Report On</label> <br>
+                <p>{{data?.report}}</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-field">
+                <label>Prepare</label> <br>
+                <p>{{data?.prepare}}</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row px-3 mt-5">
+        <div class="col-md-12 border-bottom my-auto px-0 font-larger"></div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="p-field p-col">
+                        <label>System</label><br>
+                        <p>{{data?.team1?.system}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row my-3">
+                <div class="col-md-6">
+                    <div class="p-field p-col">
+                        <label>Key Player 1</label><br>
+                        <p>{{data?.team1?.key_player1}}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-field p-col">
+                        <label>Key Player 2</label><br>
+                        <p>{{data?.team1?.key_player2}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row my-3">
+                <div class="col-md-6">
+                    <div class="p-field p-col">
+                        <label>Note 1</label><br>
+                        <p>{{data?.team1?.note1}}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-field p-col">
+                        <label>Note 2</label><br>
+                        <p>{{data?.team1?.note2}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>Attack</label><br>
+            <p>{{data?.team1?.attack}}</p>
+        </div>
+    </div>
+
+
+    <div class="row px-3 mt-5">
+        <div class="col-md-12 border-bottom my-auto px-0 font-larger"></div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="p-field p-col">
+                        <label>Other System</label><br>
+                        <p>{{data?.team2?.other_system}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row my-3">
+                <div class="col-md-6">
+                    <div class="p-field p-col">
+                        <label>Key Player 1</label><br>
+                        <p>{{data?.team2?.key_player1}}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-field p-col">
+                        <label>Key Player 2</label><br>
+                        <p>{{data?.team2?.key_player2}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row my-3">
+                <div class="col-md-6">
+                    <div class="p-field p-col">
+                        <label>Note 1</label><br>
+                        <p>{{data?.team2?.note1}}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-field p-col">
+                        <label>Note 2</label><br>
+                        <p>{{data?.team2?.note2}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>Defend</label><br>
+            <p>{{data?.team2?.defend}}</p>
+        </div>
+    </div>
+
+
+    <div class="row px-3 mt-5">
+        <div class="col-md-12 border-bottom my-auto px-0 font-larger"></div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-8">
+            <div class="row my-3">
+                <div class="col-md-6">
+                    <div class="p-field p-col">
+                        <label>Def Corners</label><br>
+                        <p>{{data?.def_corners}}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-field p-col">
+                        <label>Att Corners</label><br>
+                        <p>{{data?.att_corners}}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-field p-col">
+                        <label>Restart</label><br>
+                        <p>{{data?.restart}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br><br><br>
+</div>

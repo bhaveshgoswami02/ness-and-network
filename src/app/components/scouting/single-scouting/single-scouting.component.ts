@@ -73,9 +73,9 @@ export class SingleScoutingComponent implements OnInit {
           'note2': [data.team2.note2],
           'defend': [data.team2.defend],
         }),
-        'att_corners': ['', [Validators.required]],
-        'def_corners': ['', [Validators.required]],
-        'restart': ['', [Validators.required]],
+        'att_corners': [data.att_corners, [Validators.required]],
+        'def_corners': [data.def_corners, [Validators.required]],
+        'restart': [data.restart, [Validators.required]],
       })
     })
   }
