@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EChartsOption } from 'echarts';
 import { AgencyService } from 'src/app/services/agency.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { PlayersService } from 'src/app/services/players.service';
 import { ScoutingService } from 'src/app/services/scouting.service';
 
@@ -42,7 +43,7 @@ export class DashboardComponent implements OnInit {
   allScouts:any = []
   allAgencies:any = []
 
-  constructor(public playerService:PlayersService,public scoutingService:ScoutingService,public agencyService:AgencyService) { }
+  constructor(public playerService:PlayersService,public scoutingService:ScoutingService,public agencyService:AgencyService,public auth:AuthService) { }
 
   ngOnInit(): void {
     this.getPlayers()

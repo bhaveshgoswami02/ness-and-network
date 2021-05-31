@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AgencyService } from 'src/app/services/agency.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-all-agencies',
@@ -20,7 +21,7 @@ export class AllAgenciesComponent implements OnInit {
   data:any = []
 
 
-  constructor(public router: Router,public service:AgencyService) { }
+  constructor(public router: Router,public service:AgencyService,public auth:AuthService) { }
 
   ngOnInit(): void {
     this.getData()

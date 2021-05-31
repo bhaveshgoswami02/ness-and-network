@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { SubAdminService } from 'src/app/services/sub-admin.service';
 
 @Component({
@@ -13,11 +14,12 @@ export class AllSubAdminComponent implements OnInit {
     { field: 'id', header: 'Sub Admin ID' },
     { field: 'name', header: 'Name' },
     { field: 'email', header: 'Email' },
-    { field: 'mobile', header: 'Mobile' },
+    { field: 'mobile_no', header: 'Mobile' },
   ];
-
+  id:any = null
   data:any = [ ]
-  constructor(public router: Router,public service:SubAdminService) { }
+
+  constructor(public router: Router,public service:SubAdminService,private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.getData()
@@ -46,4 +48,41 @@ export class AllSubAdminComponent implements OnInit {
     // })
   }
 
+  blockSubAdmin() {
+   this.service.blockSubAdmin(this.id,{isBlocked:true})
+  }
+
+  unBlockSubAdmin() {
+   this.service.blockSubAdmin(this.id,{isBlocked:false})
+  }
+
+  confirmToBlockUser(id:string) {
+    this.id = id
+    this.messageService.clear();
+    this.messageService.add({ key: 'blockSubAdmin', sticky: true, severity: 'warn', summary: 'Are you sure to block?', detail: 'Confirm to proceed!' });
+  }
+
+  onConfirmToBlock() {
+    this.messageService.clear('blockSubAdmin');
+    this.blockSubAdmin()
+  }
+
+  onRejectToBlock() {
+    this.messageService.clear('blockSubAdmin');
+  }
+
+  confirmToUnBlockUser(id:string) {
+    this.id = id
+    this.messageService.clear();
+    this.messageService.add({ key: 'unBlockSubAdmin', sticky: true, severity: 'warn', summary: 'Are you sure to Unblock?', detail: 'Confirm to proceed!' });
+  }
+
+  onConfirmToUnBlock() {
+    this.messageService.clear('unBlockSubAdmin');
+    this.unBlockSubAdmin()
+  }
+
+  onRejectToUnBlock() {
+    this.messageService.clear('unBlockSubAdmin');
+  }
 }

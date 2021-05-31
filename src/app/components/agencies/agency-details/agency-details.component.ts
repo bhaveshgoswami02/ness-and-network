@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AgencyService } from 'src/app/services/agency.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-agency-details',
@@ -14,7 +15,7 @@ export class AgencyDetailsComponent implements OnInit {
   data:any
   subCollectionData:any = []
 
-  constructor(public router: Router, public route: ActivatedRoute,public service:AgencyService) { }
+  constructor(public router: Router, public route: ActivatedRoute,public service:AgencyService,public auth:AuthService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get("id")

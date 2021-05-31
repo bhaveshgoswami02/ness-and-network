@@ -4,7 +4,7 @@
             <img src="assets/images/logo.jpeg" style="border-radius: 50%;" width="50px" height="50px" alt="">
         </div>
         <div class="w-50 my-auto text-right">
-            <b>Welcome:</b> <span> Admin</span>
+            <b>Welcome:</b> <span class="capitalize"> {{auth.getSubAdminData().name ? auth.getSubAdminData().name : 'Admin'}}</span>
             <button class="btn-login mx-3" type="button" (click)="logout()"><i class="pi pi-sign-out"></i>&nbsp; Logout</button>
         </div>
     </div>

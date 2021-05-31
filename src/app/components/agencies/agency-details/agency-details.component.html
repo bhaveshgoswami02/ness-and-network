@@ -12,11 +12,11 @@
         </div>
         <div class="col-md-6 float-right align-item-right">
             <div class="d-flex" style="position: absolute;right: 0;">
-                <div class="text-center mx-3">
+                <div class="text-center mx-3" *ngIf="auth.getSubAdminData().agencies?.edit || auth.isSuperAdmin()">
                     <i class="pi pi-pencil cursor-pointer" style="font-size: 24px;" (click)="edit()"></i>
                     <p>Edit</p>
                 </div>
-                <div class="text-center mx-3">
+                <div class="text-center mx-3" *ngIf="auth.getSubAdminData().agencies?.delete || auth.isSuperAdmin()">
                     <i class="pi pi-trash cursor-pointer" style="font-size: 24px;" (click)="delete()"></i>
                     <p>Delete</p>
                 </div>

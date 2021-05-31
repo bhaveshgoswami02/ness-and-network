@@ -60,6 +60,7 @@ export class SingleAgenciesComponent implements OnInit {
   }
 
   get validation() { return this.formData?.controls }
+  
 
   getData() {
     this.service.getSingle(this.id).subscribe(res => {

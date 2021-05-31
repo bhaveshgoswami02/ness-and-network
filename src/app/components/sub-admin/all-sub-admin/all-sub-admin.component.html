@@ -53,6 +53,8 @@
                             <!-- <i class="pi pi-eye mx-2 cursor-pointer" (click)="view()"></i> -->
                             <i class="pi pi-pencil mx-2 cursor-pointer" (click)="edit(rowData['id'])"></i>
                             <i class="pi pi-trash mx-2 cursor-pointer" (click)="delete(rowData['id'])"></i>
+                            <i class="pi pi-ban mx-2 cursor-pointer" *ngIf="!rowData['isBlocked']" (click)="confirmToBlockUser(rowData['id'])"></i>
+                            <i class="pi pi-circle-off mx-2 cursor-pointer" *ngIf="rowData['isBlocked']" (click)="confirmToUnBlockUser(rowData['id'])"></i>
                         </td>
                     </tr>
                 </ng-template>
@@ -62,3 +64,42 @@
 
     <br><br><br>
 </div>
+
+<!-- block sub admin toast -->
+<p-toast position="bottom-center" key="blockSubAdmin" (onClose)="onRejectToBlock()" [baseZIndex]="5000">
+    <ng-template let-message pTemplate="message">
+        <div class="p-flex p-flex-column" style="flex: 1">
+            <div class="text-center">
+                <i class="pi pi-exclamation-triangle" style="font-size: 3rem"></i>
+                <h4>{{message.summary}}</h4>
+                <p>{{message.detail}}</p>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <button type="button" pButton (click)="onConfirmToBlock()" label="Yes" class="p-button-success"></button> &nbsp;&nbsp;
+                    <button type="button" pButton (click)="onRejectToBlock()" label="No" class="p-button-secondary"></button>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>
+
+
+<!-- Unblock sub admin toast -->
+<p-toast position="bottom-center" key="unBlockSubAdmin" (onClose)="onRejectToUnBlock()" [baseZIndex]="5000">
+    <ng-template let-message pTemplate="message">
+        <div class="p-flex p-flex-column" style="flex: 1">
+            <div class="text-center">
+                <i class="pi pi-exclamation-triangle" style="font-size: 3rem"></i>
+                <h4>{{message.summary}}</h4>
+                <p>{{message.detail}}</p>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <button type="button" pButton (click)="onConfirmToUnBlock()" label="Yes" class="p-button-success"></button> &nbsp;&nbsp;
+                    <button type="button" pButton (click)="onRejectToUnBlock()" label="No" class="p-button-secondary"></button>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>

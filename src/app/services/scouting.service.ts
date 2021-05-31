@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { CommonService } from './common.service';
 import { StorageService } from './storage.service';
 import { map } from 'rxjs/operators';
+import { AuthService } from './auth.service';
+import firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +13,12 @@ import { map } from 'rxjs/operators';
 export class ScoutingService {
   collection: string = "scouting"
   
-  constructor(public db: AngularFirestore, public storage: StorageService, public router: Router, public common: CommonService) { }
+  constructor(public db: AngularFirestore, public storage: StorageService, public router: Router, public common: CommonService,public auth:AuthService) { }
 
   add(data:any, Img?:any) {
     this.common.showLoader()
+    data.timestamp = firebase.firestore.Timestamp.now()
+    data.uid = this.auth.getUid()
     return this.db.collection(this.collection).add(data).then(res => {
       let path = this.collection + "/" + res.id + "/" + this.collection
       if (Img) {

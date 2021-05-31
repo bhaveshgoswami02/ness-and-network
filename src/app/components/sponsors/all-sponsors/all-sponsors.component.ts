@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { SponsorService } from 'src/app/services/sponsor.service';
 
 @Component({
@@ -20,7 +21,7 @@ export class AllSponsorsComponent implements OnInit {
   data:any = []
 
 
-  constructor(public router: Router,public service:SponsorService) { }
+  constructor(public router: Router,public service:SponsorService,public auth:AuthService) { }
 
   ngOnInit(): void {
     this.getData()

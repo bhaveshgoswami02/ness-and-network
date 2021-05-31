@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { CountryService } from 'src/app/services/country.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class SingleCountriesComponent implements OnInit {
   formData: FormGroup;
   imageSrc: any = "../../../../assets/images/upload.png";
   imageFile: any;
-  constructor(public route: ActivatedRoute, private fb: FormBuilder,public service:CountryService) {
+  constructor(public route: ActivatedRoute, private fb: FormBuilder,public service:CountryService,public auth:AuthService) {
     this.formData = this.fb.group({
       'name': ['', [Validators.required]],
       'file': ['', [Validators.required]],

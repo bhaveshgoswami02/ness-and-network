@@ -1,5 +1,7 @@
 export const environment = {
   production: true,
+  email: "admin@gmail.com",
+  password: "admin123",
   firebase: {
     apiKey: "AIzaSyDQ9UPrsgqGRm7wZ0pIRGsxoOinmfBF2sE",
     authDomain: "ness-and-network.firebaseapp.com",

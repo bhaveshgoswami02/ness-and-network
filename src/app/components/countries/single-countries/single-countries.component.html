@@ -5,12 +5,12 @@
             <i class="pi pi-angle-right"></i>
             <a class="link" routerLink="/countries">Country</a>
             <i class="pi pi-angle-right"></i>
-            <span>Add Country</span>
+            <span>{{id ? 'Edit' : 'Add'}} Country</span>
         </div>
     </div>
     <div class="row mt-3">
         <div class="col-md-6 my-auto">
-            <h5 class="my-auto">Add Country</h5>
+            <h5 class="my-auto">{{id ? 'Edit' : 'Add'}} Country</h5>
         </div>
     </div>
     <form [formGroup]="formData" (ngSubmit)="onSubmit()">

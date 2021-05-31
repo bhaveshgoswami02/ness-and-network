@@ -57,6 +57,7 @@ import { SponsorDetailsComponent } from './components/sponsors/sponsor-details/s
 import { SubAdminComponent } from './components/sub-admin/sub-admin.component';
 import { SingleSubAdminComponent } from './components/sub-admin/single-sub-admin/single-sub-admin.component';
 import { AllSubAdminComponent } from './components/sub-admin/all-sub-admin/all-sub-admin.component';
+import {CheckboxModule} from 'primeng/checkbox';
 
 @NgModule({
   declarations: [
@@ -117,7 +118,8 @@ import { AllSubAdminComponent } from './components/sub-admin/all-sub-admin/all-s
     CalendarModule,
     InputTextareaModule,
     CardModule,
-    ProgressBarModule
+    ProgressBarModule,
+    CheckboxModule
   ],
   providers: [MessageService,DatePipe],
   bootstrap: [AppComponent]

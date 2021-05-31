@@ -4,6 +4,17 @@
 
 export const environment = {
   production: false,
+  email: "admin@gmail.com",
+  password: "admin123",
+  uid: "superadmin",
+  dashboard: { view: true, edit: true, add: true, delete: true },
+  country: { view: true, edit: true, add: true, delete: true },
+  players: { view: true, edit: true, add: true, delete: true },
+  scouting: { view: true, edit: true, add: true, delete: true },
+  agencies: { view: true, edit: true, add: true, delete: true },
+  sponsors: { view: true, edit: true, add: true, delete: true },
+  documents: { view: true, edit: true, add: true, delete: true },
+  setting: { view: true, edit: true, add: true, delete: true },
   firebase: {
     apiKey: "AIzaSyDQ9UPrsgqGRm7wZ0pIRGsxoOinmfBF2sE",
     authDomain: "ness-and-network.firebaseapp.com",

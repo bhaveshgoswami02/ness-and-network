@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { DocumentService } from 'src/app/services/document.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class AllDocumentsComponent implements OnInit {
   ];
 
   data:any = [ ]
-  constructor(public router: Router,public service:DocumentService) { }
+  constructor(public router: Router,public service:DocumentService,public auth:AuthService) { }
 
   ngOnInit(): void {
     this.getData()

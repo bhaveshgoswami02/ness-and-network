@@ -31,11 +31,13 @@ import { SponsorsComponent } from './components/sponsors/sponsors.component';
 import { AllSubAdminComponent } from './components/sub-admin/all-sub-admin/all-sub-admin.component';
 import { SingleSubAdminComponent } from './components/sub-admin/single-sub-admin/single-sub-admin.component';
 import { SubAdminComponent } from './components/sub-admin/sub-admin.component';
+import { AuthGuardService } from './services/auth-guard.service';
+import { SuccessComponent } from './share/success/success.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'auth', pathMatch: "full" },
+  { path: '', redirectTo: '/dashboard', pathMatch: "full" },
   {
-    path: '', component: ComponentsComponent, children: [
+    path: '', component: ComponentsComponent, canActivate: [AuthGuardService], children: [
       { path: 'dashboard', component: DashboardComponent },
       {
         path: 'agencies', component: AgenciesComponent, children: [
@@ -99,6 +101,7 @@ const routes: Routes = [
       { path: '', component: LoginComponent },
       { path: 'forgot-password', component: ForgotPasswordComponent },
       { path: 'reset-password', component: ResetPasswordComponent },
+      { path: 'success', component: SuccessComponent }
     ]
   }
 ];

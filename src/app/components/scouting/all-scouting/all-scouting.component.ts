@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-all-scouting',
@@ -19,7 +20,7 @@ export class AllScoutingComponent implements OnInit {
     { id: "123456789", name: "ABC Agency", timestamp: "30-Mar-2021" },
   ]
 
-  constructor(public router: Router) { }
+  constructor(public router: Router,public auth:AuthService) { }
 
   ngOnInit(): void {
   }

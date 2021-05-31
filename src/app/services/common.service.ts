@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { MessageService } from 'primeng/api';
@@ -7,7 +8,7 @@ import { MessageService } from 'primeng/api';
 })
 export class CommonService {
 
-  constructor(private loader: NgxUiLoaderService, private messageService: MessageService) { }
+  constructor(private loader: NgxUiLoaderService, private messageService: MessageService, public location: Location) { }
 
   showToast(type: string, title: string, message: string) {
     if (type == 'success') {
@@ -27,6 +28,10 @@ export class CommonService {
 
   stopLoader() {
     this.loader.stop()
+  }
+
+  back() {
+    this.location.back()
   }
 
 }

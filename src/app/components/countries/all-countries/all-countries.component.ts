@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { CountryService } from 'src/app/services/country.service';
 
 @Component({
@@ -20,9 +21,9 @@ export class AllCountriesComponent implements OnInit {
 
   data: any = []
 
-  constructor(public router: Router, public service: CountryService) {
+  constructor(public router: Router, public service: CountryService, public auth: AuthService) {
     console.log()
-   }
+  }
 
   ngOnInit(): void {
     this.getData()
@@ -41,7 +42,7 @@ export class AllCountriesComponent implements OnInit {
 
   delete(id?: any) {
     console.log("id", id)
-    this.service.delete(this.collection,id).then(res=>{
+    this.service.delete(this.collection, id).then(res => {
       this.getData()
     })
   }

@@ -1,142 +1,150 @@
-<h5>Statistics</h5>
-<div class="container-fluid">
-    <!--------------------------------- cards ------------------------------->
-    <div class="row my-3">
-        <div class="col-md-4 p-0 mx-auto">
-            <div class="custom-card">
-                <div class="card-header">
-                    <b>Total No. Of Players</b>
+<ng-container *ngIf="auth.getSubAdminData().dashboard?.view || auth.isSuperAdmin()">
+    <h5>Statistics</h5>
+    <div class="container-fluid">
+        <!--------------------------------- cards ------------------------------->
+        <div class="row my-3">
+            <div class="col-md-4 p-0 mx-auto">
+                <div class="custom-card">
+                    <div class="card-header">
+                        <b>Total No. Of Players</b>
+                    </div>
+                    <div class="card-container">
+                        <div class="row my-3">
+                            <div class="col-6 card-icon">
+                                <i class="pi pi-user-plus"></i>
+                            </div>
+                            <div class="col-6 text-left">
+                                <h1>{{allPlayers.length}}</h1>
+                            </div>
+                            <div class="col-md-12 card-footer mx-auto"
+                                *ngIf="auth.getSubAdminData().players?.view || auth.isSuperAdmin()">
+                                <a routerLink="/players">view more</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-container">
-                    <div class="row my-3">
-                        <div class="col-6 card-icon">
-                            <i class="pi pi-user-plus"></i>
+            </div>
+            <div class="col-md-4 p-0 mx-auto">
+                <div class="custom-card">
+                    <div class="card-header">
+                        <b>Scouting</b>
+                    </div>
+                    <div class="card-container">
+                        <div class="row my-3">
+                            <div class="col-6 card-icon">
+                                <i class="pi pi-users"></i>
+                            </div>
+                            <div class="col-6 text-left">
+                                <h1>{{allScouts?.length}}</h1>
+                            </div>
+                            <div class="col-md-12 card-footer mx-auto"
+                                *ngIf="auth.getSubAdminData().scouting?.view || auth.isSuperAdmin()">
+                                <a routerLink="/scouting">view more</a>
+                            </div>
                         </div>
-                        <div class="col-6 text-left">
-                            <h1>{{allPlayers.length}}</h1>
-                        </div>
-                        <div class="col-md-12 card-footer mx-auto">
-                            <a routerLink="/players">view more</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 p-0 mx-auto">
+                <div class="custom-card">
+                    <div class="card-header">
+                        <b>Agencies</b>
+                    </div>
+                    <div class="card-container">
+                        <div class="row my-3">
+                            <div class="col-6 card-icon">
+                                <i class="pi pi-tablet"></i>
+                            </div>
+                            <div class="col-6 text-left">
+                                <h1>{{allAgencies?.length}}</h1>
+                            </div>
+                            <div class="col-md-12 card-footer mx-auto"
+                                *ngIf="auth.getSubAdminData().agencies?.view || auth.isSuperAdmin()">
+                                <a routerLink="/agencies">view more</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4 p-0 mx-auto">
-            <div class="custom-card">
-                <div class="card-header">
-                    <b>Scouting</b>
+
+
+        <!--------------------------------- Graphs ------------------------------->
+        <div class="row my-5">
+            <div class="col-md-4 p-0 mx-auto">
+                <div class="custom-card border-0">
+                    <div class="card-container">
+                        <div class="row my-3">
+                            <div class="col-md-12">
+                                <div echarts [options]="chartOption" class="chart"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-container">
-                    <div class="row my-3">
-                        <div class="col-6 card-icon">
-                            <i class="pi pi-users"></i>
+            </div>
+            <div class="col-md-4 p-0 mx-auto">
+                <div class="custom-card border-0">
+                    <div class="card-container">
+                        <div class="row my-3">
+                            <div class="col-md-12">
+                                <div echarts [options]="chartOption" class="chart"></div>
+                            </div>
                         </div>
-                        <div class="col-6 text-left">
-                            <h1>{{allScouts?.length}}</h1>
-                        </div>
-                        <div class="col-md-12 card-footer mx-auto">
-                            <a routerLink="/scouting">view more</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 p-0 mx-auto">
+                <div class="custom-card border-0">
+                    <div class="card-container">
+                        <div class="row my-3">
+                            <div class="col-md-12">
+                                <div echarts [options]="chartOption" class="chart"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4 p-0 mx-auto">
-            <div class="custom-card">
-                <div class="card-header">
-                    <b>Agencies</b>
-                </div>
-                <div class="card-container">
-                    <div class="row my-3">
-                        <div class="col-6 card-icon">
-                            <i class="pi pi-tablet"></i>
+
+
+        <!--------------------------------- Tables ------------------------------->
+
+        <div class="row">
+            <div class="col-md-12 border p-0">
+                <p-table #dt styleClass="p-datatable-striped" [columns]="cols" [value]="data" dataKey="id"
+                    [rowHover]="true" [paginator]="true" [rows]="10"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [resizableColumns]="true" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
+                    [showCurrentPageReport]="true"
+                    [globalFilterFields]="['type','company','contact_date','contact_due_date']">
+                    <ng-template pTemplate="caption">
+                        <div class="table-header pb-4">
+                            <span class="my-auto">List of contract</span>
+                            <span class="p-input-icon-left float-right my-auto">
+                                <i class="pi pi-search"></i>
+                                <!-- <input pInputText type="text" #search (input)="dt1.filterGlobal(search.value, 'contains')" placeholder="Search keyword" /> -->
+                                <input pInputText type="text" placeholder="Global Search" />
+                            </span>
                         </div>
-                        <div class="col-6 text-left">
-                            <h1>{{allAgencies?.length}}</h1>
-                        </div>
-                        <div class="col-md-12 card-footer mx-auto">
-                            <a routerLink="/agencies">view more</a>
-                        </div>
-                    </div>
-                </div>
+                    </ng-template>
+                    <ng-template pTemplate="header" let-columns>
+                        <tr class="bg-secondary">
+                            <th pSortableColumn="{{col.field}}" pResizableColumn *ngFor="let col of columns">
+                                {{col.header}} <p-sortIcon style="float: right;" field="{{col.field}}"></p-sortIcon>
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                        <tr>
+                            <td *ngFor="let col of columns">
+                                {{rowData[col.field]}}
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
             </div>
         </div>
+
+        <br><br><br>
     </div>
-
-
-    <!--------------------------------- Graphs ------------------------------->
-    <div class="row my-5">
-        <div class="col-md-4 p-0 mx-auto">
-            <div class="custom-card border-0">
-                <div class="card-container">
-                    <div class="row my-3">
-                        <div class="col-md-12">
-                            <div echarts [options]="chartOption" class="chart"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 p-0 mx-auto">
-            <div class="custom-card border-0">
-                <div class="card-container">
-                    <div class="row my-3">
-                        <div class="col-md-12">
-                            <div echarts [options]="chartOption" class="chart"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 p-0 mx-auto">
-            <div class="custom-card border-0">
-                <div class="card-container">
-                    <div class="row my-3">
-                        <div class="col-md-12">
-                            <div echarts [options]="chartOption" class="chart"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!--------------------------------- Tables ------------------------------->
-
-    <div class="row">
-        <div class="col-md-12 border p-0">
-            <p-table #dt styleClass="p-datatable-striped" [columns]="cols" [value]="data"  dataKey="id" [rowHover]="true"
-                [paginator]="true" [rows]="10" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [resizableColumns]="true" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [showCurrentPageReport]="true"
-                [globalFilterFields]="['type','company','contact_date','contact_due_date']">
-                <ng-template pTemplate="caption">
-                    <div class="table-header pb-4">
-                        <span class="my-auto">List of contract</span>
-                        <span class="p-input-icon-left float-right my-auto">
-                            <i class="pi pi-search"></i>
-                            <!-- <input pInputText type="text" #search (input)="dt1.filterGlobal(search.value, 'contains')" placeholder="Search keyword" /> -->
-                            <input pInputText type="text" placeholder="Global Search" />
-                        </span>
-                    </div>
-                </ng-template>
-                <ng-template pTemplate="header" let-columns>
-                    <tr class="bg-secondary">
-                        <th pSortableColumn="{{col.field}}" pResizableColumn *ngFor="let col of columns">
-                            {{col.header}} <p-sortIcon style="float: right;" field="{{col.field}}"></p-sortIcon>
-                        </th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-rowData let-columns="columns">
-                    <tr>
-                        <td *ngFor="let col of columns">
-                            {{rowData[col.field]}}
-                        </td>
-                    </tr>
-                </ng-template>
-            </p-table>
-        </div>
-    </div>
-
-    <br><br><br>
-</div>
+</ng-container>

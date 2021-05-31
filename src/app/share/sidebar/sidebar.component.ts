@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class SidebarComponent implements OnInit {
   menu: any = []
 
-  constructor() {
+  constructor(public auth:AuthService) {
     this.menu = [
       { icon: "pi pi-home", title: "Dashboard", route: "/dashboard" },
       { icon: "pi pi-globe", title: "Country", route: "/countries" },
@@ -23,6 +24,7 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.auth.getSubAdminData())
   }
 
 }

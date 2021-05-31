@@ -117,8 +117,9 @@ button {
 }
 
 .link {
-    color: var(--blue);
-    text-decoration: underline;
+    color: var(--blue)!important;
+    text-decoration: underline!important;
+    cursor: pointer!important;
 }
 
 .text-blue {

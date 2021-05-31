@@ -8,7 +8,7 @@
         <div class="col-md-6 my-auto">
             <h5 class="my-auto capitalize">{{collection}}</h5>
         </div>
-        <div class="col-md-6 text-right">
+        <div class="col-md-6 text-right" *ngIf="auth.getSubAdminData().documents?.add || auth.isSuperAdmin()">
             <button class="btn add-btn" routerLink="/{{collection}}/add">Add New Document</button>
         </div>
     </div>
@@ -51,8 +51,12 @@
                         </td>
                         <td>
                             <!-- <i class="pi pi-eye mx-2 cursor-pointer" (click)="view()"></i> -->
-                            <i class="pi pi-pencil mx-2 cursor-pointer" (click)="edit(rowData['id'])"></i>
-                            <i class="pi pi-trash mx-2 cursor-pointer" (click)="delete(rowData['id'])"></i>
+                            <ng-container *ngIf="auth.getSubAdminData().documents?.edit || auth.isSuperAdmin()">
+                                <i class="pi pi-pencil mx-2 cursor-pointer" (click)="edit(rowData['id'])"></i>
+                            </ng-container>
+                            <ng-container *ngIf="auth.getSubAdminData().documents?.delete || auth.isSuperAdmin()">
+                                <i class="pi pi-trash mx-2 cursor-pointer" (click)="delete(rowData['id'])"></i>
+                            </ng-container>
                         </td>
                     </tr>
                 </ng-template>

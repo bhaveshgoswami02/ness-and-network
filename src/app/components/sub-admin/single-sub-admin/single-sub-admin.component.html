@@ -37,7 +37,7 @@
                     <div class="col-md-6">
                         <div class="p-field">
                             <label>Email Id</label> <br>
-                            <input type="email" class="w-100" formControlName="email" pInputText>
+                            <input type="email" class="w-100" formControlName="email" pInputText [readonly]="id">
                         </div>
                         <div *ngIf="validation.email.errors && validation.email.dirty">
                             <div class="text-danger" *ngIf="validation.email?.errors?.required">Field is required!
@@ -54,16 +54,22 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 my-2">
-                        <div class="p-field">
-                            <label>Password</label> <br>
-                            <input type="password" class="w-100" formControlName="password" pInputText>
-                        </div>
-                        <div *ngIf="validation.password.errors && validation.password.dirty">
-                            <div class="text-danger" *ngIf="validation.password?.errors?.required">Field is required!
+                    <ng-container *ngIf="!id">
+                        <div class="col-md-6 my-2">
+                            <div class="p-field">
+                                <label>Password</label> <br>
+                                <p-password class="w-100" formControlName="password"></p-password>
+                                <!-- <input type="password" class="w-100" formControlName="password" pInputText> -->
+                            </div>
+                            <div *ngIf="validation.password.errors && validation.password.dirty">
+                                <div class="text-danger" *ngIf="validation.password?.errors?.required">Field is
+                                    required!
+                                </div>
+                                <div class="text-danger" *ngIf="validation.password.errors?.pattern">Please set a strong
+                                    password!</div>
                             </div>
                         </div>
-                    </div>
+                    </ng-container>
                 </div>
             </div>
         </div>
@@ -95,25 +101,125 @@
                         </div>
                     </div>
                 </div>
-                <div class="row w-100 px-3" *ngFor="let item of menu">
+                <div class="row w-100 px-3">
                     <div class="col-md-5">
-                        <div class="tab my-2">
-                            <i [class]="item.icon"></i>&nbsp;&nbsp;<b>{{item.title}}</b>
-                        </div>
+                        <ng-container *ngFor="let item of menu">
+                            <div class="tab my-2">
+                                <i [class]="item.icon"></i>&nbsp;&nbsp;<b>{{item.title}}</b>
+                            </div>
+                        </ng-container>
                     </div>
                     <div class="col-md-7">
-                        <div class="row">
+                        <div class="row my-2" formGroupName="dashboard">
                             <div class="col-md-3">
-                                <input type="checkbox" name="view">
+                                <input type="checkbox" formControlName="view">
                             </div>
                             <div class="col-md-3">
-                                <input type="checkbox" name="edit">
+                                <input type="checkbox" formControlName="edit">
                             </div>
                             <div class="col-md-3">
-                                <input type="checkbox" name="add">
+                                <input type="checkbox" formControlName="add">
                             </div>
                             <div class="col-md-3">
-                                <input type="checkbox" name="delete">
+                                <input type="checkbox" formControlName="delete">
+                            </div>
+                        </div>
+                        <div class="row my-2" formGroupName="country">
+                            <div class="col-md-3">
+                                <input type="checkbox" formControlName="view">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="checkbox" formControlName="edit">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="checkbox" formControlName="add">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="checkbox" formControlName="delete">
+                            </div>
+                        </div>
+                        <div class="row my-2" formGroupName="players">
+                            <div class="col-md-3">
+                                <input type="checkbox" formControlName="view">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="checkbox" formControlName="edit">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="checkbox" formControlName="add">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="checkbox" formControlName="delete">
+                            </div>
+                        </div>
+                        <div class="row my-2" formGroupName="scouting">
+                            <div class="col-md-3">
+                                <input type="checkbox" formControlName="view">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="checkbox" formControlName="edit">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="checkbox" formControlName="add">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="checkbox" formControlName="delete">
+                            </div>
+                        </div>
+                        <div class="row my-2" formGroupName="agencies">
+                            <div class="col-md-3">
+                                <input type="checkbox" formControlName="view">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="checkbox" formControlName="edit">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="checkbox" formControlName="add">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="checkbox" formControlName="delete">
+                            </div>
+                        </div>
+                        <div class="row my-2" formGroupName="sponsors">
+                            <div class="col-md-3">
+                                <input type="checkbox" formControlName="view">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="checkbox" formControlName="edit">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="checkbox" formControlName="add">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="checkbox" formControlName="delete">
+                            </div>
+                        </div>
+                        <div class="row my-2" formGroupName="documents">
+                            <div class="col-md-3">
+                                <input type="checkbox" formControlName="view">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="checkbox" formControlName="edit">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="checkbox" formControlName="add">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="checkbox" formControlName="delete">
+                            </div>
+                        </div>
+                        <div class="row" formGroupName="setting">
+                            <div class="col-md-3">
+                                <input type="checkbox" formControlName="view">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="checkbox" formControlName="edit">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="checkbox" formControlName="add">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="checkbox" formControlName="delete">
                             </div>
                         </div>
                     </div>
@@ -124,7 +230,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="text-left">
-                    <button class="btn btn-primary mt-4" *ngIf="!id" type="submit"
+                    <button class="btn btn-primary mt-4" type="submit"
                         [disabled]="formData.invalid">Save</button>
                 </div>
             </div>

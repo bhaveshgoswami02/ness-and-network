@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EChartsOption } from 'echarts';
+import { AuthService } from 'src/app/services/auth.service';
 import { PlayersService } from 'src/app/services/players.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class PlayerDetailsComponent implements OnInit {
   options: EChartsOption = {}
   data: any = {}
 
-  constructor(public router: Router, public route: ActivatedRoute, public service: PlayersService) { }
+  constructor(public router: Router, public route: ActivatedRoute, public service: PlayersService,public auth:AuthService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get("id")

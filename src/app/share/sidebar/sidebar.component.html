@@ -1,6 +1,51 @@
 <div class="sidebar-container">
     <div class="mt-2"></div>
-    <div class="tab" *ngFor="let item of menu" [routerLink]="item.route" routerLinkActive="active">
+    <!-- <div class="tab" *ngFor="let item of menu" [routerLink]="item.route" routerLinkActive="active">
         <i [class]="item.icon"></i>&nbsp;&nbsp;<span>{{item.title}}</span>
-    </div>
+    </div> -->
+    <ng-container *ngIf="auth.getSubAdminData().dashboard?.view || auth.isSuperAdmin()">
+        <div class="tab" routerLink="/dashboard" routerLinkActive="active">
+            <i class="pi pi-home"></i>&nbsp;&nbsp;<span>Dashboard</span>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="auth.getSubAdminData().country?.view || auth.isSuperAdmin()">
+        <div class="tab" routerLink="/countries" routerLinkActive="active">
+            <i class="pi pi-globe"></i>&nbsp;&nbsp;<span>Country</span>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="auth.getSubAdminData().players?.view || auth.isSuperAdmin()">
+        <div class="tab" routerLink="/players" routerLinkActive="active">
+            <i class="pi pi-user"></i>&nbsp;&nbsp;<span>Players</span>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="auth.getSubAdminData().scouting?.view || auth.isSuperAdmin()">
+        <div class="tab" routerLink="/scouting" routerLinkActive="active">
+            <i class="pi pi-users"></i>&nbsp;&nbsp;<span>Scouting</span>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="auth.getSubAdminData().agencies?.view || auth.isSuperAdmin()">
+        <div class="tab" routerLink="/agencies" routerLinkActive="active">
+            <i class="pi pi-tablet"></i>&nbsp;&nbsp;<span>Agency</span>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="auth.getSubAdminData().sponsors?.view || auth.isSuperAdmin()">
+        <div class="tab" routerLink="/sponsors" routerLinkActive="active">
+            <i class="pi pi-credit-card"></i>&nbsp;&nbsp;<span>Sponsors</span>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="auth.getSubAdminData().documents?.view || auth.isSuperAdmin()">
+        <div class="tab" routerLink="/documents" routerLinkActive="active">
+            <i class="pi pi-file"></i>&nbsp;&nbsp;<span>Document</span>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="auth.getSubAdminData().setting?.view || auth.isSuperAdmin()">
+        <div class="tab" routerLink="/setting" routerLinkActive="active">
+            <i class="pi pi-cog"></i>&nbsp;&nbsp;<span>Setting</span>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="auth.isSuperAdmin()">
+        <div class="tab" routerLink="/sub-admin" routerLinkActive="active">
+            <i class="pi pi-users"></i>&nbsp;&nbsp;<span>Sub Admin</span>
+        </div>
+    </ng-container>
 </div>
