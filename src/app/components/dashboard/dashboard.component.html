@@ -70,35 +70,40 @@
 
 
         <!--------------------------------- Graphs ------------------------------->
+        <!-- Players Graph -->
         <div class="row my-5">
             <div class="col-md-4 p-0 mx-auto">
                 <div class="custom-card border-0">
                     <div class="card-container">
                         <div class="row my-3">
                             <div class="col-md-12">
-                                <div echarts [options]="chartOption" class="chart"></div>
+                                <div echarts [options]="playersChartOption" class="chart"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Scouting Graph -->
             <div class="col-md-4 p-0 mx-auto">
                 <div class="custom-card border-0">
                     <div class="card-container">
                         <div class="row my-3">
                             <div class="col-md-12">
-                                <div echarts [options]="chartOption" class="chart"></div>
+                                <div echarts [options]="scoutingChartOption" class="chart"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Agency Graph -->
             <div class="col-md-4 p-0 mx-auto">
                 <div class="custom-card border-0">
                     <div class="card-container">
                         <div class="row my-3">
                             <div class="col-md-12">
-                                <div echarts [options]="chartOption" class="chart"></div>
+                                <div echarts [options]="agenciesChartOption" class="chart"></div>
                             </div>
                         </div>
                     </div>
@@ -111,19 +116,18 @@
 
         <div class="row">
             <div class="col-md-12 border p-0">
-                <p-table #dt styleClass="p-datatable-striped" [columns]="cols" [value]="data" dataKey="id"
+                <p-table #dt1 styleClass="p-datatable-striped" [columns]="cols" [value]="agencies_and_sponsors" dataKey="id"
                     [rowHover]="true" [paginator]="true" [rows]="10"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [resizableColumns]="true" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
                     [showCurrentPageReport]="true"
-                    [globalFilterFields]="['type','company','contact_date','contact_due_date']">
+                    [globalFilterFields]="['type','name']">
                     <ng-template pTemplate="caption">
                         <div class="table-header pb-4">
                             <span class="my-auto">List of contract</span>
                             <span class="p-input-icon-left float-right my-auto">
                                 <i class="pi pi-search"></i>
-                                <!-- <input pInputText type="text" #search (input)="dt1.filterGlobal(search.value, 'contains')" placeholder="Search keyword" /> -->
-                                <input pInputText type="text" placeholder="Global Search" />
+                                <input pInputText type="text" #search (input)="dt1.filterGlobal(search.value, 'contains')" placeholder="Search keyword" />
                             </span>
                         </div>
                     </ng-template>
@@ -137,7 +141,18 @@
                     <ng-template pTemplate="body" let-rowData let-columns="columns">
                         <tr>
                             <td *ngFor="let col of columns">
-                                {{rowData[col.field]}}
+                                <ng-container *ngIf="col.field != 'name'">
+                                    <span class="capitalize">{{rowData[col.field]}}</span>
+                                </ng-container>
+                                <ng-container *ngIf="col.field == 'name'">
+                                    <img [src]="rowData?.imgUrl" width="40px" height="40px" class="rounded-circle" alt="">
+                                    <ng-container *ngIf="rowData?.type == 'agency'">
+                                        <span class="ml-2 capitalize link" routerLink="/agencies/detail/{{rowData.id}}">{{rowData?.name}}</span>
+                                    </ng-container>
+                                    <ng-container *ngIf="rowData?.type != 'agency'">
+                                        <span class="ml-2 capitalize link" routerLink="/sponsors/detail/{{rowData.id}}">{{rowData?.name}}</span>
+                                    </ng-container>
+                                </ng-container>
                             </td>
                         </tr>
                     </ng-template>

@@ -14,7 +14,6 @@ export class AllSponsorsComponent implements OnInit {
     { field: 'id', header: 'Sponsor ID' },
     { field: 'name', header: 'Sponsor Name' },
     { field: 'nationality', header: 'Country' },
-    { field: 'contracts', header: 'Contract Due' },
     { field: 'timestamp', header: 'Registration Date' },
   ];
 

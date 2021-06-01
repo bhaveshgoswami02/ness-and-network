@@ -37,7 +37,7 @@ export class AuthService {
   signIn(email: any, password: any) {
     this.common.showLoader()
     console.log(email, password)
-    if (email == "admin@gmail.com" && password == "admin123") {
+    if (email == environment.email && password == environment.password) {
       localStorage.setItem("uid", environment.uid)
       this.router.navigateByUrl("/dashboard")
       this.common.stopLoader()

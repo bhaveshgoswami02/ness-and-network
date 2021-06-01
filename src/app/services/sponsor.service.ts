@@ -21,9 +21,9 @@ export class SponsorService {
     let timestamp = firebase.firestore.Timestamp.now()
     data.timestamp = timestamp
     data.uid = this.auth.getUid()
+    data.type = 'sponsor'
     let id = await this.common.generateId()
     return this.db.collection(this.collection).doc(id).set(data).then(res => {
-      this.router.navigateByUrl("/" + this.collection)
       let path = this.collection + "/" + id + "/" + this.collection
       if (Img) {
         this.storage.upload(path, Img).then(imgUrl => {

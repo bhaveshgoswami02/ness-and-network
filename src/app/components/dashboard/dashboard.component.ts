@@ -1,9 +1,11 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { EChartsOption } from 'echarts';
 import { AgencyService } from 'src/app/services/agency.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { PlayersService } from 'src/app/services/players.service';
 import { ScoutingService } from 'src/app/services/scouting.service';
+import { SponsorService } from 'src/app/services/sponsor.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,61 +13,139 @@ import { ScoutingService } from 'src/app/services/scouting.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  chartOption: EChartsOption = {
-    xAxis: {
-      type: 'category',
-      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-    },
-    yAxis: {
-      type: 'value',
-    },
-    series: [
-      {
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
-        type: 'bar',
-      },
-    ],
-  };
+  playersChartOption: EChartsOption = {};
+
+  scoutingChartOption: EChartsOption = {};
+
+  agenciesChartOption: EChartsOption = {}
 
   cols = [
     { field: 'type', header: 'Type' },
-    { field: 'company', header: 'Name of company' },
-    { field: 'contact_date', header: 'Contract Date' },
-    { field: 'contact_due_date', header: 'Contract Due Date' }
+    { field: 'name', header: 'Name of company' },
   ];
 
-  data = [
-    { type: "Agency", company: "XYZ Agency", contact_date: "01-Apr-2020", contact_due_date: "30-Mar-2021" },
-    { type: "Sponsor", company: "NYK Sponsor", contact_date: "01-Apr-2020", contact_due_date: "30-Mar-2021" },
-  ]
+  allPlayers: any = []
+  allScouts: any = []
+  allAgencies: any = []
+  allSponsors: any = []
+  agencies_and_sponsors: any = []
 
-  allPlayers:any = []
-  allScouts:any = []
-  allAgencies:any = []
-
-  constructor(public playerService:PlayersService,public scoutingService:ScoutingService,public agencyService:AgencyService,public auth:AuthService) { }
+  constructor(public playerService: PlayersService, public scoutingService: ScoutingService, public agencyService: AgencyService, public auth: AuthService, public sponsorService: SponsorService, public datepipe: DatePipe) { }
 
   ngOnInit(): void {
     this.getPlayers()
     this.getAllScounts()
-    this.getAllAgencies()
+    this.combineAgenciesAndSponsors()
+    // this.getAllAgencies()
   }
 
   getPlayers() {
-    this.playerService.getAll().subscribe(res=>{
+    this.playerService.getAll().subscribe(res => {
       this.allPlayers = res
+      let category: any = []
+      let data: any = []
+      this.allPlayers.forEach((player: any, index: number) => {
+        let timestamp = this.datepipe.transform(player.timestamp.toDate(), 'dd-MM-yyyy');
+        category.push(timestamp)
+        data.push(index + 1)
+      });
+      this.playersChartOption = {
+        xAxis: {
+          type: 'category',
+          data: category,
+        },
+        yAxis: {
+          type: 'value',
+        },
+        series: [
+          {
+            data: data,
+            type: 'bar',
+          },
+        ],
+      }
     })
   }
 
   getAllScounts() {
-    this.scoutingService.getAll().subscribe(res=>{
+    this.scoutingService.getAll().subscribe(res => {
       this.allScouts = res
+      let category: any = []
+      let data: any = []
+      this.allScouts.forEach((scout: any, index: number) => {
+        let timestamp = this.datepipe.transform(scout.timestamp.toDate(), 'dd-MM-yyyy');
+        category.push(timestamp)
+        data.push(index + 1)
+      });
+      this.scoutingChartOption = {
+        xAxis: {
+          type: 'category',
+          data: category,
+        },
+        yAxis: {
+          type: 'value',
+        },
+        series: [
+          {
+            data: data,
+            type: 'bar',
+          },
+        ],
+      };
     })
   }
 
-  getAllAgencies() {
-    this.agencyService.getAll().subscribe(res=>{
-      this.allAgencies = res
+  // getAllAgencies() {
+  //   this.agencyService.getAll().subscribe(res=>{
+  //     this.allAgencies = res
+  //   })
+  // }
+
+  // getAllSponsors() {
+  //   this.sponsorService.getAll().subscribe(res=>{
+  //     this.allSponsors = res
+  //   })
+  // }
+
+  combineAgenciesAndSponsors() {
+    let promise1 = new Promise(resolve => {
+      this.agencyService.getAll().subscribe(res => {
+        this.allAgencies = res
+        let category: any = []
+        let data: any = []
+        this.allAgencies.forEach((agency: any, index: number) => {
+          let timestamp = this.datepipe.transform(agency.timestamp.toDate(), 'dd-MM-yyyy');
+          category.push(timestamp)
+          data.push(index + 1)
+        });
+        this.agenciesChartOption = {
+          xAxis: {
+            type: 'category',
+            data: category,
+          },
+          yAxis: {
+            type: 'value',
+          },
+          series: [
+            {
+              data: data,
+              type: 'bar',
+            },
+          ],
+        };
+        console.log("allAgencies", this.allAgencies)
+        resolve(res)
+      })
     })
+    let promise2 = new Promise(resolve => {
+      this.sponsorService.getAll().subscribe(res => {
+        this.allSponsors = res
+        resolve(res)
+      })
+    })
+    Promise.all([promise1, promise2]).then(values => {
+      this.agencies_and_sponsors = this.allAgencies.concat(this.allSponsors)
+      console.log("agencies_and_sponsors", this.agencies_and_sponsors)
+    });
   }
 }

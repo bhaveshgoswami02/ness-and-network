@@ -14,7 +14,6 @@ export class AllAgenciesComponent implements OnInit {
     { field: 'id', header: 'Agency ID' },
     { field: 'name', header: 'Agency Name' },
     { field: 'nationality', header: 'Country' },
-    { field: 'contracts', header: 'Contract Due' },
     { field: 'timestamp', header: 'Registration Date' },
   ];
 

@@ -35,12 +35,12 @@
     </ng-container>
     <ng-container *ngIf="auth.getSubAdminData().documents?.view || auth.isSuperAdmin()">
         <div class="tab" routerLink="/documents" routerLinkActive="active">
-            <i class="pi pi-file"></i>&nbsp;&nbsp;<span>Document</span>
+            <i class="pi pi-file"></i>&nbsp;&nbsp;<span>Documents</span>
         </div>
     </ng-container>
     <ng-container *ngIf="auth.getSubAdminData().setting?.view || auth.isSuperAdmin()">
         <div class="tab" routerLink="/setting" routerLinkActive="active">
-            <i class="pi pi-cog"></i>&nbsp;&nbsp;<span>Setting</span>
+            <i class="pi pi-cog"></i>&nbsp;&nbsp;<span>Settings</span>
         </div>
     </ng-container>
     <ng-container *ngIf="auth.isSuperAdmin()">

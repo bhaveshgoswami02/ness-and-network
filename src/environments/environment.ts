@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  email: "admin@gmail.com",
+  email: "nessnetwork5@gmail.com",
   password: "admin123",
   uid: "superadmin",
   sitekey: "6LfLIAMbAAAAABOC5rl68dJyu8FuHlok8DOpII9z",

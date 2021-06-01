@@ -17,8 +17,8 @@ export class SidebarComponent implements OnInit {
       { icon: "pi pi-users", title: "Scouting", route: "/scouting" },
       { icon: "pi pi-tablet", title: "Agency", route: "/agencies" },
       { icon: "pi pi-credit-card", title: "Sponsors", route: "/sponsors" },
-      { icon: "pi pi-file", title: "Document", route: "/documents" },
-      { icon: "pi pi-cog", title: "Setting", route: "/setting" },
+      { icon: "pi pi-file", title: "Documents", route: "/documents" },
+      { icon: "pi pi-cog", title: "Settings", route: "/setting" },
       { icon: "pi pi-users", title: "Sub Admin", route: "/sub-admin" },
     ]
   }

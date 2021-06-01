@@ -46,14 +46,14 @@
                                 <span class="ml-2">{{rowData.nationality?.name}}</span>
                             </ng-container>
                             <ng-container *ngIf="col.field == 'name'">
-                                <img [src]="rowData.imgUrl" width="40px" alt="">
+                                <img [src]="rowData.imgUrl" class="rounded-circle" width="40px" height="40px" alt="">
                                 <span class="ml-2">{{rowData.name}}</span>
                             </ng-container>
                             <ng-container *ngIf="col.field != 'nationality' && col.field != 'name' && col.field != 'spr' && col.field != 'timestamp' && col.field != 'dob'">
                                 {{rowData[col.field]}}
                             </ng-container>
                             <ng-container *ngIf="col.field == 'spr'">
-                                {{rowData.spr.heading}}
+                                {{(rowData.spr.heading + rowData.spr.attacking + rowData.spr.defending + rowData.spr.dribbling + rowData.spr.passing + rowData.spr.vision) / 6}}
                             </ng-container>
                             <ng-container *ngIf="col.field == 'dob'">
                                 {{rowData.dob | date : 'mediumDate'}}

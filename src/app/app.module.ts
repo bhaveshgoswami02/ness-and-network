@@ -59,6 +59,7 @@ import { AllSubAdminComponent } from './components/sub-admin/all-sub-admin/all-s
 import {CheckboxModule} from 'primeng/checkbox';
 import {CaptchaModule} from 'primeng/captcha';
 import { ViewScoutingComponent } from './components/scouting/view-scouting/view-scouting.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -124,7 +125,7 @@ import { ViewScoutingComponent } from './components/scouting/view-scouting/view-
     CheckboxModule,
     CaptchaModule
   ],
-  providers: [MessageService],
+  providers: [MessageService,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
