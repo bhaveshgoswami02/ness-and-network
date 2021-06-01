@@ -127,7 +127,7 @@
                             <span class="my-auto">List of contract</span>
                             <span class="p-input-icon-left float-right my-auto">
                                 <i class="pi pi-search"></i>
-                                <input pInputText type="text" #search (input)="dt1.filterGlobal(search.value, 'contains')" placeholder="Search keyword" />
+                                <input pInputText type="text" #search (input)="dt1.filterGlobal(search.value, 'contains')" placeholder="Search..." />
                             </span>
                         </div>
                     </ng-template>
@@ -146,10 +146,10 @@
                                 </ng-container>
                                 <ng-container *ngIf="col.field == 'name'">
                                     <img [src]="rowData?.imgUrl" width="40px" height="40px" class="rounded-circle" alt="">
-                                    <ng-container *ngIf="rowData?.type == 'agency'">
+                                    <ng-container *ngIf="rowData?.type == 'agency' && (auth.getSubAdminData().agencies?.view || auth.isSuperAdmin())">
                                         <span class="ml-2 capitalize link" routerLink="/agencies/detail/{{rowData.id}}">{{rowData?.name}}</span>
                                     </ng-container>
-                                    <ng-container *ngIf="rowData?.type != 'agency'">
+                                    <ng-container *ngIf="rowData?.type != 'agency' && (auth.getSubAdminData().sponsors?.view || auth.isSuperAdmin())">
                                         <span class="ml-2 capitalize link" routerLink="/sponsors/detail/{{rowData.id}}">{{rowData?.name}}</span>
                                     </ng-container>
                                 </ng-container>

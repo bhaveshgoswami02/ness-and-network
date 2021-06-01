@@ -5,12 +5,12 @@
             <i class="pi pi-angle-right"></i>
             <a class="link" routerLink="/{{collection}}">{{pageTitle}}</a>
             <i class="pi pi-angle-right"></i>
-            <span>Add {{pageTitle}}</span>
+            <span>{{id ? 'Edit':'Add'}} {{pageTitle}}</span>
         </div>
     </div>
     <div class="row mt-3">
         <div class="col-md-6 my-auto">
-            <h5 class="my-auto">Add {{pageTitle}}</h5>
+            <h5 class="my-auto">{{id ? 'Edit':'Add'}} {{pageTitle}}</h5>
         </div>
     </div>
     <form [formGroup]="formData" (ngSubmit)="onSubmit()">
@@ -89,8 +89,8 @@
             </div>
             <div class="col-md-6 text-right">
                 <div class="p-field mt-3">
-                    <img [src]="imageSrc" class="cursor-pointer rounded-circle mr-5" (click)="file.click()" width="90px" height="90px"
-                        alt=""><br>
+                    <img [src]="imageSrc" class="cursor-pointer rounded-circle mr-5" (click)="file.click()" width="90px"
+                        height="90px" alt=""><br>
                     <label class="text-center mr-2">Upload {{pageTitle}} Image</label>
                     <input #file type="file" formControlName="file" class="d-none" (change)="onSelectFile($event)">
                 </div>
@@ -179,7 +179,8 @@
                                             <!-- <p-dropdown [options]="position" formControlName="position"
                                                 placeholder="Select">
                                             </p-dropdown> -->
-                                            <p-dropdown [options]="position" formControlName="position" placeholder="Select Position" [group]="true">
+                                            <p-dropdown [options]="position" formControlName="position"
+                                                placeholder="Select Position" [group]="true">
                                                 <ng-template let-group pTemplate="group">
                                                     <div class="p-d-flex p-ai-center">
                                                         <span>{{group.label}}</span>

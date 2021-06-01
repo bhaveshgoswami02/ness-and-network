@@ -87,8 +87,12 @@
         </div>
     </div>
     <div class="row my-3">
-        <div class="col-md-2 text-center" *ngFor="let data of subCollectionData">
+        <!-- <div class="col-md-2 text-center" *ngFor="let data of subCollectionData">
             <img [src]="data?.imgUrl" class="w-100" alt="">
+        </div> -->
+        <div class="col-md-4 my-2" *ngFor="let data of subCollectionData;let i = index">
+            <img [src]="data.imgUrl" (load)="data.loaded = true" [hidden]="!data.loaded" width="100%">
+            <a [href]="data.imgUrl" target="_blank" *ngIf="!data.loaded">Click here to see document</a> <br>
         </div>
     </div>
 </div>

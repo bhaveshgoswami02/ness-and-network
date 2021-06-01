@@ -5,12 +5,12 @@
             <i class="pi pi-angle-right"></i>
             <a class="link" routerLink="/{{collection}}">{{collection}}</a>
             <i class="pi pi-angle-right"></i>
-            <span>Add {{pageTitle}}</span>
+            <span>{{id ? 'Edit':'Add'}} {{pageTitle}}</span>
         </div>
     </div>
     <div class="row mt-3">
         <div class="col-md-6 my-auto">
-            <h5 class="my-auto">Add {{pageTitle}}</h5>
+            <h5 class="my-auto">{{id ? 'Edit':'Add'}} {{pageTitle}}</h5>
         </div>
     </div>
     <form [formGroup]="formData" (ngSubmit)="onSubmit()">
@@ -177,10 +177,16 @@
                 <label>Selected Multiple Documents</label>
                 <div class="row">
                     <div class="col-md-4 my-2" *ngFor="let data of subCollectionData;let i = index">
-                        <img [src]="data.imgUrl" width="100%">
+                        <img [src]="data.imgUrl" (load)="data.loaded = true" [hidden]="!data.loaded" width="100%">
+                        <a [href]="data.imgUrl" target="_blank" *ngIf="!data.loaded">Click here to see document</a> <br>
                         <button class="btn btn-primary" type="button"
                             (click)="deleteSubCollectionDocuments(data.id,data.imgPath,i)">Delete</button>
                     </div>
+                    <!-- <div class="col-md-4 my-2" *ngFor="let data of subCollectionData;let i = index">
+                        <img [src]="data.imgUrl" width="100%">
+                        <button class="btn btn-primary" type="button"
+                            (click)="deleteSubCollectionDocuments(data.id,data.imgPath,i)">Delete</button>
+                    </div> -->
                 </div>
             </ng-container>
         </div>

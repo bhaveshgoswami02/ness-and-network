@@ -40,7 +40,7 @@ export class PlayersService {
   }
 
   getAll() {
-    return this.db.collection(this.collection).get().pipe(
+    return this.db.collection(this.collection,ref=>ref.orderBy("timestamp","desc")).get().pipe(
       map(actions => actions.docs.map(a => {
         const data = a.data() as any;
         const id = a.id;

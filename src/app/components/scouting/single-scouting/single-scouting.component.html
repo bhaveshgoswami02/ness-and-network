@@ -5,12 +5,12 @@
             <i class="pi pi-angle-right"></i>
             <a class="link" routerLink="/{{collection}}">{{collection}}</a>
             <i class="pi pi-angle-right"></i>
-            <span>Add {{pageTitle}}</span>
+            <span>{{id ? 'Edit':'Add'}} {{pageTitle}}</span>
         </div>
     </div>
     <div class="row mt-3">
         <div class="col-md-6 my-auto">
-            <h5 class="my-auto">Add {{pageTitle}}</h5>
+            <h5 class="my-auto">{{id ? 'Edit':'Add'}} {{pageTitle}}</h5>
         </div>
     </div>
     <form [formGroup]="formData" (ngSubmit)="onSubmit()">

@@ -24,7 +24,7 @@
                         <span class="my-auto">List of {{collection}}</span>
                         <span class="p-input-icon-left float-right my-auto">
                             <i class="pi pi-search"></i>
-                            <input pInputText type="text" #search (input)="dt1.filterGlobal(search.value, 'contains')" placeholder="Search keyword" />
+                            <input pInputText type="text" #search (input)="dt1.filterGlobal(search.value, 'contains')" placeholder="Search..." />
                         </span>
                     </div>
                 </ng-template>
@@ -53,7 +53,7 @@
                                 {{rowData[col.field]}}
                             </ng-container>
                             <ng-container *ngIf="col.field == 'spr'">
-                                {{(rowData.spr.heading + rowData.spr.attacking + rowData.spr.defending + rowData.spr.dribbling + rowData.spr.passing + rowData.spr.vision) / 6}}
+                                {{(rowData.spr.heading + rowData.spr.attacking + rowData.spr.defending + rowData.spr.dribbling + rowData.spr.passing + rowData.spr.vision) / 6 | number}}
                             </ng-container>
                             <ng-container *ngIf="col.field == 'dob'">
                                 {{rowData.dob | date : 'mediumDate'}}
