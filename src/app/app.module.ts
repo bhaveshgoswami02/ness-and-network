@@ -52,7 +52,6 @@ import { CalendarModule } from 'primeng/calendar';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {CardModule} from 'primeng/card';
 import {ProgressBarModule} from 'primeng/progressbar';
-import { DatePipe } from '@angular/common';
 import { SponsorDetailsComponent } from './components/sponsors/sponsor-details/sponsor-details.component';
 import { SubAdminComponent } from './components/sub-admin/sub-admin.component';
 import { SingleSubAdminComponent } from './components/sub-admin/single-sub-admin/single-sub-admin.component';
@@ -125,7 +124,7 @@ import { ViewScoutingComponent } from './components/scouting/view-scouting/view-
     CheckboxModule,
     CaptchaModule
   ],
-  providers: [MessageService,DatePipe],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

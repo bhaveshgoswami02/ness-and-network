@@ -46,7 +46,7 @@
                                 {{rowData[col.field]}}
                             </ng-container>
                             <ng-container *ngIf="col.field == 'timestamp'">
-                                {{rowData.timestamp}}
+                                {{rowData.timestamp.toDate() | date : 'mediumDate'}}
                             </ng-container>
                         </td>
                         <td>

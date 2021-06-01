@@ -45,11 +45,11 @@
                             <ng-container *ngIf="col.field == 'imgUrl'">
                                 <img [src]="rowData.imgUrl" width="20%" alt="">
                             </ng-container>
-                            <ng-container *ngIf="col.field != 'imgUrl'">
+                            <ng-container *ngIf="col.field != 'imgUrl' && col.field != 'timestamp'">
                                 {{rowData[col.field]}}
                             </ng-container>
                             <ng-container *ngIf="col.field == 'timestamp'">
-                                {{rowData.timestamp}}
+                                {{rowData.timestamp.toDate() | date : 'mediumDate'}}
                             </ng-container>
                         </td>
                         <td>

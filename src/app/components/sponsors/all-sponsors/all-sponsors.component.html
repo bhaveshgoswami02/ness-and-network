@@ -46,14 +46,14 @@
                                 <img [src]="rowData.nationality?.imgUrl" width="40px" alt="">
                                 <span class="ml-2">{{rowData.nationality?.name}}</span>
                             </ng-container>
-                            <ng-container *ngIf="col.field != 'nationality' && col.field != 'contracts'">
+                            <ng-container *ngIf="col.field != 'nationality' && col.field != 'contracts' && col.field != 'timestamp'">
                                 {{rowData[col.field]}}
                             </ng-container>
                             <ng-container *ngIf="col.field == 'contracts'">
                                 {{rowData.contracts[0].contract_due_date}}
                             </ng-container>
                             <ng-container *ngIf="col.field == 'timestamp'">
-                                {{rowData.timestamp}}
+                                {{rowData.timestamp.toDate() | date : 'mediumDate'}}
                             </ng-container>
                         </td>
                         <td>

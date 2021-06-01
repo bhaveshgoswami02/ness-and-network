@@ -1,4 +1,3 @@
-import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
@@ -8,7 +7,6 @@ import { CountryService } from 'src/app/services/country.service';
   selector: 'app-all-countries',
   templateUrl: './all-countries.component.html',
   styleUrls: ['./all-countries.component.scss'],
-  providers: [DatePipe],
 })
 export class AllCountriesComponent implements OnInit {
   collection: string = "countries"
