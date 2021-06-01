@@ -16,16 +16,15 @@
     <!--------------------------------- Tables ------------------------------->
     <div class="row mt-5">
         <div class="col-md-12 border p-0">
-            <p-table #dt styleClass="p-datatable-striped" [columns]="cols" [value]="data"  dataKey="id" [rowHover]="true"
+            <p-table #dt1 styleClass="p-datatable-striped" [columns]="cols" [value]="data"  dataKey="id" [rowHover]="true"
                 [paginator]="true" [rows]="10" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [resizableColumns]="true" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [showCurrentPageReport]="true"
-                [globalFilterFields]="['type','company','contact_date','contact_due_date']">
+                [globalFilterFields]="['id','name','nationality.name']">
                 <ng-template pTemplate="caption">
                     <div class="table-header pb-4">
                         <span class="my-auto">List of {{collection}}</span>
                         <span class="p-input-icon-left float-right my-auto">
                             <i class="pi pi-search"></i>
-                            <!-- <input pInputText type="text" #search (input)="dt1.filterGlobal(search.value, 'contains')" placeholder="Search keyword" /> -->
-                            <input pInputText type="text" placeholder="Global Search" />
+                            <input pInputText type="text" #search (input)="dt1.filterGlobal(search.value, 'contains')" placeholder="Search keyword" />
                         </span>
                     </div>
                 </ng-template>
@@ -50,11 +49,14 @@
                                 <img [src]="rowData.imgUrl" width="40px" alt="">
                                 <span class="ml-2">{{rowData.name}}</span>
                             </ng-container>
-                            <ng-container *ngIf="col.field != 'nationality' && col.field != 'name' && col.field != 'spr' && col.field != 'timestamp'">
+                            <ng-container *ngIf="col.field != 'nationality' && col.field != 'name' && col.field != 'spr' && col.field != 'timestamp' && col.field != 'dob'">
                                 {{rowData[col.field]}}
                             </ng-container>
                             <ng-container *ngIf="col.field == 'spr'">
                                 {{rowData.spr.heading}}
+                            </ng-container>
+                            <ng-container *ngIf="col.field == 'dob'">
+                                {{rowData.dob | date : 'mediumDate'}}
                             </ng-container>
                             <ng-container *ngIf="col.field == 'timestamp'">
                                 {{rowData.timestamp.toDate() | date : 'mediumDate'}}

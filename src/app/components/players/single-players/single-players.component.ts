@@ -18,9 +18,41 @@ export class SinglePlayersComponent implements OnInit {
   imageFile: any;
   countries: any = []
   foot = ['left', 'right']
-  position = [1, 2, 3]
+  // position = [1, 2, 3]
   selectedCountry: any = { name: '', imgUrl: '' }
-
+  position = [
+    {
+      items: [
+        { label: 'Goalkeeper', value: 'goalkeeper' },
+      ]
+    },
+    {
+      label: 'Defenders', value: 'Defenders',
+      items: [
+        { label: 'Sweeper (SW)', value: 'Sweeper (SW)' },
+        { label: 'Center-back / Center Full-back / Central Defender (CB)', value: 'Center-back / Center Full-back / Central Defender (CB)' },
+        { label: 'Right and Left Full-backs (RB/LB)', value: 'Right and Left Full-backs (RB/LB)' },
+        { label: 'Right and Left Wing-backs (RWB/LWB) Midfielders', value: 'Right and Left Wing-backs (RWB/LWB) Midfielders' }
+      ]
+    },
+    {
+      label: 'Midfielders', value: 'Midfielders',
+      items: [
+        { label: 'Defensive / Holding Midfielder (DM)', value: 'Defensive / Holding Midfielder (DM)' },
+        { label: 'Center Midfielders (CM)', value: 'Center Midfielders (CM)' },
+        { label: 'Attacking Midfielders (AM)', value: 'Attacking Midfielders (AM)' },
+        { label: 'Wide Midfielders / Wingers (RW/LW) Forwards', value: 'Wide Midfielders / Wingers (RW/LW) Forwards' }
+      ]
+    },
+    {
+      label: 'Forwards', value: 'Forwards',
+      items: [
+        { label: 'Center Forward (CF)', value: 'Center Forward (CF)' },
+        { label: 'Second Forward / Second Striker / Support or Withdrawn Striker (CF or S)', value: 'Second Forward / Second Striker / Support or Withdrawn Striker (CF or S)' },
+        { label: 'Striker (S)', value: 'Striker (S)' }
+      ]
+    },
+  ];
   constructor(public route: ActivatedRoute, private fb: FormBuilder, public service: PlayersService, public countryService: CountryService) {
     this.formData = this.fb.group({
       'name': ['', [Validators.required]],

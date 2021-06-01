@@ -176,13 +176,16 @@
                                     <div class="col-md-4">
                                         <div class="p-field p-col">
                                             <label>Position</label>
-                                            <p-dropdown [options]="position" formControlName="position"
+                                            <!-- <p-dropdown [options]="position" formControlName="position"
                                                 placeholder="Select">
+                                            </p-dropdown> -->
+                                            <p-dropdown [options]="position" formControlName="position" placeholder="Select Position" [group]="true">
+                                                <ng-template let-group pTemplate="group">
+                                                    <div class="p-d-flex p-ai-center">
+                                                        <span>{{group.label}}</span>
+                                                    </div>
+                                                </ng-template>
                                             </p-dropdown>
-                                            <!-- <div *ngIf="validation.position.errors && validation.position.dirty">
-                                                <div class="text-danger" *ngIf="validation.position?.errors?.required">Field is required!
-                                                </div>
-                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
