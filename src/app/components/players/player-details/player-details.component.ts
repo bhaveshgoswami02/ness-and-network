@@ -30,6 +30,7 @@ export class PlayerDetailsComponent implements OnInit {
   getData() {
     this.service.getSingle(this.id).subscribe(res => {
       this.data = res
+      console.log(this.data)
       this.chartData = [{
         "value": this.data.spr?.defending,
         "name": "Defending"

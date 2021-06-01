@@ -14,16 +14,17 @@ export class PlayersService {
   collection = "players"
   constructor(public db: AngularFirestore, public storage: StorageService, public router: Router, public common: CommonService,public auth:AuthService) { }
 
-  add(data:any, Img?:any) {
+  async add(data:any, Img?:any) {
     this.common.showLoader()
     let timestamp = firebase.firestore.Timestamp.now()
     data.timestamp = timestamp
     data.uid = this.auth.getUid()
-    return this.db.collection(this.collection).add(data).then(res => {
-      let path = this.collection + "/" + res.id + "/" + this.collection
+    let id = await this.common.generateId()
+    return this.db.collection(this.collection).doc(id).set(data).then(res => {
+      let path = this.collection + "/" + id + "/" + this.collection
       if (Img) {
         this.storage.upload(path, Img).then(imgUrl => {
-          this.update(res.id, { imgUrl: imgUrl })
+          this.update(id, { imgUrl: imgUrl })
         }).catch(err => {
           console.log(err)
         })

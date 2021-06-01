@@ -11,7 +11,6 @@ export class AppComponent {
   title = 'ness-and-network';
 
   constructor(public common:CommonService,public auth:AuthService) {
-    this.common.showToast("success","sdob","csdv")
   }
 
 }

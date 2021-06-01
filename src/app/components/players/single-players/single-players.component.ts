@@ -66,7 +66,7 @@ export class SinglePlayersComponent implements OnInit {
       this.formData = this.fb.group({
         'name': [data.name, [Validators.required]],
         'file': [''],
-        'dob': ['', [Validators.required]],
+        'dob': [data.dob, [Validators.required]],
         'nationality': [data.nationality, [Validators.required]],
         'other_details': this.fb.group({
           'height': [data.other_details.height, [Validators.required]],

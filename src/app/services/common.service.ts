@@ -34,4 +34,15 @@ export class CommonService {
     this.location.back()
   }
 
+  generateId() {
+    var id = "";
+    var possible1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    var possible2 = "0123456789";
+    // for (var i = 0; i < 3; i++)
+    //   id += possible1.charAt(Math.floor(Math.random() * possible1.length));
+    for (var i = 0; i < 9; i++)
+      id += possible2.charAt(Math.floor(Math.random() * possible2.length));
+    return id;
+  }
+
 }

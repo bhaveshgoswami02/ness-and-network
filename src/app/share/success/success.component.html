@@ -1,16 +1,21 @@
 <div class="container">
     <div class="row min-height-80">
-        <div class="col-md-5 my-auto mx-auto">
+        <div class="col-md-6 my-auto mx-auto">
             <div class="text-center">
                 <img src="assets/images/logo.jpeg" class="w-25" alt="">
             </div>
-            <div class="border">
-                <div class="border-bottom text-center py-2">
-                    <h4>Sent Successful!</h4>
-                </div>
-                
+            <div class="text-center py-2">
+                <i class="pi pi-check-circle" style="font-size: 50px;"></i>
+                <h4>Reset Link Sent!</h4>
             </div>
-
+            <div>
+                <p>We have sent a link to reset your password check your email <b>{{subAdmin.email}}</b> and follow step to reset
+                    the password please double check that you entered the correct email address and check your spam
+                    folder.</p>
+            </div>
+            <div class="text-center">
+                <span>Go Back to</span> <b class="link ml-1" routerLink="/auth">Log in</b>
+            </div>
         </div>
     </div>
 </div>

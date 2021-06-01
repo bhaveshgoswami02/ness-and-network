@@ -15,16 +15,17 @@ export class ScoutingService {
   
   constructor(public db: AngularFirestore, public storage: StorageService, public router: Router, public common: CommonService,public auth:AuthService) { }
 
-  add(data:any, Img?:any) {
+  async add(data:any, Img?:any) {
     this.common.showLoader()
     data.timestamp = firebase.firestore.Timestamp.now()
     data.uid = this.auth.getUid()
-    return this.db.collection(this.collection).add(data).then(res => {
+    let id = await this.common.generateId()
+    return this.db.collection(this.collection).doc(id).set(data).then(res => {
       this.router.navigateByUrl("/"+this.collection)
-      let path = this.collection + "/" + res.id + "/" + this.collection
+      let path = this.collection + "/" + id + "/" + this.collection
       if (Img) {
         this.storage.upload(path, Img).then(imgUrl => {
-          this.update(res.id, { imgUrl: imgUrl })
+          this.update(id, { imgUrl: imgUrl })
         }).catch(err => {
           console.log(err)
         })

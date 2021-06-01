@@ -6,13 +6,16 @@ import { StorageService } from './storage.service';
 import { map } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SubAdminService {
   collection:string = "sub-admin"
-  constructor(public db: AngularFirestore, public afauth: AngularFireAuth, public storage: StorageService, public router: Router, public common: CommonService) { }
+  email:string = ""
+
+  constructor(public db: AngularFirestore, public afauth: AngularFireAuth, public storage: StorageService, public router: Router, public common: CommonService,public auth:AuthService) { }
 
   createUser(data:any) {
     this.common.showLoader()
@@ -37,9 +40,13 @@ export class SubAdminService {
 
   resetPassword(email:string) {
     this.common.showLoader()
+    this.email = email
     this.afauth.sendPasswordResetEmail(email).then(res => {
       // this.common.showToast("success", "", "Reset Password Link sent successful on email!")
       this.router.navigateByUrl("/auth/success")
+      localStorage.removeItem("uid")
+      localStorage.removeItem("subAdminData")
+      this.afauth.signOut()  
       this.common.stopLoader()
     }).catch(err => {
       console.log(err)

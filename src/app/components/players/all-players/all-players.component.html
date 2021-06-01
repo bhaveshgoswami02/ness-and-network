@@ -43,9 +43,14 @@
                     <tr>
                         <td *ngFor="let col of columns">
                             <ng-container *ngIf="col.field == 'nationality'">
-                                {{rowData.nationality.name}}
+                                <img [src]="rowData.nationality?.imgUrl" width="40px" alt="">
+                                <span class="ml-2">{{rowData.nationality?.name}}</span>
                             </ng-container>
-                            <ng-container *ngIf="col.field != 'nationality' && col.field != 'spr'">
+                            <ng-container *ngIf="col.field == 'name'">
+                                <img [src]="rowData.imgUrl" width="40px" alt="">
+                                <span class="ml-2">{{rowData.name}}</span>
+                            </ng-container>
+                            <ng-container *ngIf="col.field != 'nationality' && col.field != 'name' && col.field != 'spr'">
                                 {{rowData[col.field]}}
                             </ng-container>
                             <ng-container *ngIf="col.field == 'spr'">

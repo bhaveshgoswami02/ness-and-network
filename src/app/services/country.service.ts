@@ -14,16 +14,17 @@ export class CountryService {
   collection = "countries"
   constructor(public db: AngularFirestore, public storage: StorageService, public router: Router, public common: CommonService,public auth:AuthService) { }
 
-  add(collection:string,data:any, Img?:any) {
+  async add(collection:string,data:any, Img?:any) {
     this.common.showLoader()
     let timestamp = firebase.firestore.Timestamp.now()
     data.timestamp = timestamp
     data.uid = this.auth.getUid()
-    return this.db.collection(collection).add(data).then(res => {
-      let path = collection + "/" + res.id + "/" + collection
+    let id = await this.common.generateId()
+    return this.db.collection(collection).doc(id).set(data).then(res => {
+      let path = collection + "/" + id + "/" + collection
       if (Img) {
         this.storage.upload(path, Img).then(imgUrl => {
-          this.update(collection,res.id, { imgUrl: imgUrl })
+          this.update(collection,id, { imgUrl: imgUrl })
         }).catch(err => {
           console.log(err)
         })

@@ -40,7 +40,8 @@
                         <i class="text-blue">Nationality</i>
                     </div>
                     <div class="col-6 text-right">
-                        <p class="font-weight-500">{{data.nationality}}</p>
+                        <img [src]="data?.nationality?.imgUrl" width="40px" alt="">
+                        <span class="font-weight-500 ml-2">{{data?.nationality?.name}}</span>
                     </div>
                 </div>
                 <div class="row">
@@ -56,7 +57,7 @@
                         <i class="text-blue">Height</i>
                     </div>
                     <div class="col-6 text-right">
-                        <p class="font-weight-500">{{data.spr?.height}} Cm</p>
+                        <p class="font-weight-500">{{data.other_details?.height}} Cm</p>
                     </div>
                 </div>
                 <div class="row">
@@ -64,7 +65,7 @@
                         <i class="text-blue">Weight</i>
                     </div>
                     <div class="col-6 text-right">
-                        <p class="font-weight-500">{{data.spr?.weight}} Kg</p>
+                        <p class="font-weight-500">{{data.other_details?.weight}} Kg</p>
                     </div>
                 </div>
                 <div class="row">

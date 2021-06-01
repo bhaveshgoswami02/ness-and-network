@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SubAdminService } from 'src/app/services/sub-admin.service';
 
 @Component({
   selector: 'app-success',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SuccessComponent implements OnInit {
 
-  constructor() { }
+  constructor(public subAdmin:SubAdminService) { }
 
   ngOnInit(): void {
   }
