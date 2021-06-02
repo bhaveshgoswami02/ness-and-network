@@ -2,7 +2,7 @@
 <div class="header d-none d-md-block d-lg-block">
     <div class="w-100 d-flex">
         <div class="w-50 pb-2">
-            <img src="assets/images/logo.jpeg" style="border-radius: 50%;" width="50px" height="50px" alt="">
+            <img src="../../../assets/images/logo.png" style="border-radius: 50%;" width="50px" height="50px" alt="">
         </div>
         <div class="w-50 my-auto text-right">
             <b>Welcome:</b> <span class="capitalize"> {{auth.getSubAdminData().name ? auth.getSubAdminData().name :
@@ -31,7 +31,7 @@
         </div>
         <div class="col-2 my-auto">
             <a class="navbar-brand mt-2 ml-2" routerLink="/dashboard">
-                <img style="margin-top: -10px;" src="../../../assets/images/logo.jpeg" class="rounded-circle"
+                <img style="margin-top: -10px;" src="../../../assets/images/logo.png" class="rounded-circle"
                     width="55px">
             </a>
         </div>
@@ -43,7 +43,7 @@
         <input type="checkbox" id="openSidebarMenu" class="d-none">
         <div style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);" id="sidebarMenu">
             <div class="row">
-                <div class="col-9 bg-primary p-0" style="height: 100vh;">
+                <div class="col-12 bg-secondary p-0" style="overflow-y: scroll!important">
                     <ul class="p-0">
                         <li style="list-style-type: none;" class="py-2 px-4">
                             <ng-container *ngIf="auth.getSubAdminData().dashboard?.view || auth.isSuperAdmin()">
@@ -123,10 +123,16 @@
                             </div>
                         </li>
                         <hr class="m-0">
+                        <li style="list-style-type: none;" class="py-2 px-4">
+                            <div class="tab" (click)="toggle()">
+                                <i class="pi pi-times"></i>&nbsp;&nbsp;<span>Close</span>
+                            </div>
+                        </li>
+                        <hr class="m-0">
 
                     </ul>
                 </div>
-                <div class="col-3" style="background: #00000078;" (click)="toggle()"></div>
+                <!-- <div class="col-3" (click)="toggle()"></div> -->
             </div>
         </div>
     </div>

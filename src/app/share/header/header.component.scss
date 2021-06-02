@@ -17,7 +17,7 @@
 
 //----------------------------------------------- sidebar --------------------------------//
 #sidebarMenu {
-    height: 100vh;
+    max-height: 100vh;
     position: fixed;
     left: 0;
     top: 0;
@@ -27,10 +27,11 @@
     z-index: 9999 !important;
     width: 100%;
     // margin-top: -70px!important;
-    background-color: rgba(255, 255, 255, 0);
+    background-color: var(--secondary);
     transform: translateX(-110%);
     transition: transform 250ms ease-in-out;
-    z-index: -1;
+    z-index: 111;
+    overflow-y: scroll;
 }
 
 #openSidebarMenu:checked~#sidebarMenu {
