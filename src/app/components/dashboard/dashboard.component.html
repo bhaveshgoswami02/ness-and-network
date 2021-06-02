@@ -119,8 +119,7 @@
 
         <div class="row">
             <div class="col-md-12 border p-0">
-                <p-table #dt1 styleClass="p-datatable-striped" [columns]="cols"
-                    styleClass="p-datatable-responsive-demo p-datatable-gridlines" [value]="agencies_and_sponsors"
+                <p-table #dt1 styleClass="p-datatable-responsive-demo p-datatable-gridlines p-datatable-md p-datatable-striped" [columns]="cols" [value]="agencies_and_sponsors"
                     dataKey="id" [rowHover]="true" [paginator]="true" [rows]="10"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [resizableColumns]="true" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
@@ -149,7 +148,7 @@
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-rowData let-columns="columns">
-                        <!-- <tr>
+                        <tr>
                             <td *ngFor="let col of columns">
                                 <ng-container *ngIf="col.field != 'name'">
                                     <span class="capitalize">{{rowData[col.field]}}</span>
@@ -168,12 +167,6 @@
                                             routerLink="/sponsors/detail/{{rowData.id}}">{{rowData?.name}}</span>
                                     </ng-container>
                                 </ng-container>
-                            </td>
-                        </tr> -->
-                        <tr class="p-selectable-row">
-                            <td *ngFor="let col of columns">
-                                <span class="p-column-title">{{col.header}}</span>
-                                {{rowData[col.field]}}
                             </td>
                         </tr>
                     </ng-template>

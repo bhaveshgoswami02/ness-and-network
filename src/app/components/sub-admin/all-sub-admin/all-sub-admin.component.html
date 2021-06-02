@@ -18,7 +18,7 @@
     <!--------------------------------- Tables ------------------------------->
     <div class="row mt-5">
         <div class="col-md-12 border p-0">
-            <p-table #dt1 styleClass="p-datatable-striped" [columns]="cols" [value]="data" dataKey="id"
+            <p-table #dt1 styleClass="p-datatable-responsive-demo p-datatable-gridlines p-datatable-md p-datatable-striped" [columns]="cols" [value]="data" dataKey="id"
                 [rowHover]="true" [paginator]="true" [rows]="10"
                 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                 [resizableColumns]="true" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
@@ -48,7 +48,7 @@
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-rowData let-columns="columns">
-                    <tr>
+                    <!-- <tr>
                         <td *ngFor="let col of columns">
                             <ng-container *ngIf="col.field != 'timestamp'">
                                 {{rowData[col.field]}}
@@ -58,7 +58,26 @@
                             </ng-container>
                         </td>
                         <td>
-                            <!-- <i class="pi pi-eye mx-2 cursor-pointer" (click)="view()"></i> -->
+                            <i class="pi pi-pencil mx-2 cursor-pointer" (click)="edit(rowData['id'])"></i>
+                            <i class="pi pi-trash mx-2 cursor-pointer" (click)="delete(rowData['id'])"></i>
+                            <i class="pi pi-ban mx-2 cursor-pointer" *ngIf="!rowData['isBlocked']"
+                                (click)="confirmToBlockUser(rowData['id'])"></i>
+                            <i class="pi pi-circle-off mx-2 cursor-pointer" *ngIf="rowData['isBlocked']"
+                                (click)="confirmToUnBlockUser(rowData['id'])"></i>
+                        </td>
+                    </tr> -->
+                    <tr class="p-selectable-row">
+                        <td class="text-center" *ngFor="let col of columns">
+                            <span class="p-column-title">{{col.header}} : </span>
+                            <ng-container *ngIf="col.field != 'timestamp'">
+                                {{rowData[col.field]}}
+                            </ng-container>
+                            <ng-container *ngIf="col.field == 'timestamp'">
+                                {{rowData.timestamp}}
+                            </ng-container>
+                        </td>
+                        <td class="text-center">
+                            <span class="p-column-title">Action : </span>
                             <i class="pi pi-pencil mx-2 cursor-pointer" (click)="edit(rowData['id'])"></i>
                             <i class="pi pi-trash mx-2 cursor-pointer" (click)="delete(rowData['id'])"></i>
                             <i class="pi pi-ban mx-2 cursor-pointer" *ngIf="!rowData['isBlocked']"

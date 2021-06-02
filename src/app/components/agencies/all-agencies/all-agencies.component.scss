@@ -1,0 +1,85 @@
+:host ::ng-deep {    
+    .p-datatable-responsive-demo .p-datatable-tbody > tr > td .p-column-title {
+        display: none;
+    }
+}
+
+ tr > td {
+   font-size: 14px !important;
+   font-weight: bold;
+   
+    .p-column-title {
+        font-weight: bold;
+    }
+    
+}
+
+tr > th {
+    font-size: 16px!important;
+    font-weight: bold;
+
+ }
+ 
+ .product-badge {
+    border-radius: 2px;
+    padding: .25em .5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: .3px;
+}
+
+.product-badge.status-active {
+    background: #c8e6c9;
+    color: #256029;
+}
+
+.product-badge.status-pending {
+    background: #feedaf;
+    color: #8a5340;
+}
+
+.product-badge.status-blocked {
+
+    background: #ffcdd2;
+    color: #c63737;
+}
+
+
+td > button {
+    font-size: 16px;
+    padding: 10px;
+}
+@media screen and (max-width: 40rem) {
+    :host ::ng-deep {
+        .p-datatable {
+            &.p-datatable-responsive-demo {
+                .p-datatable-thead > tr > th,
+                .p-datatable-tfoot > tr > td {
+                    display: none !important;
+                }
+
+                .p-datatable-tbody > tr > td {
+                    text-align: left;
+                    display: block;
+                    width: 100%;
+                    float: left;
+                    clear: left;
+                    border: 0 none;
+
+                    .p-column-title {
+                        padding: .4rem;
+                        min-width: 30%;
+                        display: inline-block;
+                        margin: -.4em 1em -.4em -.4rem;
+                        font-weight: bold;
+                    }
+
+                    &:last-child {
+                        border-bottom: 1px solid var(--surface-d);
+                    }
+                }
+            }
+        }
+    }
+}

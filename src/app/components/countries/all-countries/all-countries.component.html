@@ -16,14 +16,14 @@
     <!--------------------------------- Tables ------------------------------->
     <div class="row mt-5">
         <div class="col-md-12 border p-0">
-            <p-table #dt1 styleClass="p-datatable-striped" [columns]="cols" [value]="data"  dataKey="id" [rowHover]="true"
+            <p-table #dt1 styleClass="p-datatable-responsive-demo p-datatable-gridlines p-datatable-md p-datatable-striped" [columns]="cols" [value]="data"  dataKey="id" [rowHover]="true"
                 [paginator]="true" [rows]="10" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [resizableColumns]="true" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [showCurrentPageReport]="true"
                 [globalFilterFields]="['id','name']">
                 <ng-template pTemplate="caption">
                     <div class="table-header">
                         <div class="row">
                             <div class="col-md-6 col-lg-6 col-12 my-2">
-                                <h4>List ff country</h4>
+                                <h4>List of country</h4>
                             </div>
                             <div class="col-md-4 col-lg-4 col-12 my-2 table-search-right">
                                 <span class="p-input-icon-left float-right my-auto">
@@ -45,8 +45,44 @@
                         </th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <!-- <ng-template pTemplate="header" let-columns>
                     <tr>
+        
+                        <th class="text-center" pSortableColumn="{{col.field}}" *ngFor="let col of columns">
+                            {{col.header}} <p-sortIcon style="float: right;" field="{{col.field}}"></p-sortIcon>
+                        </th>
+                        <th class="text-center" style="width: 6rem">Slip
+        
+        
+                        </th>
+        
+                        <th class="text-center" style="width: 8rem">Mode
+        
+        
+                        </th>
+                        <th class="text-center" style="width: 8rem">Type
+        
+        
+                        </th>
+                        <th class="text-center" style="width: 10rem">Start
+                            <p-columnFilter style="float: right;" type="date" field="start" display="menu"></p-columnFilter>
+        
+                        </th>
+                        <th class="text-center" style="width: 20rem">Remarks
+        
+        
+                        </th>
+                        <th class="text-center" style="width: 20rem">Txn Hash
+        
+        
+                        </th>
+        
+        
+        
+                    </tr>
+                </ng-template> -->
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                    <!-- <tr>
                         <td *ngFor="let col of columns">
                             <ng-container *ngIf="col.field == 'imgUrl'">
                                 <img [src]="rowData.imgUrl" width="20%" alt="">
@@ -59,6 +95,29 @@
                             </ng-container>
                         </td>
                         <td>
+                            <ng-container *ngIf="auth.getSubAdminData().country?.edit || auth.isSuperAdmin()">
+                                <i class="pi pi-pencil mx-2 cursor-pointer" (click)="edit(rowData['id'])"></i>
+                            </ng-container>
+                            <ng-container *ngIf="auth.getSubAdminData().country?.delete || auth.isSuperAdmin()">
+                                <i class="pi pi-trash mx-2 cursor-pointer" (click)="delete(rowData['id'])"></i>
+                            </ng-container>
+                        </td>
+                    </tr> -->
+                    <tr class="p-selectable-row">
+                        <td class="text-center" *ngFor="let col of columns">
+                            <span class="p-column-title">{{col.header}} : </span>
+                            <ng-container *ngIf="col.field == 'imgUrl'">
+                                <img [src]="rowData.imgUrl" width="20%" alt="">
+                            </ng-container>
+                            <ng-container *ngIf="col.field != 'imgUrl' && col.field != 'timestamp'">
+                                {{rowData[col.field]}}
+                            </ng-container>
+                            <ng-container *ngIf="col.field == 'timestamp'">
+                                {{rowData.timestamp.toDate() | date : 'mediumDate'}}
+                            </ng-container>
+                        </td>
+                        <td class="text-center">
+                            <span class="p-column-title">Action : </span>
                             <ng-container *ngIf="auth.getSubAdminData().country?.edit || auth.isSuperAdmin()">
                                 <i class="pi pi-pencil mx-2 cursor-pointer" (click)="edit(rowData['id'])"></i>
                             </ng-container>
