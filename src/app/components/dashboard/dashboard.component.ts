@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { EChartsOption } from 'echarts';
 import { AgencyService } from 'src/app/services/agency.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -10,7 +10,8 @@ import { SponsorService } from 'src/app/services/sponsor.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent implements OnInit {
   playersChartOption: EChartsOption = {};

@@ -7,10 +7,10 @@
         </div>
     </div>
     <div class="row mt-3">
-        <div class="col-md-6 my-auto">
+        <div class="col-md-6 col-6 my-auto">
             <h5 class="my-auto capitalize">{{pageTitle}} Details</h5>
         </div>
-        <div class="col-md-6 float-right align-item-right">
+        <div class="col-md-6 col-6 float-right align-item-right">
             <div class="d-flex" style="position: absolute;right: 0;">
                 <div class="text-center mx-3" *ngIf="auth.getSubAdminData().players?.edit || auth.isSuperAdmin()">
                     <i class="pi pi-pencil cursor-pointer" style="font-size: 24px;" (click)="edit()"></i>
@@ -27,12 +27,13 @@
     <div class="row mt-5">
         <div class="col-md-12 d-flex">
             <img [src]="data.imgUrl" width="100px" height="100px" class="rounded-circle" alt="">
-            <h1 class="capitalize my-auto ml-4">{{data.name}}</h1>
+            <h1 class="capitalize my-auto ml-4 d-none d-md-block d-lg-block">{{data.name}}</h1>
+            <h3 class="capitalize my-auto ml-4 d-block d-md-none d-lg-none">{{data.name}}</h3>
         </div>
     </div>
 
     <div class="row my-5">
-        <div class="col-md-6">
+        <div class="col-md-6 mb-3">
             <p-card class="min-height-50vh">
                 <i>Personal Details</i>
                 <div class="row mt-2">

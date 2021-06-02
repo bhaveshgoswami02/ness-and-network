@@ -5,10 +5,10 @@
         </div>
     </div>
     <div class="row mt-3">
-        <div class="col-md-6 my-auto">
+        <div class="col-md-6 col-6 my-auto">
             <h5 class="my-auto capitalize">{{collection}}</h5>
         </div>
-        <div class="col-md-6 text-right"*ngIf="auth.getSubAdminData().scouting?.add || auth.isSuperAdmin()">
+        <div class="col-md-6 col-6 text-right"*ngIf="auth.getSubAdminData().scouting?.add || auth.isSuperAdmin()">
             <button class="btn add-btn" routerLink="/{{collection}}/add">Add New {{collection}}</button>
         </div>
     </div>
@@ -20,12 +20,19 @@
                 [paginator]="true" [rows]="10" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [resizableColumns]="true" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [showCurrentPageReport]="true"
                 [globalFilterFields]="['id','name']">
                 <ng-template pTemplate="caption">
-                    <div class="table-header pb-4">
-                        <span class="my-auto">List of {{collection}}</span>
-                        <span class="p-input-icon-left float-right my-auto">
-                            <i class="pi pi-search"></i>
-                            <input pInputText type="text" #search (input)="dt1.filterGlobal(search.value, 'contains')" placeholder="Search..." />
-                        </span>
+                    <div class="table-header">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6 col-12 my-2">
+                                <h4>List of {{collection}}</h4>
+                            </div>
+                            <div class="col-md-4 col-lg-4 col-12 my-2 table-search-right">
+                                <span class="p-input-icon-left float-right my-auto">
+                                    <i class="pi pi-search"></i>
+                                    <input pInputText type="text" #search
+                                        (input)="dt1.filterGlobal(search.value, 'contains')" placeholder="Search..." />
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </ng-template>
                 <ng-template pTemplate="header" let-columns>

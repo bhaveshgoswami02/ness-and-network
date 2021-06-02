@@ -20,6 +20,17 @@
             </div>
         </div>
         <div class="row mt-3">
+            <div class="col-md-6 text-center d-block d-lg-none d-md-none">
+                <div class="p-field mt-3">
+                    <img [src]="imageSrc" class="cursor-pointer rounded-circle" (click)="file.click()" width="90px"
+                        height="90px" alt=""><br>
+                    <label>Upload {{pageTitle}} Image</label>
+                    <input #file type="file" formControlName="file" class="d-none" (change)="onSelectFile($event)">
+                </div>
+                <div *ngIf="validation.file.errors && validation.file.dirty">
+                    <div class="text-danger" *ngIf="validation.file?.errors?.required">Field is required!</div>
+                </div>
+            </div>
             <div class="col-md-6">
                 <div class="p-fluid">
                     <div class="row my-2">
@@ -87,7 +98,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 text-right">
+            <div class="col-md-6 text-right d-none d-lg-block d-md-block">
                 <div class="p-field mt-3">
                     <img [src]="imageSrc" class="cursor-pointer rounded-circle mr-5" (click)="file.click()" width="90px"
                         height="90px" alt=""><br>

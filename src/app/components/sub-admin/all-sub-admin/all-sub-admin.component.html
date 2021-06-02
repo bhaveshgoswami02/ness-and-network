@@ -1,31 +1,40 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12 breadcumb">
-            <a class="link" routerLink="/dashboard">Dashboard</a> <i class="pi pi-angle-right"></i> <span class="capitalize">{{collection}}</span>
+            <a class="link" routerLink="/dashboard">Dashboard</a> <i class="pi pi-angle-right"></i> <span
+                class="capitalize">{{collection}}</span>
         </div>
     </div>
     <div class="row mt-3">
-        <div class="col-md-6 my-auto">
+        <div class="col-md-6 col-6 my-auto">
             <h5 class="my-auto capitalize">{{collection}}</h5>
         </div>
-        <div class="col-md-6 text-right">
-            <button class="btn add-btn" routerLink="/{{collection}}/add">Add New Sub Admin</button>
+        <div class="col-md-6 col-6 text-right">
+            <button class="btn add-btn" routerLink="/{{collection}}/add">Add New Sub <br
+                    class="d-block d-lg-none d-md-none"> Admin</button>
         </div>
     </div>
 
     <!--------------------------------- Tables ------------------------------->
     <div class="row mt-5">
         <div class="col-md-12 border p-0">
-            <p-table #dt1 styleClass="p-datatable-striped" [columns]="cols" [value]="data"  dataKey="id" [rowHover]="true"
-                [paginator]="true" [rows]="10" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [resizableColumns]="true" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [showCurrentPageReport]="true"
-                [globalFilterFields]="['id','name','email','mobile_no']">
+            <p-table #dt1 styleClass="p-datatable-striped" [columns]="cols" [value]="data" dataKey="id"
+                [rowHover]="true" [paginator]="true" [rows]="10"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                [resizableColumns]="true" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
+                [showCurrentPageReport]="true" [globalFilterFields]="['id','name','email','mobile_no']">
                 <ng-template pTemplate="caption">
-                    <div class="table-header pb-4">
-                        <span class="my-auto">List of {{collection}}</span>
-                        <span class="p-input-icon-left float-right my-auto">
-                            <i class="pi pi-search"></i>
-                            <input pInputText type="text" #search (input)="dt1.filterGlobal(search.value, 'contains')" placeholder="Search..." />
-                        </span>
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6 col-12 my-2">
+                            <h4>List of {{collection}}</h4>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-12 my-2 table-search-right">
+                            <span class="p-input-icon-left float-right my-auto">
+                                <i class="pi pi-search"></i>
+                                <input pInputText type="text" #search
+                                    (input)="dt1.filterGlobal(search.value, 'contains')" placeholder="Search..." />
+                            </span>
+                        </div>
                     </div>
                 </ng-template>
                 <ng-template pTemplate="header" let-columns>
@@ -52,8 +61,10 @@
                             <!-- <i class="pi pi-eye mx-2 cursor-pointer" (click)="view()"></i> -->
                             <i class="pi pi-pencil mx-2 cursor-pointer" (click)="edit(rowData['id'])"></i>
                             <i class="pi pi-trash mx-2 cursor-pointer" (click)="delete(rowData['id'])"></i>
-                            <i class="pi pi-ban mx-2 cursor-pointer" *ngIf="!rowData['isBlocked']" (click)="confirmToBlockUser(rowData['id'])"></i>
-                            <i class="pi pi-circle-off mx-2 cursor-pointer" *ngIf="rowData['isBlocked']" (click)="confirmToUnBlockUser(rowData['id'])"></i>
+                            <i class="pi pi-ban mx-2 cursor-pointer" *ngIf="!rowData['isBlocked']"
+                                (click)="confirmToBlockUser(rowData['id'])"></i>
+                            <i class="pi pi-circle-off mx-2 cursor-pointer" *ngIf="rowData['isBlocked']"
+                                (click)="confirmToUnBlockUser(rowData['id'])"></i>
                         </td>
                     </tr>
                 </ng-template>
@@ -75,8 +86,10 @@
             </div>
             <div class="row">
                 <div class="col-12 text-center">
-                    <button type="button" pButton (click)="onConfirmToBlock()" label="Yes" class="p-button-success"></button> &nbsp;&nbsp;
-                    <button type="button" pButton (click)="onRejectToBlock()" label="No" class="p-button-secondary"></button>
+                    <button type="button" pButton (click)="onConfirmToBlock()" label="Yes"
+                        class="p-button-success"></button> &nbsp;&nbsp;
+                    <button type="button" pButton (click)="onRejectToBlock()" label="No"
+                        class="p-button-secondary"></button>
                 </div>
             </div>
         </div>
@@ -95,8 +108,10 @@
             </div>
             <div class="row">
                 <div class="col-12 text-center">
-                    <button type="button" pButton (click)="onConfirmToUnBlock()" label="Yes" class="p-button-success"></button> &nbsp;&nbsp;
-                    <button type="button" pButton (click)="onRejectToUnBlock()" label="No" class="p-button-secondary"></button>
+                    <button type="button" pButton (click)="onConfirmToUnBlock()" label="Yes"
+                        class="p-button-success"></button> &nbsp;&nbsp;
+                    <button type="button" pButton (click)="onRejectToUnBlock()" label="No"
+                        class="p-button-secondary"></button>
                 </div>
             </div>
         </div>

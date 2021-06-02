@@ -1,11 +1,133 @@
-<div class="header">
+<!-- Laptop Screen -->
+<div class="header d-none d-md-block d-lg-block">
     <div class="w-100 d-flex">
         <div class="w-50 pb-2">
             <img src="assets/images/logo.jpeg" style="border-radius: 50%;" width="50px" height="50px" alt="">
         </div>
         <div class="w-50 my-auto text-right">
-            <b>Welcome:</b> <span class="capitalize"> {{auth.getSubAdminData().name ? auth.getSubAdminData().name : 'Admin'}}</span>
-            <button class="btn-login mx-3" type="button" (click)="logout()"><i class="pi pi-sign-out"></i>&nbsp; Logout</button>
+            <b>Welcome:</b> <span class="capitalize"> {{auth.getSubAdminData().name ? auth.getSubAdminData().name :
+                'Admin'}}</span>
+            <button class="btn-login mx-3" type="button" (click)="logout()"><i class="pi pi-sign-out"></i>&nbsp;
+                Logout</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- Mobile Screen -->
+<nav class="navbar shadow-sm fixed-top d-block d-md-none d-lg-none bg-secondary border-bottom">
+    <div class="row">
+        <div class="col-1 my-auto">
+            <ng-container>
+                <button style="font-size: 30px;margin-top: 4px;border: none;" for="openSidebarMenu"
+                    class="navbar-toggler text-white m-0 p-0" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <label #toggler for="openSidebarMenu">
+                        <i class="pi pi-bars text-primary" style="font-size: 24px;"></i>
+                    </label>
+                </button>
+            </ng-container>
+        </div>
+        <div class="col-2 my-auto">
+            <a class="navbar-brand mt-2 ml-2" routerLink="/dashboard">
+                <img style="margin-top: -10px;" src="../../../assets/images/logo.jpeg" class="rounded-circle"
+                    width="55px">
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="d-lg-none d-md-none d-block">
+    <div class="body">
+        <input type="checkbox" id="openSidebarMenu" class="d-none">
+        <div style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);" id="sidebarMenu">
+            <div class="row">
+                <div class="col-9 bg-primary p-0" style="height: 100vh;">
+                    <ul class="p-0">
+                        <li style="list-style-type: none;" class="py-2 px-4">
+                            <ng-container *ngIf="auth.getSubAdminData().dashboard?.view || auth.isSuperAdmin()">
+                                <div class="tab" routerLink="/dashboard" routerLinkActive="active" (click)="toggle()">
+                                    <i class="pi pi-home"></i>&nbsp;&nbsp;<span>Dashboard</span>
+                                </div>
+                            </ng-container>
+                        </li>
+                        <hr class="m-0">
+                        <li style="list-style-type: none;" class="py-2 px-4">
+                            <ng-container *ngIf="auth.getSubAdminData().country?.view || auth.isSuperAdmin()">
+                                <div class="tab" routerLink="/countries" routerLinkActive="active" (click)="toggle()">
+                                    <i class="pi pi-globe"></i>&nbsp;&nbsp;<span>Country</span>
+                                </div>
+                            </ng-container>
+                        </li>
+                        <hr class="m-0">
+                        <li style="list-style-type: none;" class="py-2 px-4">
+                            <ng-container *ngIf="auth.getSubAdminData().players?.view || auth.isSuperAdmin()">
+                                <div class="tab" routerLink="/players" routerLinkActive="active" (click)="toggle()">
+                                    <i class="pi pi-user"></i>&nbsp;&nbsp;<span>Players</span>
+                                </div>
+                            </ng-container>
+                        </li>
+                        <hr class="m-0">
+                        <li style="list-style-type: none;" class="py-2 px-4">
+                            <ng-container *ngIf="auth.getSubAdminData().scouting?.view || auth.isSuperAdmin()">
+                                <div class="tab" routerLink="/scouting" routerLinkActive="active" (click)="toggle()">
+                                    <i class="pi pi-users"></i>&nbsp;&nbsp;<span>Scouting</span>
+                                </div>
+                            </ng-container>
+                        </li>
+                        <hr class="m-0">
+                        <li style="list-style-type: none;" class="py-2 px-4">
+                            <ng-container *ngIf="auth.getSubAdminData().agencies?.view || auth.isSuperAdmin()">
+                                <div class="tab" routerLink="/agencies" routerLinkActive="active" (click)="toggle()">
+                                    <i class="pi pi-tablet"></i>&nbsp;&nbsp;<span>Agency</span>
+                                </div>
+                            </ng-container>
+                        </li>
+                        <hr class="m-0">
+                        <li style="list-style-type: none;" class="py-2 px-4">
+                            <ng-container *ngIf="auth.getSubAdminData().sponsors?.view || auth.isSuperAdmin()">
+                                <div class="tab" routerLink="/sponsors" routerLinkActive="active" (click)="toggle()">
+                                    <i class="pi pi-credit-card"></i>&nbsp;&nbsp;<span>Sponsors</span>
+                                </div>
+                            </ng-container>
+                        </li>
+                        <hr class="m-0">
+                        <li style="list-style-type: none;" class="py-2 px-4">
+                            <ng-container *ngIf="auth.getSubAdminData().documents?.view || auth.isSuperAdmin()">
+                                <div class="tab" routerLink="/documents" routerLinkActive="active" (click)="toggle()">
+                                    <i class="pi pi-file"></i>&nbsp;&nbsp;<span>Documents</span>
+                                </div>
+                            </ng-container>
+                        </li>
+                        <hr class="m-0">
+                        <li style="list-style-type: none;" class="py-2 px-4">
+                            <ng-container *ngIf="auth.getSubAdminData().setting?.view || auth.isSuperAdmin()">
+                                <div class="tab" routerLink="/setting" routerLinkActive="active" (click)="toggle()">
+                                    <i class="pi pi-cog"></i>&nbsp;&nbsp;<span>Settings</span>
+                                </div>
+                            </ng-container>
+                        </li>
+                        <hr class="m-0">
+                        <li style="list-style-type: none;" class="py-2 px-4">
+                            <ng-container *ngIf="auth.isSuperAdmin()">
+                                <div class="tab" routerLink="/sub-admin" routerLinkActive="active" (click)="toggle()">
+                                    <i class="pi pi-users"></i>&nbsp;&nbsp;<span>Sub Admin</span>
+                                </div>
+                            </ng-container>
+                        </li>
+                        <hr class="m-0">
+                        <li style="list-style-type: none;" class="py-2 px-4">
+                            <div class="tab" (click)="logout()">
+                                <i class="pi pi-sign-out"></i>&nbsp;&nbsp;<span>Logout</span>
+                            </div>
+                        </li>
+                        <hr class="m-0">
+
+                    </ul>
+                </div>
+                <div class="col-3" style="background: #00000078;" (click)="toggle()"></div>
+            </div>
         </div>
     </div>
 </div>

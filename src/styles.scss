@@ -29,6 +29,10 @@ button {
     font-family: var(--primary-font) !important;
 }
 
+.text-primary {
+    color: var(--primary-contrast) !important;
+}
+
 .bg-primary {
     background-color: var(--primary) !important;
 }
@@ -172,4 +176,67 @@ button {
 .flag {
     width: 35px;
     margin-right: 10px;
+}
+
+.-mt-1 {
+    margin-top: -10px!important;
+}
+
+.-mt-2 {
+    margin-top: -20px!important;
+}
+
+.-mt-3 {
+    margin-top: -30px!important;
+}
+
+// .p-inputtext {
+//     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+//     font-size: 1rem;
+//     color: #495057;
+//     background: #ffffff;
+//     padding: 0.5rem 0.5rem;
+//     border: 1px solid #ced4da;
+//     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+//     -webkit-appearance: none;
+//     -moz-appearance: none;
+//     appearance: none;
+//     border-radius: 3px;
+//     width: 100%!important;
+// }
+
+.p-input-icon-left, .p-input-icon-right {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+
+
+/*---------------------Laptop------------------------------*/
+
+@media (min-width: 1024px) {
+    .table-search-right {
+        position: absolute;
+        right: 0;
+    }
+    .p-sm-1 {
+        padding-bottom: 0!important;
+    }
+}
+
+/*-------------------Mobile---------------------------------*/
+
+@media (max-width:768px) {
+    .w-sm-100 {
+        width: 100%;
+    }
+    .p-sm-1 {
+        padding-bottom: 10px!important;
+    }
+}
+
+button::focus-visible {
+    outline: none!important;
+    border: none!important;
 }

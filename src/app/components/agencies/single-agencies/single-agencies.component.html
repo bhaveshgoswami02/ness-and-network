@@ -20,6 +20,15 @@
             </div>
         </div>
         <div class="row mt-3">
+            <div class="col-md-4 text-center mt-3 d-block d-lg-none d-md-none">
+                <img [src]="imageSrc" class="cursor-pointer rounded-circle" (click)="file.click()" width="30%"
+                    alt=""><br>
+                <label class="text-center mr-2">Upload {{pageTitle}} Logo</label>
+                <input #file type="file" formControlName="file" class="d-none" (change)="onSelectFile($event)">
+            </div>
+            <div *ngIf="validation.file.errors && validation.file.dirty" class="d-block d-lg-none d-md-none">
+                <div class="text-danger" *ngIf="validation.file?.errors?.required">Field is required!</div>
+            </div>
             <div class="col-md-8">
                 <div class="row my-3">
                     <div class="col-md-6">
@@ -90,7 +99,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 text-center mt-3">
+            <div class="col-md-4 text-center mt-3 d-none d-lg-block d-md-block">
                 <img [src]="imageSrc" class="cursor-pointer rounded-circle" (click)="file.click()" width="30%"
                     alt=""><br>
                 <label class="text-center mr-2">Upload {{pageTitle}} Logo</label>
@@ -102,12 +111,12 @@
         </div>
 
         <div class="px-3">
-            <div class="row mt-3 border-bottom">
+            <div class="row mt-3 border-bottom p-sm-1">
                 <div class="col-md-6 p-0">
                     <i class="my-auto font-larger">Contract Details</i>
                 </div>
                 <div class="col-md-6 text-right p-0">
-                    <button class="btn btn-primary" type="button" (click)="onAddContract()">
+                    <button class="btn btn-primary w-sm-100" type="button" (click)="onAddContract()">
                         <i class="pi pi-plus"></i>
                         Add More Contract
                     </button>
