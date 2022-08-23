@@ -15,6 +15,26 @@
     --tertiary-font-size: 20px;
 }
 
+
+
+app-print-templates {
+  /* hide the printing component from @media screen */
+  display: none;
+}
+
+@media print {
+  /* invert the display (show/hide) properties of the main */
+  /* aplication component and the printing component       */
+
+  app-print-templates {
+    display: block;
+  }
+
+  .view-content {
+    display: none;
+  }
+}
+
 p,
 h1,
 h2,
@@ -239,4 +259,13 @@ button {
 button::focus-visible {
     outline: none!important;
     border: none!important;
+}
+
+
+.text-align-left {
+  text-align: left;
+}
+
+.text-align-right {
+  text-align: right;
 }

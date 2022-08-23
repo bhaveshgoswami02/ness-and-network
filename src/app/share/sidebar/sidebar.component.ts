@@ -8,7 +8,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SidebarComponent implements OnInit {
   menu: any = []
-
+  playerSubMenu:Boolean=false
+  agencySubMenu:Boolean=false
   constructor(public auth:AuthService) {
     this.menu = [
       { icon: "pi pi-home", title: "Dashboard", route: "/dashboard" },

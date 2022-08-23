@@ -8,14 +8,18 @@
             <i class="pi pi-home"></i>&nbsp;&nbsp;<span>Dashboard</span>
         </div>
     </ng-container>
-    <ng-container *ngIf="auth.getSubAdminData().country?.view || auth.isSuperAdmin()">
-        <div class="tab" routerLink="/countries" routerLinkActive="active">
-            <i class="pi pi-globe"></i>&nbsp;&nbsp;<span>Country</span>
-        </div>
-    </ng-container>
+    <ng-container *ngIf="auth.getSubAdminData().appointments?.view || auth.isSuperAdmin()">
+      <div class="tab" routerLink="/appointments" routerLinkActive="active">
+          <i class="pi pi-users"></i>&nbsp;&nbsp;<span>Appointments</span>
+      </div>
+  </ng-container>
+
     <ng-container *ngIf="auth.getSubAdminData().players?.view || auth.isSuperAdmin()">
         <div class="tab" routerLink="/players" routerLinkActive="active">
-            <i class="pi pi-user"></i>&nbsp;&nbsp;<span>Players</span>
+            <i class="pi pi-user" ></i>&nbsp;&nbsp;<span>Players</span> &nbsp;&nbsp; <i (click)="playerSubMenu=!playerSubMenu"    [ngClass]="playerSubMenu ? 'pi pi-chevron-up' : 'pi pi-chevron-down'"></i>
+        </div>
+        <div *ngIf="playerSubMenu"  class="sub-tab" routerLink="/countries" routerLinkActive="active">
+          <i class="pi pi-globe"></i>&nbsp;&nbsp;<span>Country</span>
         </div>
     </ng-container>
     <ng-container *ngIf="auth.getSubAdminData().scouting?.view || auth.isSuperAdmin()">
@@ -25,7 +29,13 @@
     </ng-container>
     <ng-container *ngIf="auth.getSubAdminData().agencies?.view || auth.isSuperAdmin()">
         <div class="tab" routerLink="/agencies" routerLinkActive="active">
-            <i class="pi pi-tablet"></i>&nbsp;&nbsp;<span>Agency</span>
+            <i class="pi pi-tablet"></i>&nbsp;&nbsp;<span>Agency</span> &nbsp;&nbsp; <i (click)="agencySubMenu=!agencySubMenu"   [ngClass]="agencySubMenu ? 'pi pi-chevron-up' : 'pi pi-chevron-down'"></i>
+        </div>
+        <div *ngIf="agencySubMenu"  class="sub-tab" routerLink="/agencies/clubs" routerLinkActive="active">
+          <i class="pi pi-globe"></i>&nbsp;&nbsp;<span>Clubs</span>
+        </div>
+        <div *ngIf="agencySubMenu"  class="sub-tab" routerLink="/agencies/partners" routerLinkActive="active">
+          <i class="pi pi-globe"></i>&nbsp;&nbsp;<span>Partners</span>
         </div>
     </ng-container>
     <ng-container *ngIf="auth.getSubAdminData().sponsors?.view || auth.isSuperAdmin()">

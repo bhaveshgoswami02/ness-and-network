@@ -16,6 +16,8 @@ export class SinglePlayersComponent implements OnInit {
   formData: FormGroup;
   imageSrc: any = "../../../../assets/images/user.png";
   imageFile: any;
+  documentSrc: any = "../../../../assets/images/user.png";
+  documentFile: any;
   countries: any = []
   foot = ['left', 'right']
   // position = [1, 2, 3]
@@ -57,6 +59,7 @@ export class SinglePlayersComponent implements OnInit {
     this.formData = this.fb.group({
       'name': ['', [Validators.required]],
       'file': ['', [Validators.required]],
+       'document': ['', [Validators.required]],
       'dob': ['', [Validators.required]],
       'nationality': [{}, [Validators.required]],
       'other_details': this.fb.group({
@@ -98,6 +101,7 @@ export class SinglePlayersComponent implements OnInit {
       this.formData = this.fb.group({
         'name': [data.name, [Validators.required]],
         'file': [''],
+        'document':[''],
         'dob': [data.dob, [Validators.required]],
         'nationality': [data.nationality, [Validators.required]],
         'other_details': this.fb.group({
@@ -145,17 +149,36 @@ export class SinglePlayersComponent implements OnInit {
     }
   }
 
+
+
+  onSelectDocument(event: any) {
+    const reader = new FileReader();
+    if (event.target.files) {
+      const [file] = event.target.files;
+      this.documentFile = event.target.files[0];
+      console.log("imageFile", this.documentFile)
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.documentSrc = reader.result as string;
+        console.log(this.documentSrc)
+      };
+    }
+  }
+
   onSubmit() {
     if (this.formData.value.file) {
       delete this.formData.value.file
     }
+    if (this.formData.value.document) {
+      delete this.formData.value.document
+    }
     if (this.id) {
       // console.log(this.formData.value,this.imageFile)
-      this.service.update(this.id, this.formData.value, this.imageFile)
+      this.service.update(this.id, this.formData.value, this.imageFile, this.documentFile)
     }
     else {
-      console.log(this.formData.value, this.imageFile)
-      this.service.add(this.formData.value, this.imageFile)
+      console.log(this.formData.value, this.imageFile,this.documentFile)
+      this.service.add(this.formData.value, this.imageFile,this.documentFile)
     }
   }
 

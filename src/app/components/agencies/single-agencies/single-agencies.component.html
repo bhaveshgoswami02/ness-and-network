@@ -127,14 +127,20 @@
             <div class="row mt-3" [formGroupName]="i">
                 <div class="col-md-8">
                     <div class="row my-3">
-                        <div class="col-md-6">
+                         <div class="col-md-4">
+                            <div class="p-field">
+                                <label>Contract Name</label> <br>
+                                <input type="text" formControlName="contract_name" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
                             <div class="p-field">
                                 <label>Contract Date</label> <br>
                                 <input type="date" formControlName="contract_date" class="form-control">
                                 <!-- <p-calendar formControlName="contract_date" class="w-100" [showIcon]="true"></p-calendar> -->
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="p-field">
                                 <label>Contract Due Date</label> <br>
                                 <input type="date" formControlName="contract_due_date" class="form-control">

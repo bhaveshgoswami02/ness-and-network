@@ -1,3 +1,7 @@
+import { PrintTemplatesComponent } from './share/print-templates/print-templates.component';
+import { SingleAppointmentsComponent } from './components/appointments/single-appointments/single-appointments.component';
+import { AllAppointmentsComponent } from './components/appointments/all-appointments/all-appointments.component';
+import { AppointmentsComponent } from './components/appointments/appointments.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -49,17 +53,24 @@ import { InputTextModule } from 'primeng/inputtext';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { TableModule } from 'primeng/table';
 import { CalendarModule } from 'primeng/calendar';
-import {InputTextareaModule} from 'primeng/inputtextarea';
-import {CardModule} from 'primeng/card';
-import {ProgressBarModule} from 'primeng/progressbar';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { CardModule } from 'primeng/card';
+import { ProgressBarModule } from 'primeng/progressbar';
 import { SponsorDetailsComponent } from './components/sponsors/sponsor-details/sponsor-details.component';
 import { SubAdminComponent } from './components/sub-admin/sub-admin.component';
 import { SingleSubAdminComponent } from './components/sub-admin/single-sub-admin/single-sub-admin.component';
 import { AllSubAdminComponent } from './components/sub-admin/all-sub-admin/all-sub-admin.component';
-import {CheckboxModule} from 'primeng/checkbox';
-import {CaptchaModule} from 'primeng/captcha';
+import { CheckboxModule } from 'primeng/checkbox';
+import { CaptchaModule } from 'primeng/captcha';
 import { ViewScoutingComponent } from './components/scouting/view-scouting/view-scouting.component';
 import { DatePipe } from '@angular/common';
+import { ClubsComponent } from './components/clubs/clubs.component';
+import { AllClubsComponent } from './components/clubs/all-clubs/all-clubs.component';
+import { SingleClubsComponent } from './components/clubs/single-clubs/single-clubs.component';
+import { PartnersComponent } from './components/partners/partners.component';
+import { AllPartnersComponent } from './components/partners/all-partners/all-partners.component';
+import { SinglePartnersComponent } from './components/partners/single-partners/single-partners.component';
+import { PlayerreportComponent } from './share/print-templates/playerreport/playerreport.component';
 
 @NgModule({
   declarations: [
@@ -99,6 +110,17 @@ import { DatePipe } from '@angular/common';
     SingleSubAdminComponent,
     AllSubAdminComponent,
     ViewScoutingComponent,
+    AppointmentsComponent,
+    AllAppointmentsComponent,
+    SingleAppointmentsComponent,
+    ClubsComponent,
+    AllClubsComponent,
+    SingleClubsComponent,
+    PartnersComponent,
+    AllPartnersComponent,
+    SinglePartnersComponent,
+    PrintTemplatesComponent,
+    PlayerreportComponent,
   ],
   imports: [
     BrowserModule,
@@ -115,7 +137,7 @@ import { DatePipe } from '@angular/common';
     PasswordModule,
     InputTextModule,
     NgxEchartsModule.forRoot({
-      echarts: () => import('echarts')
+      echarts: () => import('echarts'),
     }),
     TableModule,
     CalendarModule,
@@ -123,9 +145,9 @@ import { DatePipe } from '@angular/common';
     CardModule,
     ProgressBarModule,
     CheckboxModule,
-    CaptchaModule
+    CaptchaModule,
   ],
-  providers: [MessageService,DatePipe],
-  bootstrap: [AppComponent]
+  providers: [MessageService, DatePipe],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

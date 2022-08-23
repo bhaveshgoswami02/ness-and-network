@@ -50,7 +50,8 @@ export class SingleAgenciesComponent implements OnInit {
     return this.fb.group({
       contract_date: '',
       contract_due_date: '',
-      contract_terms: ''
+      contract_terms: '',
+      contract_name:'',
     });
   }
 
@@ -60,7 +61,7 @@ export class SingleAgenciesComponent implements OnInit {
   }
 
   get validation() { return this.formData?.controls }
-  
+
 
   getData() {
     this.service.getSingle(this.id).subscribe(res => {
@@ -95,7 +96,8 @@ export class SingleAgenciesComponent implements OnInit {
       this.contracts.push(this.fb.group({
         contract_date: contract.contract_date,
         contract_due_date: contract.contract_due_date,
-        contract_terms: contract.contract_terms
+        contract_terms: contract.contract_terms,
+        contract_name: contract.contract_name
       }))
     });
   }

@@ -1,339 +1,517 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12 breadcumb">
-            <a class="link" routerLink="/dashboard">Dashboard</a>
-            <i class="pi pi-angle-right"></i>
-            <a class="link" routerLink="/{{collection}}">{{pageTitle}}</a>
-            <i class="pi pi-angle-right"></i>
-            <span>{{id ? 'Edit':'Add'}} {{pageTitle}}</span>
-        </div>
+  <div class="row">
+    <div class="col-md-12 breadcumb">
+      <a class="link" routerLink="/dashboard">Dashboard</a>
+      <i class="pi pi-angle-right"></i>
+      <a class="link" routerLink="/{{ collection }}">{{ pageTitle }}</a>
+      <i class="pi pi-angle-right"></i>
+      <span>{{ id ? "Edit" : "Add" }} {{ pageTitle }}</span>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-6 my-auto">
+      <h5 class="my-auto">{{ id ? "Edit" : "Add" }} {{ pageTitle }}</h5>
+    </div>
+  </div>
+  <form [formGroup]="formData" (ngSubmit)="onSubmit()">
+    <div class="row px-3 mt-3">
+      <div class="col-md-12 border-bottom my-auto px-0 font-larger">
+        <i class="my-auto">Basic Details</i>
+      </div>
     </div>
     <div class="row mt-3">
-        <div class="col-md-6 my-auto">
-            <h5 class="my-auto">{{id ? 'Edit':'Add'}} {{pageTitle}}</h5>
+      <div class="col-md-6 text-center d-block d-lg-none d-md-none">
+        <div class="p-field mt-3 text-center">
+          <img
+            [src]="imageSrc"
+            class="cursor-pointer rounded-circle"
+            (click)="file.click()"
+            width="90px"
+            height="90px"
+            alt=""
+          /><br />
+          <label>Upload {{ pageTitle }} Image</label>
+          <input
+            #file
+            type="file"
+            formControlName="file"
+            class="d-none"
+            (change)="onSelectFile($event)"
+          />
         </div>
-    </div>
-    <form [formGroup]="formData" (ngSubmit)="onSubmit()">
-        <div class="row px-3 mt-3">
-            <div class="col-md-12 border-bottom my-auto px-0 font-larger">
-                <i class="my-auto">Basic Details</i>
-            </div>
+        <div *ngIf="validation.file.errors && validation.file.dirty">
+          <div class="text-danger" *ngIf="validation.file?.errors?.required">
+            Field is required!
+          </div>
         </div>
-        <div class="row mt-3">
-            <div class="col-md-6 text-center d-block d-lg-none d-md-none">
-                <div class="p-field mt-3">
-                    <img [src]="imageSrc" class="cursor-pointer rounded-circle" (click)="file.click()" width="90px"
-                        height="90px" alt=""><br>
-                    <label>Upload {{pageTitle}} Image</label>
-                    <input #file type="file" formControlName="file" class="d-none" (change)="onSelectFile($event)">
-                </div>
-                <div *ngIf="validation.file.errors && validation.file.dirty">
-                    <div class="text-danger" *ngIf="validation.file?.errors?.required">Field is required!</div>
-                </div>
-            </div>
+        <div class="p-field mt-3 text-center">
+          <img
+            [src]="documentSrc"
+            class="cursor-pointer rounded-circle"
+            (click)="file1.click()"
+            width="90px"
+            height="90px"
+            alt=""
+          /><br />
+          <label>Upload {{ pageTitle }} Document</label>
+          <input
+            #file1
+            type="file"
+            accept=".docx,.pdf"
+            formControlName="document"
+            class="d-none"
+            (change)="onSelectDocument($event)"
+          />
+        </div>
+        <div *ngIf="validation.document.errors && validation.document.dirty">
+          <div
+            class="text-danger"
+            *ngIf="validation.document?.errors?.required"
+          >
+            Field is required!
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="p-fluid">
+          <div class="row my-2">
             <div class="col-md-6">
-                <div class="p-fluid">
-                    <div class="row my-2">
-                        <div class="col-md-6">
-                            <div class="p-field">
-                                <label>{{pageTitle}}'s Name</label>
-                                <input type="text" formControlName="name" pInputText
-                                    placeholder="Enter {{pageTitle}}'s Name">
-                            </div>
-                            <div *ngIf="validation.name.errors && validation.name.dirty">
-                                <div class="text-danger" *ngIf="validation.name?.errors?.required">Field is required!
-                                </div>
-                            </div>
-                        </div>
+              <div class="p-field">
+                <label>{{ pageTitle }}'s Name</label>
+                <input
+                  type="text"
+                  formControlName="name"
+                  pInputText
+                  placeholder="Enter {{ pageTitle }}'s Name"
+                />
+              </div>
+              <div *ngIf="validation.name.errors && validation.name.dirty">
+                <div
+                  class="text-danger"
+                  *ngIf="validation.name?.errors?.required"
+                >
+                  Field is required!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="p-fluid">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="p-field p-col">
+                      <label>Date of Birth</label>
+                      <input
+                        type="date"
+                        class="form-control"
+                        formControlName="dob"
+                      />
+                      <!-- <p-calendar formControlName="dob" [yearNavigator]="true" yearRange="1950:2021" [showIcon]="true"></p-calendar> -->
                     </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="p-fluid">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="p-field p-col">
-                                            <label>Date of Birth</label>
-                                            <input type="date" class="form-control" formControlName="dob">
-                                            <!-- <p-calendar formControlName="dob" [yearNavigator]="true" yearRange="1950:2021" [showIcon]="true"></p-calendar> -->
-                                        </div>
-                                        <div *ngIf="validation.dob.errors && validation.dob.dirty">
-                                            <div class="text-danger" *ngIf="validation.dob?.errors?.required">Field is
-                                                required!
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="p-field p-col">
-                                            <label>Nationality</label>
-                                            <p-dropdown [options]="countries" formControlName="nationality"
-                                                optionLabel="name" [filter]="true" filterBy="name"
-                                                placeholder="Select a Country">
-                                                <ng-template pTemplate="selectedItem">
-                                                    <div class="country-item country-item-value d-flex"
-                                                        *ngIf="formData.value.nationality">
-                                                        <img [src]="formData.value.nationality.imgUrl" class="flag" />
-                                                        <div>{{formData.value.nationality.name}}</div>
-                                                    </div>
-                                                </ng-template>
-                                                <ng-template let-country pTemplate="item">
-                                                    <div class="d-flex">
-                                                        <img [src]="country.imgUrl" class="flag" />
-                                                        <div>{{country.name}}</div>
-                                                    </div>
-                                                </ng-template>
-                                            </p-dropdown>
-
-                                            <div *ngIf="validation.nationality.errors && validation.nationality.dirty">
-                                                <div class="text-danger"
-                                                    *ngIf="validation.nationality?.errors?.required">Field
-                                                    is required!
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div *ngIf="validation.dob.errors && validation.dob.dirty">
+                      <div
+                        class="text-danger"
+                        *ngIf="validation.dob?.errors?.required"
+                      >
+                        Field is required!
+                      </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-6 text-right d-none d-lg-block d-md-block">
-                <div class="p-field mt-3">
-                    <img [src]="imageSrc" class="cursor-pointer rounded-circle mr-5" (click)="file.click()" width="90px"
-                        height="90px" alt=""><br>
-                    <label class="text-center mr-2">Upload {{pageTitle}} Image</label>
-                    <input #file type="file" formControlName="file" class="d-none" (change)="onSelectFile($event)">
-                </div>
-                <div *ngIf="validation.file.errors && validation.file.dirty">
-                    <div class="text-danger" *ngIf="validation.file?.errors?.required">Field is required!</div>
-                </div>
-            </div>
-        </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="p-field p-col">
+                      <label>Nationality</label>
+                      <p-dropdown
+                        [options]="countries"
+                        formControlName="nationality"
+                        optionLabel="name"
+                        [filter]="true"
+                        filterBy="name"
+                        placeholder="Select a Country"
+                      >
+                        <ng-template pTemplate="selectedItem">
+                          <div
+                            class="country-item country-item-value d-flex"
+                            *ngIf="formData.value.nationality"
+                          >
+                            <img
+                              [src]="formData.value.nationality.imgUrl"
+                              class="flag"
+                            />
+                            <div>{{ formData.value.nationality.name }}</div>
+                          </div>
+                        </ng-template>
+                        <ng-template let-country pTemplate="item">
+                          <div class="d-flex">
+                            <img [src]="country.imgUrl" class="flag" />
+                            <div>{{ country.name }}</div>
+                          </div>
+                        </ng-template>
+                      </p-dropdown>
 
-
-        <div class="row px-3 mt-3">
-            <div class="col-md-12 border-bottom my-auto px-0 font-larger">
-                <i class="my-auto">Other Details</i>
+                      <div
+                        *ngIf="
+                          validation.nationality.errors &&
+                          validation.nationality.dirty
+                        "
+                      >
+                        <div
+                          class="text-danger"
+                          *ngIf="validation.nationality?.errors?.required"
+                        >
+                          Field is required!
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-        <div class="row mt-3">
-            <div class="col-md-8">
-                <div class="p-fluid" formGroupName="other_details">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="p-fluid">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="p-field p-col">
-                                            <label>Height (In Cm)</label>
-                                            <input type="number" formControlName="height" pInputText>
-                                        </div>
-                                        <!-- <div *ngIf="validation.other_details.controls.height.errors && validation.other_details.controls.height.dirty">
+      </div>
+      <div class="col-md-6 text-right d-none d-lg-block d-md-block">
+        <div class="d-flex justify-content-around">
+          <div class="text-center">
+            <div class="p-field mt-3 text-center">
+              <img
+                [src]="imageSrc"
+                class="cursor-pointer rounded-circle mr-5"
+                (click)="file.click()"
+                width="90px"
+                height="90px"
+                alt=""
+              /><br />
+              <label class="text-center mr-2"
+                >Upload {{ pageTitle }} Image</label
+              >
+              <input
+                #file
+                type="file"
+                formControlName="file"
+                class="d-none"
+                (change)="onSelectFile($event)"
+              />
+            </div>
+            <div *ngIf="validation.file.errors && validation.file.dirty">
+              <div
+                class="text-danger"
+                *ngIf="validation.file?.errors?.required"
+              >
+                Field is required!
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="p-field mt-3 text-center">
+              <img
+                [src]="documentSrc"
+                class="cursor-pointer rounded-circle"
+                (click)="file1.click()"
+                width="90px"
+                height="90px"
+                alt=""
+              /><br />
+              <label>Upload {{ pageTitle }} Document</label>
+              <input
+                #file1
+                type="file"
+                accept=".docx,.pdf"
+                formControlName="document"
+                class="d-none"
+                (change)="onSelectDocument($event)"
+              />
+            </div>
+            <div
+              *ngIf="validation.document.errors && validation.document.dirty"
+            >
+              <div
+                class="text-danger"
+                *ngIf="validation.document?.errors?.required"
+              >
+                Field is required!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row px-3 mt-3">
+      <div class="col-md-12 border-bottom my-auto px-0 font-larger">
+        <i class="my-auto">Other Details</i>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-8">
+        <div class="p-fluid" formGroupName="other_details">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="p-fluid">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="p-field p-col">
+                      <label>Height (In Cm)</label>
+                      <input
+                        type="number"
+                        formControlName="height"
+                        pInputText
+                      />
+                    </div>
+                    <!-- <div *ngIf="validation.other_details.controls.height.errors && validation.other_details.controls.height.dirty">
                                             <div class="text-danger" *ngIf="validation.other_details.controls.height?.errors?.required">Field is required!
                                             </div>
                                         </div> -->
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="p-field p-col">
-                                            <label>Weight (In KG)</label>
-                                            <input type="number" formControlName="weight" pInputText>
-                                        </div>
-                                        <!-- <div *ngIf="validation.weight.errors && validation.weight.dirty">
+                  </div>
+                  <div class="col-md-4">
+                    <div class="p-field p-col">
+                      <label>Weight (In KG)</label>
+                      <input
+                        type="number"
+                        formControlName="weight"
+                        pInputText
+                      />
+                    </div>
+                    <!-- <div *ngIf="validation.weight.errors && validation.weight.dirty">
                                             <div class="text-danger" *ngIf="validation.weight?.errors?.required">Field is required!
                                             </div>
                                         </div> -->
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="p-field p-col">
-                                            <label>Preferred Foot</label>
-                                            <p-dropdown [options]="foot" formControlName="preferred_foot"
-                                                placeholder="Select">
-                                            </p-dropdown>
-                                        </div>
-                                        <!-- <div *ngIf="validation.preferred_foot.errors && validation.preferred_foot.dirty">
+                  </div>
+                  <div class="col-md-4">
+                    <div class="p-field p-col">
+                      <label>Preferred Foot</label>
+                      <p-dropdown
+                        [options]="foot"
+                        formControlName="preferred_foot"
+                        placeholder="Select"
+                      >
+                      </p-dropdown>
+                    </div>
+                    <!-- <div *ngIf="validation.preferred_foot.errors && validation.preferred_foot.dirty">
                                             <div class="text-danger" *ngIf="validation.preferred_foot?.errors?.required">Field is required!
                                             </div>
                                         </div> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-12">
+              <div class="p-fluid">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="p-field p-col">
+                      <label>Club</label>
+                      <input type="text" formControlName="club" pInputText />
                     </div>
-                    <div class="row mt-3">
-                        <div class="col-md-12">
-                            <div class="p-fluid">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="p-field p-col">
-                                            <label>Club</label>
-                                            <input type="text" formControlName="club" pInputText>
-                                        </div>
-                                        <!-- <div *ngIf="validation.club.errors && validation.club.dirty">
+                    <!-- <div *ngIf="validation.club.errors && validation.club.dirty">
                                             <div class="text-danger" *ngIf="validation.club?.errors?.required">Field is required!
                                             </div>
                                         </div> -->
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="p-field p-col">
-                                            <label>League</label>
-                                            <input type="text" formControlName="league" pInputText>
-                                            <!-- <div *ngIf="validation.league.errors && validation.league.dirty">
+                  </div>
+                  <div class="col-md-4">
+                    <div class="p-field p-col">
+                      <label>League</label>
+                      <input type="text" formControlName="league" pInputText />
+                      <!-- <div *ngIf="validation.league.errors && validation.league.dirty">
                                                 <div class="text-danger" *ngIf="validation.league?.errors?.required">Field is required!
                                                 </div>
                                             </div> -->
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="p-field p-col">
-                                            <label>Position</label>
-                                            <!-- <p-dropdown [options]="position" formControlName="position"
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="p-field p-col">
+                      <label>Position</label>
+                      <!-- <p-dropdown [options]="position" formControlName="position"
                                                 placeholder="Select">
                                             </p-dropdown> -->
-                                            <p-dropdown [options]="position" formControlName="position"
-                                                placeholder="Select Position" [group]="true">
-                                                <ng-template let-group pTemplate="group">
-                                                    <div class="p-d-flex p-ai-center">
-                                                        <span>{{group.label}}</span>
-                                                    </div>
-                                                </ng-template>
-                                            </p-dropdown>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                      <p-dropdown
+                        [options]="position"
+                        formControlName="position"
+                        placeholder="Select Position"
+                        [group]="true"
+                      >
+                        <ng-template let-group pTemplate="group">
+                          <div class="p-d-flex p-ai-center">
+                            <span>{{ group.label }}</span>
+                          </div>
+                        </ng-template>
+                      </p-dropdown>
                     </div>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+    </div>
 
-
-        <div class="row px-3 mt-4">
-            <div class="col-md-12 border-bottom my-auto px-0 font-larger">
-                <i class="my-auto">Soccerment Performance Rating (SPR)</i>
-            </div>
-        </div>
-        <div class="row mt-3" formGroupName="spr">
-            <div class="col-md-8">
-                <div class="p-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="p-fluid">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="p-field p-col">
-                                            <label>Defending (out of 100)</label>
-                                            <input type="number" formControlName="defending" pInputText>
-                                        </div>
-                                        <!-- <div *ngIf="validation.defending.errors && validation.defending.dirty">
+    <div class="row px-3 mt-4">
+      <div class="col-md-12 border-bottom my-auto px-0 font-larger">
+        <i class="my-auto">Soccerment Performance Rating (SPR)</i>
+      </div>
+    </div>
+    <div class="row mt-3" formGroupName="spr">
+      <div class="col-md-8">
+        <div class="p-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="p-fluid">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="p-field p-col">
+                      <label>Defending (out of 100)</label>
+                      <input
+                        type="number"
+                        formControlName="defending"
+                        pInputText
+                      />
+                    </div>
+                    <!-- <div *ngIf="validation.defending.errors && validation.defending.dirty">
                                             <div class="text-danger" *ngIf="validation.defending?.errors?.required">Field is required!
                                             </div>
                                         </div> -->
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="p-field p-col">
-                                            <label>Heading (out of 100)</label>
-                                            <input type="number" formControlName="heading" pInputText>
-                                        </div>
-                                        <!-- <div *ngIf="validation.heading.errors && validation.heading.dirty">
+                  </div>
+                  <div class="col-md-4">
+                    <div class="p-field p-col">
+                      <label>Heading (out of 100)</label>
+                      <input
+                        type="number"
+                        formControlName="heading"
+                        pInputText
+                      />
+                    </div>
+                    <!-- <div *ngIf="validation.heading.errors && validation.heading.dirty">
                                             <div class="text-danger" *ngIf="validation.heading?.errors?.required">Field is required!
                                             </div>
                                         </div> -->
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="p-field p-col">
-                                            <label>Passing (out of 100)</label>
-                                            <input type="number" formControlName="passing" pInputText>
-                                        </div>
-                                        <!-- <div *ngIf="validation.passing.errors && validation.passing.dirty">
+                  </div>
+                  <div class="col-md-4">
+                    <div class="p-field p-col">
+                      <label>Passing (out of 100)</label>
+                      <input
+                        type="number"
+                        formControlName="passing"
+                        pInputText
+                      />
+                    </div>
+                    <!-- <div *ngIf="validation.passing.errors && validation.passing.dirty">
                                             <div class="text-danger" *ngIf="validation.passing?.errors?.required">Field is required!
                                             </div>
                                         </div> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-12">
+              <div class="p-fluid">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="p-field p-col">
+                      <label>Dribbling (out of 100)</label>
+                      <input
+                        type="number"
+                        formControlName="dribbling"
+                        pInputText
+                      />
                     </div>
-                    <div class="row mt-3">
-                        <div class="col-md-12">
-                            <div class="p-fluid">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="p-field p-col">
-                                            <label>Dribbling (out of 100)</label>
-                                            <input type="number" formControlName="dribbling" pInputText>
-                                        </div>
-                                        <!-- <div *ngIf="validation.dribbling.errors && validation.dribbling.dirty">
+                    <!-- <div *ngIf="validation.dribbling.errors && validation.dribbling.dirty">
                                             <div class="text-danger" *ngIf="validation.dribbling?.errors?.required">Field is required!
                                             </div>
                                         </div> -->
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="p-field p-col">
-                                            <label>Vision (out of 100)</label>
-                                            <input type="number" formControlName="vision" pInputText>
-                                        </div>
-                                        <!-- <div *ngIf="validation.vision.errors && validation.vision.dirty">
+                  </div>
+                  <div class="col-md-4">
+                    <div class="p-field p-col">
+                      <label>Vision (out of 100)</label>
+                      <input
+                        type="number"
+                        formControlName="vision"
+                        pInputText
+                      />
+                    </div>
+                    <!-- <div *ngIf="validation.vision.errors && validation.vision.dirty">
                                             <div class="text-danger" *ngIf="validation.vision?.errors?.required">Field is required!
                                             </div>
                                         </div> -->
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="p-field p-col">
-                                            <label>Attacking (out of 100)</label>
-                                            <input type="number" formControlName="attacking" pInputText>
-                                        </div>
-                                        <!-- <div *ngIf="validation.attacking.errors && validation.attacking.dirty">
+                  </div>
+                  <div class="col-md-4">
+                    <div class="p-field p-col">
+                      <label>Attacking (out of 100)</label>
+                      <input
+                        type="number"
+                        formControlName="attacking"
+                        pInputText
+                      />
+                    </div>
+                    <!-- <div *ngIf="validation.attacking.errors && validation.attacking.dirty">
                                             <div class="text-danger" *ngIf="validation.attacking?.errors?.required">Field is required!
                                             </div>
                                         </div> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
 
-            <div class="col-md-12 mt-3">
-                <div class="p-fluid">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="p-field p-col">
-                                <label>Season highlights</label>
-                                <textarea [rows]="5" [cols]="30" formControlName="season_highlights"
-                                    pInputTextarea></textarea>
-                            </div>
-                            <!-- <div *ngIf="validation.season_highlights.errors && validation.season_highlights.dirty">
+      <div class="col-md-12 mt-3">
+        <div class="p-fluid">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="p-field p-col">
+                <label>Season highlights</label>
+                <textarea
+                  [rows]="5"
+                  [cols]="30"
+                  formControlName="season_highlights"
+                  pInputTextarea
+                ></textarea>
+              </div>
+              <!-- <div *ngIf="validation.season_highlights.errors && validation.season_highlights.dirty">
                                 <div class="text-danger" *ngIf="validation.season_highlights?.errors?.required">Field is required!
                                 </div>
                             </div> -->
-                        </div>
-                        <div class="col-md-6">
-                            <div class="p-field p-col">
-                                <label>Career highlights</label>
-                                <textarea [rows]="5" [cols]="30" formControlName="career_highlights"
-                                    pInputTextarea></textarea>
-                            </div>
-                            <!-- <div *ngIf="validation.career_highlights.errors && validation.career_highlights.dirty">
+            </div>
+            <div class="col-md-6">
+              <div class="p-field p-col">
+                <label>Career highlights</label>
+                <textarea
+                  [rows]="5"
+                  [cols]="30"
+                  formControlName="career_highlights"
+                  pInputTextarea
+                ></textarea>
+              </div>
+              <!-- <div *ngIf="validation.career_highlights.errors && validation.career_highlights.dirty">
                                 <div class="text-danger" *ngIf="validation.career_highlights?.errors?.required">Field is required!
                                 </div>
                             </div> -->
-                        </div>
-                    </div>
-                </div>
             </div>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <div class="row">
-            <div class="col-md-6">
-                <div class="text-left">
-                    <button class="btn btn-primary mt-4" type="submit" [disabled]="formData.invalid">Save</button>
-                </div>
-            </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="text-left">
+          <button
+            class="btn btn-primary mt-4"
+            type="submit"
+            [disabled]="formData.invalid"
+          >
+            Save
+          </button>
         </div>
-    </form>
+      </div>
+    </div>
+  </form>
 
-    <br><br><br>
+  <br /><br /><br />
 </div>

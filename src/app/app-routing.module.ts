@@ -8,6 +8,12 @@ import { AgenciesComponent } from './components/agencies/agencies.component';
 import { AgencyDetailsComponent } from './components/agencies/agency-details/agency-details.component';
 import { AllAgenciesComponent } from './components/agencies/all-agencies/all-agencies.component';
 import { SingleAgenciesComponent } from './components/agencies/single-agencies/single-agencies.component';
+import { AllAppointmentsComponent } from './components/appointments/all-appointments/all-appointments.component';
+import { AppointmentsComponent } from './components/appointments/appointments.component';
+import { SingleAppointmentsComponent } from './components/appointments/single-appointments/single-appointments.component';
+import { AllClubsComponent } from './components/clubs/all-clubs/all-clubs.component';
+import { ClubsComponent } from './components/clubs/clubs.component';
+import { SingleClubsComponent } from './components/clubs/single-clubs/single-clubs.component';
 import { ComponentsComponent } from './components/components.component';
 import { AllCountriesComponent } from './components/countries/all-countries/all-countries.component';
 import { CountriesComponent } from './components/countries/countries.component';
@@ -16,6 +22,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AllDocumentsComponent } from './components/documents/all-documents/all-documents.component';
 import { DocumentsComponent } from './components/documents/documents.component';
 import { SingleDocumentComponent } from './components/documents/single-document/single-document.component';
+import { AllPartnersComponent } from './components/partners/all-partners/all-partners.component';
+import { PartnersComponent } from './components/partners/partners.component';
+import { SinglePartnersComponent } from './components/partners/single-partners/single-partners.component';
 import { AllPlayersComponent } from './components/players/all-players/all-players.component';
 import { PlayerDetailsComponent } from './components/players/player-details/player-details.component';
 import { PlayersComponent } from './components/players/players.component';
@@ -46,6 +55,20 @@ const routes: Routes = [
           { path: 'add', component: SingleAgenciesComponent },
           { path: 'edit/:id', component: SingleAgenciesComponent },
           { path: 'detail/:id', component: AgencyDetailsComponent },
+          {
+            path: 'clubs', component: ClubsComponent, children: [
+              { path: '', component: AllClubsComponent },
+              { path: 'add', component: SingleClubsComponent },
+              { path: 'edit/:id', component: SingleClubsComponent },
+            ]
+          },
+          {
+            path: 'partners', component: PartnersComponent, children: [
+              { path: '', component: AllPartnersComponent },
+              { path: 'add', component: SinglePartnersComponent },
+              { path: 'edit/:id', component: SinglePartnersComponent },
+            ]
+          },
         ]
       },
       {
@@ -55,6 +78,14 @@ const routes: Routes = [
           { path: 'edit/:id', component: SingleCountriesComponent },
         ]
       },
+         {
+        path: 'appointments', component: AppointmentsComponent, children: [
+          { path: '', component: AllAppointmentsComponent },
+          { path: 'add', component: SingleAppointmentsComponent },
+          { path: 'edit/:id', component: SingleAppointmentsComponent },
+        ]
+      },
+
       {
         path: 'documents', component: DocumentsComponent, children: [
           { path: '', component: AllDocumentsComponent },

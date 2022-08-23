@@ -1,3 +1,4 @@
+import { AppointmentsService } from './../../services/appointments.service';
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { EChartsOption } from 'echarts';
@@ -26,14 +27,17 @@ export class DashboardComponent implements OnInit {
   ];
 
   allPlayers: any = []
+  allAppointments: any = []
   allScouts: any = []
   allAgencies: any = []
   allSponsors: any = []
   agencies_and_sponsors: any = []
 
-  constructor(public playerService: PlayersService, public scoutingService: ScoutingService, public agencyService: AgencyService, public auth: AuthService, public sponsorService: SponsorService, public datepipe: DatePipe) { }
+  constructor(public playerService: PlayersService, public appointmentsService:AppointmentsService, public scoutingService: ScoutingService, public agencyService: AgencyService, public auth: AuthService, public sponsorService: SponsorService, public datepipe: DatePipe) { }
 
   ngOnInit(): void {
+    // this.isUnder30DaysBirthday()
+    this.getAppointments()
     this.getPlayers()
     this.getAllScounts()
     this.combineAgenciesAndSponsors()
@@ -42,6 +46,7 @@ export class DashboardComponent implements OnInit {
 
   getPlayers() {
     this.playerService.getAll().subscribe(res => {
+      console.log(res,'allplayers')
       this.allPlayers = res
       let category: any = []
       let data: any = []
@@ -96,6 +101,16 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+  getAppointments() {
+    this.appointmentsService.getAll().subscribe(res => {
+      console.log(res,'allapointments')
+      this.allAppointments = res
+    })
+  }
+
+
+
+
   // getAllAgencies() {
   //   this.agencyService.getAll().subscribe(res=>{
   //     this.allAgencies = res
@@ -149,4 +164,22 @@ export class DashboardComponent implements OnInit {
       console.log("agencies_and_sponsors", this.agencies_and_sponsors)
     });
   }
+
+
+
+  isUnder30DaysBirthday(dob:any) {
+    let today= new Date()
+    let realdate=new Date(dob)
+    let demodate=new Date(new Date().setDate(today.getDate() + 30));
+    if((realdate >= today) && (realdate <= demodate)) {
+      return true
+    }
+    else {
+      return false
+    }
+
+  }
+
+
+
 }

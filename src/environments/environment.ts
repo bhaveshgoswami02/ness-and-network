@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   email: "nessnetwork5@gmail.com",
   password: "admin123",
-  uid: "superadmin",
+  uid: "o4iylC3o7nX6LSK50n8FwmCspMw2",
   sitekey: "6LfLIAMbAAAAABOC5rl68dJyu8FuHlok8DOpII9z",
   firebase: {
     apiKey: "AIzaSyDQ9UPrsgqGRm7wZ0pIRGsxoOinmfBF2sE",

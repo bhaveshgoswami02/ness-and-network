@@ -1,0 +1,216 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 breadcumb">
+      <a class="link" routerLink="/dashboard">Dashboard</a>
+      <i class="pi pi-angle-right"></i>
+      <a class="link" routerLink="/agencies/clubs">Club</a>
+      <i class="pi pi-angle-right"></i>
+      <span>{{ id ? "Edit" : "Add" }} Club</span>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-6 my-auto">
+      <h5 class="my-auto">{{ id ? "Edit" : "Add" }} Club</h5>
+    </div>
+  </div>
+  <form [formGroup]="formData" (ngSubmit)="onSubmit()">
+    <div class="row mt-3">
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-6 py-2">
+            <div class="p-fluid">
+              <div class="p-field">
+                <label>Club Name</label>
+                <input
+                  type="text"
+                  formControlName="name"
+                  pInputText
+                  placeholder="Enter Club Name"
+                />
+              </div>
+              <div *ngIf="validation.name.errors && validation.name.dirty">
+                <div
+                  class="text-danger"
+                  *ngIf="validation.name?.errors?.required"
+                >
+                  Field is required!
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 py-2">
+            <div class="p-fluid">
+              <div class="p-field">
+                <label>Club Region</label>
+                <input
+                  type="text"
+                  formControlName="region"
+                  pInputText
+                  placeholder="Enter Region Date"
+                />
+              </div>
+              <div *ngIf="validation.region.errors && validation.region.dirty">
+                <div
+                  class="text-danger"
+                  *ngIf="validation.region?.errors?.required"
+                >
+                  Field is required!
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 py-2">
+            <div class="p-fluid">
+              <div class="p-field">
+                <label>Captain</label>
+                <input
+                  type="text"
+                  formControlName="captain"
+                  pInputText
+                  placeholder="Enter Captain"
+                />
+              </div>
+              <div
+                *ngIf="validation.captain.errors && validation.captain.dirty"
+              >
+                <div
+                  class="text-danger"
+                  *ngIf="validation.captain?.errors?.required"
+                >
+                  Field is required!
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 py-2">
+            <div class="p-fluid">
+              <label>Country</label> <br />
+              <p-dropdown
+                [options]="countries"
+                formControlName="nation"
+                optionLabel="name"
+                [filter]="true"
+                filterBy="name"
+                placeholder="Select a Country"
+              >
+                <ng-template pTemplate="selectedItem">
+                  <div
+                    class="country-item country-item-value d-flex"
+                    *ngIf="formData.value.nation"
+                  >
+                    <img [src]="formData.value.nation.imgUrl" class="flag" />
+                    <div>{{ formData.value.nation.name }}</div>
+                  </div>
+                </ng-template>
+                <ng-template let-country pTemplate="item">
+                  <div class="d-flex">
+                    <img [src]="country.imgUrl" class="flag" />
+                    <div>{{ country.name }}</div>
+                  </div>
+                </ng-template>
+              </p-dropdown>
+              <div *ngIf="validation.nation.errors && validation.nation.dirty">
+                <div
+                  class="text-danger"
+                  *ngIf="validation.nation?.errors?.required"
+                >
+                  Field is required!
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 py-2">
+            <div class="p-fluid">
+              <div class="p-field">
+                <label>Vice Captain</label>
+                <input
+                  type="text"
+                  formControlName="vice_captain"
+                  pInputText
+                  placeholder="Enter Vice Captain"
+                />
+              </div>
+              <div
+                *ngIf="
+                  validation.vice_captain.errors &&
+                  validation.vice_captain.dirty
+                "
+              >
+                <div
+                  class="text-danger"
+                  *ngIf="validation.vice_captain?.errors?.required"
+                >
+                  Field is required!
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 py-2">
+            <div class="p-fluid">
+              <div class="p-field">
+                <label>Year Founded</label>
+                <input
+                  type="text"
+                  formControlName="year_founded"
+                  pInputText
+                  placeholder="Enter Year Founded"
+                />
+              </div>
+              <div
+                *ngIf="
+                  validation.year_founded.errors &&
+                  validation.year_founded.dirty
+                "
+              >
+                <div
+                  class="text-danger"
+                  *ngIf="validation.year_founded?.errors?.required"
+                >
+                  Field is required!
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="p-field mt-3">
+          <img
+            [src]="imageSrc"
+            class="cursor-pointer rounded-circle"
+            (click)="file.click()"
+            width="90px"
+            height="90px"
+            alt=""
+          /><br />
+          <label>Upload Club Logo</label>
+          <input
+            #file
+            type="file"
+            formControlName="file"
+            class="d-none"
+            (change)="onSelectFile($event)"
+          />
+        </div>
+        <div *ngIf="validation.file.errors && validation.file.dirty">
+          <div class="text-danger" *ngIf="validation.file?.errors?.required">
+            Field is required!
+          </div>
+        </div>
+      </div>
+
+      <div class="text-left">
+        <button
+          class="btn btn-primary mt-4"
+          type="submit"
+          [disabled]="formData.invalid"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <br /><br /><br />
+</div>

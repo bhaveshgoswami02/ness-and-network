@@ -24,6 +24,7 @@ export class SingleSubAdminComponent implements OnInit {
   sponsors = { view: false, edit: false, add: false, delete: false }
   documents = { view: false, edit: false, add: false, delete: false }
   setting = { view: false, edit: false, add: false, delete: false }
+   appointments = { view: false, edit: false, add: false, delete: false }
 
   constructor(public route: ActivatedRoute, private fb: FormBuilder, public service: SubAdminService, public common: CommonService) {
     this.formData = this.fb.group({
@@ -79,6 +80,12 @@ export class SingleSubAdminComponent implements OnInit {
         'add': [false],
         'delete': [false],
       }),
+      'appointments': this.fb.group({
+        'view': [false],
+        'edit': [false],
+        'add': [false],
+        'delete': [false],
+      }),
     })
     console.log(this.formData)
 
@@ -90,7 +97,8 @@ export class SingleSubAdminComponent implements OnInit {
       { icon: "pi pi-tablet", title: "Agency", route: "/agencies" },
       { icon: "pi pi-credit-card", title: "Sponsors", route: "/sponsors" },
       { icon: "pi pi-file", title: "Document", route: "/documents" },
-      { icon: "pi pi-cog", title: "Setting", route: "/setting" }
+      { icon: "pi pi-cog", title: "Setting", route: "/setting" },
+      { icon: "pi pi-cog", title: "Appointments", route: "/appointments" }
     ]
   }
 
@@ -158,6 +166,12 @@ export class SingleSubAdminComponent implements OnInit {
           'edit': [data.setting.edit],
           'add': [data.setting.add],
           'delete': [data.setting.delete],
+        }),
+        'appointments': this.fb.group({
+          'view': [data.appointments.view],
+          'edit': [data.appointments.edit],
+          'add': [data.appointments.add],
+          'delete': [data.appointments.delete],
         }),
       })
     })

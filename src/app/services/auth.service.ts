@@ -44,12 +44,13 @@ export class AuthService {
     }
     else {
       this.afAuth.signInWithEmailAndPassword(email, password).then((signinRes: any) => {
-        this.getSubAdminFromDb(signinRes.user.uid).subscribe(res => {
+        this.getSubAdminFromDb(signinRes.user.uid).subscribe((res:any) => {
           if (res.isBlocked) {
             this.common.showToast("error","","Your account is block!")
             this.logOut()
           }
           else {
+            console.log(res)
             localStorage.setItem("uid", signinRes.user.uid)
             localStorage.setItem("subAdminData", JSON.stringify(res))
             this.router.navigateByUrl("/dashboard")

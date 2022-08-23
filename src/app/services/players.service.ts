@@ -14,7 +14,7 @@ export class PlayersService {
   collection = "players"
   constructor(public db: AngularFirestore, public storage: StorageService, public router: Router, public common: CommonService,public auth:AuthService) { }
 
-  async add(data:any, Img?:any) {
+  async add(data:any, Img?:any, document?:any) {
     this.common.showLoader()
     let timestamp = firebase.firestore.Timestamp.now()
     data.timestamp = timestamp
@@ -25,6 +25,13 @@ export class PlayersService {
       if (Img) {
         this.storage.upload(path, Img).then(imgUrl => {
           this.update(id, { imgUrl: imgUrl })
+        }).catch(err => {
+          console.log(err)
+        })
+      }
+      if (document) {
+        this.storage.upload(path, document).then(documentUrl => {
+          this.update(id, { documentUrl: documentUrl })
         }).catch(err => {
           console.log(err)
         })
@@ -59,7 +66,7 @@ export class PlayersService {
     )
   }
 
-  update(id:string, data:any, img?:any) {
+  update(id:string, data:any, img?:any,document?:any) {
     this.common.showLoader()
     let path = this.collection + "/" + id + "/" + this.collection;
     if (img) {
@@ -71,7 +78,19 @@ export class PlayersService {
         this.common.stopLoader()
         this.router.navigateByUrl("/"+this.collection)
       })
-    } else {
+    }
+    else if (document) {
+      return this.storage.upload(path, document).then(newUrl => {
+        this.update(id, { documentUrl: newUrl, ...data });
+      }).catch(err => {
+        this.common.showToast("error", "Error", err)
+      }).finally(() => {
+        this.common.stopLoader()
+        this.router.navigateByUrl("/"+this.collection)
+      })
+    }
+
+    else {
       return this.db.collection(this.collection).doc(id).update(data).then(res => {
         return res
       }).catch(err => {

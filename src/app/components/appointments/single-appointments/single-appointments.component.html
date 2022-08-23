@@ -1,0 +1,97 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 breadcumb">
+      <a class="link" routerLink="/dashboard">Dashboard</a>
+      <i class="pi pi-angle-right"></i>
+      <a class="link" routerLink="/appointments">Appointment</a>
+      <i class="pi pi-angle-right"></i>
+      <span>{{ id ? "Edit" : "Add" }} Appointment</span>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-6 my-auto">
+      <h5 class="my-auto">{{ id ? "Edit" : "Add" }} Appointment</h5>
+    </div>
+  </div>
+  <form [formGroup]="formData" (ngSubmit)="onSubmit()">
+    <div class="row mt-3">
+      <div class="col-md-4">
+        <div class="p-fluid">
+          <div class="p-field">
+            <label>Appointment Name</label>
+            <input
+              type="text"
+              formControlName="name"
+              pInputText
+              placeholder="Enter Appointment Name"
+            />
+          </div>
+          <div *ngIf="validation.name.errors && validation.name.dirty">
+            <div class="text-danger" *ngIf="validation.name?.errors?.required">
+              Field is required!
+            </div>
+          </div>
+
+
+
+        </div>
+
+      </div>
+      <div class="col-md-4">
+        <div class="p-fluid">
+          <div class="p-field">
+            <label>Appointment Date</label>
+            <input
+              type="date"
+              formControlName="date"
+              pInputText
+              placeholder="Enter Appointment Date"
+            />
+          </div>
+          <div *ngIf="validation.date.errors && validation.date.dirty">
+            <div class="text-danger" *ngIf="validation.date?.errors?.required">
+              Field is required!
+            </div>
+          </div>
+
+
+
+        </div>
+
+      </div>
+      <div class="col-md-4">
+        <div class="p-fluid">
+          <div class="p-field">
+            <label>Appointment Description</label>
+            <input
+              type="text"
+              formControlName="description"
+              pInputText
+              placeholder="Enter Appointment Description"
+            />
+          </div>
+          <div *ngIf="validation.description.errors && validation.description.dirty">
+            <div class="text-danger" *ngIf="validation.description?.errors?.required">
+              Field is required!
+            </div>
+          </div>
+
+
+
+        </div>
+
+      </div>
+      <div class="text-left">
+        <button
+          class="btn btn-primary mt-4"
+          type="submit"
+          [disabled]="formData.invalid"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <br /><br /><br />
+</div>
