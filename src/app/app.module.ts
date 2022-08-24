@@ -71,6 +71,7 @@ import { PartnersComponent } from './components/partners/partners.component';
 import { AllPartnersComponent } from './components/partners/all-partners/all-partners.component';
 import { SinglePartnersComponent } from './components/partners/single-partners/single-partners.component';
 import { PlayerreportComponent } from './share/print-templates/playerreport/playerreport.component';
+import { NgxStarRatingModule } from 'ngx-star-rating';
 
 @NgModule({
   declarations: [
@@ -146,6 +147,7 @@ import { PlayerreportComponent } from './share/print-templates/playerreport/play
     ProgressBarModule,
     CheckboxModule,
     CaptchaModule,
+    NgxStarRatingModule
   ],
   providers: [MessageService, DatePipe],
   bootstrap: [AppComponent],

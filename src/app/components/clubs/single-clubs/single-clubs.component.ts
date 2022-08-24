@@ -53,7 +53,7 @@ export class SingleClubsComponent implements OnInit {
         'year_founded': [data.year_founded, [Validators.required]],
         'rate': [data.rate, [Validators.required]],
         'nation': [data.nation, [Validators.required]],
-        'file': [, [Validators.required]],
+        'file': [''],
       })
       this.imageSrc = data.imgUrl
       console.log("all",this.formData)

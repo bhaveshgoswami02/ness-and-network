@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CountryService } from 'src/app/services/country.service';
 import { PlayersService } from 'src/app/services/players.service';
+import { PrintService } from 'src/app/services/print.service';
 
 @Component({
   selector: 'app-single-players',
@@ -16,10 +17,12 @@ export class SinglePlayersComponent implements OnInit {
   formData: FormGroup;
   imageSrc: any = "../../../../assets/images/user.png";
   imageFile: any;
-  documentSrc: any = "../../../../assets/images/user.png";
+  documentSrc: any = "../../../../assets/images/upload.png";
+  documentLink:any={}
   documentFile: any;
   countries: any = []
   foot = ['left', 'right']
+  playerData:any
   // position = [1, 2, 3]
   selectedCountry: any = { name: '', imgUrl: '' }
   position = [
@@ -55,7 +58,7 @@ export class SinglePlayersComponent implements OnInit {
       ]
     },
   ];
-  constructor(public route: ActivatedRoute, private fb: FormBuilder, public service: PlayersService, public countryService: CountryService) {
+  constructor(public route: ActivatedRoute,private printService:PrintService, private fb: FormBuilder, public service: PlayersService, public countryService: CountryService) {
     this.formData = this.fb.group({
       'name': ['', [Validators.required]],
       'file': ['', [Validators.required]],
@@ -98,6 +101,7 @@ export class SinglePlayersComponent implements OnInit {
   getData() {
     this.service.getSingle(this.id).subscribe(res => {
       let data = res
+      this.playerData=res
       this.formData = this.fb.group({
         'name': [data.name, [Validators.required]],
         'file': [''],
@@ -124,6 +128,8 @@ export class SinglePlayersComponent implements OnInit {
         })
       })
       this.imageSrc = data.imgUrl
+      this.documentLink.url=data?.documentUrl
+      this.documentLink.name='Click to View'
       console.log("all", this.collection, this.formData)
     })
   }
@@ -157,11 +163,13 @@ export class SinglePlayersComponent implements OnInit {
       const [file] = event.target.files;
       this.documentFile = event.target.files[0];
       console.log("imageFile", this.documentFile)
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.documentSrc = reader.result as string;
-        console.log(this.documentSrc)
-      };
+      console.log(this.formData.value)
+      this.documentLink.name=this.documentFile.name
+      // reader.readAsDataURL(file);
+      // reader.onload = () => {
+      //   this.documentLink = reader.result as string;
+      //   console.log(this.documentSrc)
+      // };
     }
   }
 
@@ -180,6 +188,14 @@ export class SinglePlayersComponent implements OnInit {
       console.log(this.formData.value, this.imageFile,this.documentFile)
       this.service.add(this.formData.value, this.imageFile,this.documentFile)
     }
+  }
+
+
+  printReport() {
+    let data:any={}
+    data.type='playerreport'
+    data.value=  this.playerData
+   this.printService.printData(data)
   }
 
 }

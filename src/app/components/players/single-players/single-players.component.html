@@ -176,8 +176,41 @@
           <div class="text-center">
             <div class="p-field mt-3 text-center">
               <img
+                [src]="documentSrc"
+                class="cursor-pointer rounded-circle"
+                (click)="file1.click()"
+                width="90px"
+                height="90px"
+                alt=""
+              /><br />
+              <label>Upload {{ pageTitle }} Document</label> <br>
+              <a [href]="documentLink?.url" target="_blank" *ngIf="documentLink?.url">{{documentLink?.name}}</a>
+              <a href="javascript:void(0)" *ngIf="!documentLink?.url">{{documentLink?.name}}</a>
+              <input
+                #file1
+                type="file"
+                accept=".docx,.pdf"
+                formControlName="document"
+                class="d-none"
+                (change)="onSelectDocument($event)"
+              />
+            </div>
+            <div
+              *ngIf="validation.document.errors && validation.document.dirty"
+            >
+              <div
+                class="text-danger"
+                *ngIf="validation.document?.errors?.required"
+              >
+                Field is required!
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="p-field mt-3 text-center">
+              <img
                 [src]="imageSrc"
-                class="cursor-pointer rounded-circle mr-5"
+                class="cursor-pointer rounded-circle"
                 (click)="file.click()"
                 width="90px"
                 height="90px"
@@ -203,37 +236,7 @@
               </div>
             </div>
           </div>
-          <div class="text-center">
-            <div class="p-field mt-3 text-center">
-              <img
-                [src]="documentSrc"
-                class="cursor-pointer rounded-circle"
-                (click)="file1.click()"
-                width="90px"
-                height="90px"
-                alt=""
-              /><br />
-              <label>Upload {{ pageTitle }} Document</label>
-              <input
-                #file1
-                type="file"
-                accept=".docx,.pdf"
-                formControlName="document"
-                class="d-none"
-                (change)="onSelectDocument($event)"
-              />
-            </div>
-            <div
-              *ngIf="validation.document.errors && validation.document.dirty"
-            >
-              <div
-                class="text-danger"
-                *ngIf="validation.document?.errors?.required"
-              >
-                Field is required!
-              </div>
-            </div>
-          </div>
+
         </div>
       </div>
     </div>
@@ -459,6 +462,10 @@
           </div>
         </div>
       </div>
+      <div class="col-md-4 p-3">
+       <button pButton type="button" label="Print Report" (click)="printReport()" icon="pi pi-download"></button>
+      </div>
+
 
       <div class="col-md-12 mt-3">
         <div class="p-fluid">

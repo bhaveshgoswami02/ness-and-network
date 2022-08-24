@@ -70,7 +70,6 @@ export class PartnersService {
         this.common.showToast("error", "Error", err)
       }).finally(() => {
         this.common.stopLoader()
-        this.router.navigateByUrl("/"+this.collection)
       })
     } else {
       return this.db.collection(this.collection).doc(id).update(data).then(res => {

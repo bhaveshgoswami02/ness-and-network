@@ -27,8 +27,8 @@
     <div class="row mt-5">
         <div class="col-md-12 d-flex">
             <img [src]="data.imgUrl" width="100px" height="100px" class="rounded-circle" alt="">
-            <h1 class="capitalize my-auto ml-4 d-none d-md-block d-lg-block">{{data.name}}</h1>
-            <h3 class="capitalize my-auto ml-4 d-block d-md-none d-lg-none">{{data.name}}</h3>
+            <h1 class="capitalize my-auto ml-4 d-none d-md-block d-lg-block">{{data.name}} <a class="mx-2" *ngIf="data.documentUrl" [href]="data?.documentUrl" target="_blank"> <button pButton type="button" label="Document" icon="pi pi-download"></button></a>  </h1>
+            <h3 class="capitalize my-auto ml-4 d-block d-md-none d-lg-none">{{data.name}} <a class="mx-2" *ngIf="data.documentUrl" [href]="data?.documentUrl" target="_blank"> <button pButton type="button" label="Document" icon="pi pi-download"></button></a>  </h3>
         </div>
     </div>
 

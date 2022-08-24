@@ -55,7 +55,7 @@ export class SinglePartnersComponent implements OnInit {
         'country': [data.country, [Validators.required]],
         'city': [data.city, [Validators.required]],
         'address': [data.address, [Validators.required]],
-        'file': ['', [Validators.required]],
+        'file': [''],
       })
       this.imageSrc = data.imgUrl
     })

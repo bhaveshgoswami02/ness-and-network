@@ -1,80 +1,281 @@
-<table
-  style="max-width:670px;margin:50px auto 10px;background-color:#fff;padding:50px;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);-moz-box-shadow:0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);box-shadow:0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24); border-top: solid 10px #9441CB;">
-  <thead>
-    <tr>
-      <th style="text-align:left;">
-        <img style="max-width: 150px;" class="mt-2" src="../../../../assets/SARP Logos/h-blacka.png" alt="Sarp">
-      </th>
-      <th style="text-align:right;font-weight:400;">{{data.value.timestamp | date}}</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="height:35px;"></td>
-    </tr>
-    <tr>
-      <td colspan="2" style="border: solid 1px #ddd; padding:10px 20px;">
-        <p style="font-size:14px;margin:0 0 6px 0;"><span
-            style="font-weight:bold;display:inline-block;min-width:150px">Order status</span><b
-            style="color:#9441CB;font-weight:normal;margin:0">Paid</b></p>
-        <p style="font-size:14px;margin:0 0 6px 0;"><span
-            style="font-weight:bold;display:inline-block;min-width:146px">Transaction ID</span>
-          {{data.value.stripePaymentref.payment_intent}}</p>
-        <p style="font-size:14px;margin:0 0 0 0;"><span
-            style="font-weight:bold;display:inline-block;min-width:146px">Order amount</span> ${{data.value.amount}}
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <td style="height:35px;"></td>
-    </tr>
-    <tr>
-      <td style="width:50%;padding:20px;vertical-align:top">
-        <p style="margin:0 0 10px 0;padding:0;font-size:14px;"><span
-            style="display:block;font-weight:bold;font-size:13px">Name</span>
-          {{data.value.stripePaymentref.customer_details.name}}</p>
-        <p style="margin:0 0 10px 0;padding:0;font-size:14px;"><span
-            style="display:block;font-weight:bold;font-size:13px;">Email</span>
-          {{data.value.stripePaymentref.customer_details.email}}</p>
-        <!-- <p style="margin:0 0 10px 0;padding:0;font-size:14px;"><span
-            style="display:block;font-weight:bold;font-size:13px;">Phone</span> {{+91-1234567890}}</p> -->
-        <!-- <p style="margin:0 0 10px 0;padding:0;font-size:14px;"><span
-            style="display:block;font-weight:bold;font-size:13px;">ID No.</span> 2556-1259-9842</p> -->
-      </td>
-      <td style="width:50%;padding:20px;vertical-align:top">
-        <!-- <p style="margin:0 0 10px 0;padding:0;font-size:14px;"><span
-            style="display:block;font-weight:bold;font-size:13px;">Address</span> Khudiram Pally, Malbazar, West Bengal,
-          India, 735221</p>
-        <p style="margin:0 0 10px 0;padding:0;font-size:14px;"><span
-            style="display:block;font-weight:bold;font-size:13px;">Number of gusets</span> 2</p>
-        <p style="margin:0 0 10px 0;padding:0;font-size:14px;"><span
-            style="display:block;font-weight:bold;font-size:13px;">Duration of your vacation</span> 25/04/2017 to
-          28/04/2017 (3 Days)</p> -->
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2" style="font-size:20px;padding:30px 15px 0 15px;">Items</td>
-    </tr>
-    <tr>
-      <td colspan="2" style="padding:15px;">
-        <p style="font-size:14px;margin:0;padding:10px;border:solid 1px #ddd;font-weight:bold;">
-          <span style="display:block;font-size:13px;font-weight:normal;">One {{data.value.amount==129?'Month':'Year'}}
-            Subscription</span> ${{data.value.amount}}
-          <b style="font-size:12px;font-weight:300;"> </b>
-        </p>
+<div class="card">
+  <div class="row pb-2">
+    <div class="col-12 my-auto text-center py-2">
+      <img [src]="data?.value?.imgUrl" width="200" height="200" alt="" />
+    </div>
+  </div>
 
-      </td>
-    </tr>
-  </tbody>
+  <!--  Row Start -->
 
-  <tr>
-    <td colspan="2" style="font-size:14px;padding:50px 15px 0 15px;">
-      <strong style="display:block;margin:0 0 10px 0;">Regards</strong> SARP<br> Gorubathan, Pin/Zip -
-      735221, Darjeeling, West bengal, India<br><br>
-      <b>Phone:</b> 03552-222011<br>
-      <b>Email:</b> contact@bachanatours.in
-    </td>
-  </tr>
-  <br><br>
+  <!------------------------------------- Job Information Start -------------------------------------->
+  <!-- Header start -->
+  <div class="bg-header">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h5>Player Information</h5>
+      </div>
+    </div>
+  </div>
+  <!-- Header end -->
 
-</table>
+  <!-- Job details start -->
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-sm" style="border-bottom: 1px solid #dee2e6">
+        <tbody>
+          <tr>
+            <th scope="row">Player Name</th>
+            <td>
+              {{ data?.value?.name }}
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">Player Date of Birth</th>
+            <td>
+              {{ data?.value?.dob }}
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">Nationality</th>
+            <td>
+              {{ data?.value?.nationality?.name }}
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">Club</th>
+            <td>
+              {{ data?.value?.other_details?.club }}
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">Height</th>
+            <td>
+              {{ data?.value?.other_details?.height }}
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">League</th>
+            <td>
+              {{ data?.value?.other_details?.league }}
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">Position</th>
+            <td>
+              {{ data?.value?.other_details?.position }}
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">Preferred Foot</th>
+            <td>
+              {{ data?.value?.other_details?.preferred_foot }}
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">Weight</th>
+            <td>
+              {{ data?.value?.other_details?.weight }}
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">Attacking</th>
+            <td>
+              {{ data?.value?.spr?.attacking }}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Career Highlights</th>
+            <td>
+              {{ data?.value?.spr?.career_highlights }}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Defending</th>
+            <td>
+              {{ data?.value?.spr?.defending }}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Dribbling</th>
+            <td>
+              {{ data?.value?.spr?.dribbling }}
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">Heading</th>
+            <td>
+              {{ data?.value?.spr?.heading }}
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">Passing</th>
+            <td>
+              {{ data?.value?.spr?.passing }}
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">Season Highlights</th>
+            <td>
+              {{ data?.value?.spr?.season_highlights }}
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">Vision</th>
+            <td>
+              {{ data?.value?.spr?.vision }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- Job details end -->
+
+
+
+  <div class="bg-header">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h5>Other Details</h5>
+      </div>
+    </div>
+  </div>
+
+ <div class="row">
+    <div class="col-12">
+      <table class="table table-sm" style="border-bottom: 1px solid #dee2e6">
+        <tbody>
+          <tr>
+            <th scope="row">Club</th>
+            <td>
+              {{ data?.value?.other_details?.club }}
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">Height</th>
+            <td>
+              {{ data?.value?.other_details?.height }}
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">League</th>
+            <td>
+              {{ data?.value?.other_details?.league }}
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">Position</th>
+            <td>
+              {{ data?.value?.other_details?.position }}
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">Preferred Foot</th>
+            <td>
+              {{ data?.value?.other_details?.preferred_foot }}
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">Weight</th>
+            <td>
+              {{ data?.value?.other_details?.weight }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+  <div class="bg-header">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h5>SPR Information</h5>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-sm" style="border-bottom: 1px solid #dee2e6">
+        <tbody>
+          <tr>
+            <th scope="row">Attacking</th>
+            <td>
+              {{ data?.value?.spr?.attacking }}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Career Highlights</th>
+            <td>
+              {{ data?.value?.spr?.career_highlights }}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Defending</th>
+            <td>
+              {{ data?.value?.spr?.defending }}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Dribbling</th>
+            <td>
+              {{ data?.value?.spr?.dribbling }}
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">Heading</th>
+            <td>
+              {{ data?.value?.spr?.heading }}
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">Passing</th>
+            <td>
+              {{ data?.value?.spr?.passing }}
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">Season Highlights</th>
+            <td>
+              {{ data?.value?.spr?.season_highlights }}
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">Vision</th>
+            <td>
+              {{ data?.value?.spr?.vision }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+</div>

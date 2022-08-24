@@ -14,7 +14,7 @@ export class AllPartnersComponent implements OnInit {
   cols = [
     { field: 'id', header: 'Partner ID' },
     { field: 'name', header: 'Partner Name' },
-    { field: 'country', header: 'Date' },
+    { field: 'country', header: 'Country' },
     { field: 'city', header: 'City' },
     { field: 'address', header: 'Address' }
   ];

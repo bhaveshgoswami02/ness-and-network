@@ -78,8 +78,11 @@
           <tr class="p-selectable-row">
             <td class="text-center" *ngFor="let col of columns">
               <span class="p-column-title">{{ col.header }} : </span>
-              <ng-container >
+              <ng-container  *ngIf="col.field!='nation'">
                 {{ rowData[col.field] }}
+              </ng-container>
+              <ng-container  *ngIf="col.field=='nation'">
+                {{ rowData.nation.name }}
               </ng-container>
             </td>
             <td class="text-center">

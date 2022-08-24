@@ -14,7 +14,7 @@ export class AllClubsComponent implements OnInit {
   cols = [
     { field: 'id', header: 'Club ID' },
     { field: 'name', header: 'Club Name' },
-    { field: 'nation', header: 'Date' },
+    { field: 'nation', header: 'Nation' },
     { field: 'captain', header: 'Captain' },
     { field: 'year_founded', header: 'Year Founded' },
     { field: 'vice_captain', header: 'Vice Captain' },

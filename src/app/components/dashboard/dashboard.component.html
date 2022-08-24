@@ -92,7 +92,7 @@
               <div class="col-md-12 text-center">
                 <!-- <div echarts [options]="playersChartOption" class="chart"></div> -->
                 <div class="card p-1">
-                  <div class="border-bottom py-2">Coming Players Birthday</div>
+                  <div class="border-bottom py-2 bold">Coming Players Birthday</div>
                   <ng-container *ngFor="let item of allPlayers; let i = index">
                     <div
                       class="row my-1"
@@ -118,7 +118,7 @@
             <div class="row my-3">
               <div class="col-md-12 text-center">
                 <div class="card p-1">
-                  <div class="border-bottom py-2">Appointments List</div>
+                  <div class="border-bottom py-2 bold">Appointments List</div>
                   <ng-container *ngFor="let item of allAppointments; let i = index">
                     <div
                       class="row my-1 p-3"
@@ -144,7 +144,7 @@
             <div class="row my-3">
               <div class="col-md-12 text-center">
                 <div class="card p-1">
-                  <div class="border-bottom py-2">Contracts Expiry</div>
+                  <div class="border-bottom py-2 bold">Contracts Expiry</div>
                   <ng-container *ngFor="let item of allAgencies; let i = index">
                     <h6 class="text-align-left my-2"> {{ i + 1 }}.) Agency Name :  {{item?.name}}</h6>
                     <ng-container *ngFor="let contract of item?.contracts; let k = index">
@@ -152,9 +152,9 @@
                       class="row my-1"
                       *ngIf="isUnder30DaysBirthday(contract?.contract_due_date)"
                     >
-                      <div class="col-6">{{ k + 1 }}.) {{ item.name }}</div>
+                    <div class="col-6">{{ k + 1 }}.)   {{ contract?.contract_name }}</div>
                       <div class="col-6">
-                        {{ contract.contract_due_date }}
+                        {{ contract?.contract_due_date }}
                       </div>
                     </div>
                       </ng-container>

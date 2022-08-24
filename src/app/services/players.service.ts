@@ -76,17 +76,17 @@ export class PlayersService {
         this.common.showToast("error", "Error", err)
       }).finally(() => {
         this.common.stopLoader()
-        this.router.navigateByUrl("/"+this.collection)
+        // this.router.navigateByUrl("/"+this.collection)
       })
     }
-    else if (document) {
+    if (document) {
       return this.storage.upload(path, document).then(newUrl => {
         this.update(id, { documentUrl: newUrl, ...data });
       }).catch(err => {
         this.common.showToast("error", "Error", err)
       }).finally(() => {
         this.common.stopLoader()
-        this.router.navigateByUrl("/"+this.collection)
+        // this.router.navigateByUrl("/"+this.collection)
       })
     }
 

@@ -13,6 +13,8 @@ import { AuthService } from './auth.service';
 export class ClubsService {
   collection = "clubs"
   constructor(public db: AngularFirestore, public storage: StorageService, public router: Router, public common: CommonService,public auth:AuthService) { }
+
+
   async add(data:any, Img?:any) {
     this.common.showLoader()
     let timestamp = firebase.firestore.Timestamp.now()
@@ -69,7 +71,6 @@ export class ClubsService {
         this.common.showToast("error", "Error", err)
       }).finally(() => {
         this.common.stopLoader()
-        this.router.navigateByUrl("/"+this.collection)
       })
     } else {
       return this.db.collection(this.collection).doc(id).update(data).then(res => {
