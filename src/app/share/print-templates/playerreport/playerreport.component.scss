@@ -3,20 +3,6 @@ h1{font-size: 18pt; font-weight: 500; margin-bottom: 0.5cm;}
 h2{font-size: 16pt; font-weight: 500;}
 p,b{font-size: 12pt;}
 
-.items-group {
-  border-style: solid;
-  border-color: black;
-  border-width: 1pt 1pt 1pt 1pt;
-  border-radius: 5pt;
-  padding: 3pt 3pt 3pt 3pt;
-  margin: 9pt 0 9pt 0;
-}
-
-.logotipo {
-  width: 6cm;
-  height: 4cm;
-  margin: -0.5cm;
-}
 
 .label { font-weight: 500;}
 
@@ -26,12 +12,12 @@ p,b{font-size: 12pt;}
 
 .signature-field {
   padding-bottom: 24pt;
-  border-bottom: solid black 1pt;
+  // border-bottom: solid black 1pt;
 }
 
 .table thead {
-  border-top: 2px dashed #000;
-  border-bottom: 2px dashed #000;
+  // border-top: 2px dashed #000;
+  // border-bottom: 2px dashed #000;
   th {
     vertical-align: bottom;
     border-bottom: none;
@@ -39,10 +25,10 @@ p,b{font-size: 12pt;}
 }
 
 .border-top {
-  border-top: 1px solid #000!important;
+  // border-top: 1px solid #000!important;
 }
 .border-bottom {
-  border-bottom: 1px solid #000!important;
+  // border-bottom: 1px solid #000!important;
 }
 
 .price {
@@ -51,14 +37,20 @@ p,b{font-size: 12pt;}
 }
 
 .bg-header {
-  background-color: red!important;
+  // background-color: red!important;
   min-width: 100%;
   max-width: 100%;
-  border-top: 1px solid #000;
-  border-bottom: 1px solid #000;
+  // border-top: 1px solid #000;
+  // border-bottom: 1px solid #000;
   // margin-top: 8px;
 }
 
 .card {
   box-shadow: none!important;
+}
+
+table {
+  td,th {
+    border: 1px solid #000000
+  }
 }

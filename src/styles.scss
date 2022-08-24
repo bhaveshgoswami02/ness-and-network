@@ -269,3 +269,16 @@ button::focus-visible {
 .text-align-right {
   text-align: right;
 }
+
+
+.circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: black;
+}
+
+
+.min-h {
+  height: 250px;
+}

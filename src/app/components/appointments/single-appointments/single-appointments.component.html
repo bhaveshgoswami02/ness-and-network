@@ -63,12 +63,7 @@
         <div class="p-fluid">
           <div class="p-field">
             <label>Appointment Description</label>
-            <input
-              type="text"
-              formControlName="description"
-              pInputText
-              placeholder="Enter Appointment Description"
-            />
+            <textarea formControlName="description" pInputTextarea   placeholder="Enter Appointment Description"></textarea>
           </div>
           <div *ngIf="validation.description.errors && validation.description.dirty">
             <div class="text-danger" *ngIf="validation.description?.errors?.required">

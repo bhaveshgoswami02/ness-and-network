@@ -170,6 +170,21 @@ export class DashboardComponent implements OnInit {
   isUnder30DaysBirthday(dob:any) {
     let today= new Date()
     let realdate=new Date(dob)
+    realdate.setFullYear(today.getFullYear())
+    let demodate=new Date(new Date().setDate(today.getDate() + 30));
+    if((realdate >= today) && (realdate <= demodate)) {
+      return true
+    }
+    else {
+      return false
+    }
+
+  }
+
+
+  isUnder30Days(dob:any) {
+    let today= new Date()
+    let realdate=new Date(dob)
     let demodate=new Date(new Date().setDate(today.getDate() + 30));
     if((realdate >= today) && (realdate <= demodate)) {
       return true

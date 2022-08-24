@@ -86,83 +86,72 @@
     <!-- Players Graph -->
     <div class="row my-5">
       <div class="col-md-4 p-0 mx-auto">
-        <div class="custom-card border-0">
+        <div class="custom-card min-h">
+          <div class="card-header">
+            <b class="py-2 bold">Coming Players Birthday</b>
+          </div>
           <div class="card-container">
-            <div class="row my-3">
-              <div class="col-md-12 text-center">
-                <!-- <div echarts [options]="playersChartOption" class="chart"></div> -->
-                <div class="card p-1">
-                  <div class="border-bottom py-2 bold">Coming Players Birthday</div>
-                  <ng-container *ngFor="let item of allPlayers; let i = index">
-                    <div
-                      class="row my-1"
-                      *ngIf="isUnder30DaysBirthday(item?.dob)"
-                    >
-                      <div class="col-6">{{ i + 1 }}.) {{ item.name }}</div>
-                      <div class="col-6">
-                        {{ item.dob }}
-                      </div>
-                    </div>
-                  </ng-container>
+
+
+            <ng-container *ngFor="let item of allPlayers; let i = index">
+              <div
+                class="row my-1"
+                *ngIf="isUnder30DaysBirthday(item?.dob)"
+              >
+                <div class="col-6"><canvas class="circle mx-1"></canvas> {{ item.name }}</div>
+                <div class="col-6">
+                  {{ item.dob }}
                 </div>
               </div>
-            </div>
+            </ng-container>
           </div>
         </div>
       </div>
 
       <!-- Scouting Graph -->
       <div class="col-md-4 p-0 mx-auto">
-        <div class="custom-card border-0">
+        <div class="custom-card min-h">
+          <div class="card-header">
+            <b class="py-2 bold">Appointments List</b>
+          </div>
           <div class="card-container">
-            <div class="row my-3">
-              <div class="col-md-12 text-center">
-                <div class="card p-1">
-                  <div class="border-bottom py-2 bold">Appointments List</div>
-                  <ng-container *ngFor="let item of allAppointments; let i = index">
-                    <div
-                      class="row my-1 p-3"
-                      *ngIf="isUnder30DaysBirthday(item?.date)"
-                    >
-                      <div class="col-md-8 text-align-left  px-1">{{ i + 1 }}.) {{ item.name | slice:0:7 }}..</div>
-                      <div class="col-md-4  text-align-right px-1">
-                        {{ item.date }}
-                      </div>
-                    </div>
-                  </ng-container>
+            <ng-container *ngFor="let item of allAppointments; let i = index">
+              <div
+                class="row my-1 p-3"
+                *ngIf="isUnder30DaysBirthday(item?.date)"
+              >
+                <div class="col-md-8 text-align-left  px-1"><canvas class="circle mx-1"></canvas> {{ item.name | slice:0:7 }}..</div>
+                <div class="col-md-4  text-align-right px-1">
+                  {{ item.date }}
                 </div>
               </div>
-            </div>
+            </ng-container>
           </div>
         </div>
       </div>
 
       <!-- Agency Graph -->
       <div class="col-md-4 p-0 mx-auto">
-        <div class="custom-card border-0">
-          <div class="card-container">
-            <div class="row my-3">
-              <div class="col-md-12 text-center">
-                <div class="card p-1">
-                  <div class="border-bottom py-2 bold">Contracts Expiry</div>
-                  <ng-container *ngFor="let item of allAgencies; let i = index">
-                    <h6 class="text-align-left my-2"> {{ i + 1 }}.) Agency Name :  {{item?.name}}</h6>
-                    <ng-container *ngFor="let contract of item?.contracts; let k = index">
-                      <div
-                      class="row my-1"
-                      *ngIf="isUnder30DaysBirthday(contract?.contract_due_date)"
-                    >
-                    <div class="col-6">{{ k + 1 }}.)   {{ contract?.contract_name }}</div>
-                      <div class="col-6">
-                        {{ contract?.contract_due_date }}
-                      </div>
-                    </div>
-                      </ng-container>
-                     <hr>
-                  </ng-container>
+        <div class="custom-card min-h">
+          <div class="card-header">
+            <b class="py-2 bold">Contract List</b>
+          </div>
+          <div class="card-container p-1">
+            <ng-container *ngFor="let item of allAgencies; let i = index">
+              <h6 class="text-align-left my-2"> {{ i + 1 }}.) Agency Name :  {{item?.name}}</h6>
+              <ng-container *ngFor="let contract of item?.contracts; let k = index">
+                <div
+                class="row my-1"
+                *ngIf="isUnder30DaysBirthday(contract?.contract_due_date)"
+              >
+              <div class="col-6"> <canvas class="circle mx-1"></canvas>  {{ contract?.contract_name }}</div>
+                <div class="col-6">
+                  {{ contract?.contract_due_date }}
                 </div>
               </div>
-            </div>
+                </ng-container>
+               <hr>
+            </ng-container>
           </div>
         </div>
       </div>
