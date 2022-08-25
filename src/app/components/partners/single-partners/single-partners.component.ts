@@ -25,6 +25,8 @@ export class SinglePartnersComponent implements OnInit {
       'country': ['', [Validators.required]],
       'city': ['', [Validators.required]],
       'address': ['', [Validators.required]],
+      'phone': ['', [Validators.required]],
+      'email': ['', [Validators.required]],
       'file': ['', [Validators.required]],
     })
   }
@@ -54,6 +56,8 @@ export class SinglePartnersComponent implements OnInit {
         'name': [data.name, [Validators.required]],
         'country': [data.country, [Validators.required]],
         'city': [data.city, [Validators.required]],
+        'phone': [data.phone, [Validators.required]],
+        'email': [data.email, [Validators.required]],
         'address': [data.address, [Validators.required]],
         'file': [''],
       })

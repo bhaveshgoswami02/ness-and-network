@@ -34,26 +34,27 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="p-field">
-                            <label>Email Id</label> <br>
-                            <input type="email" class="w-100" formControlName="email" pInputText [readonly]="id">
-                        </div>
-                        <div *ngIf="validation.email.errors && validation.email.dirty">
-                            <div class="text-danger" *ngIf="validation.email?.errors?.required">Field is required!
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="col-md-6 my-2">
                         <div class="p-field">
                             <label>Mobile No</label> <br>
-                            <input type="text" class="w-100" formControlName="mobile_no" pInputText>
+                            <input type="text" autocomplete="off" class="w-100" formControlName="mobile_no" pInputText>
                         </div>
                         <div *ngIf="validation.mobile_no.errors && validation.mobile_no.dirty">
                             <div class="text-danger" *ngIf="validation.mobile_no?.errors?.required">Field is required!
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-6">
+                      <div class="p-field">
+                          <label>Email Id</label> <br>
+                          <input type="text" class="w-100" formControlName="email" pInputText [readonly]="id">
+                      </div>
+                      <div *ngIf="validation.email.errors && validation.email.dirty">
+                          <div class="text-danger" *ngIf="validation.email?.errors?.required">Field is required!
+                          </div>
+                      </div>
+                  </div>
                     <ng-container *ngIf="!id">
                         <div class="col-md-6 my-2">
                             <div class="p-field">

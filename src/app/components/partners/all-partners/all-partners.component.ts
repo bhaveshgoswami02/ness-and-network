@@ -15,6 +15,8 @@ export class AllPartnersComponent implements OnInit {
     { field: 'id', header: 'Partner ID' },
     { field: 'name', header: 'Partner Name' },
     { field: 'country', header: 'Country' },
+    { field: 'phone', header: 'Phone' },
+    { field: 'email', header: 'Email' },
     { field: 'city', header: 'City' },
     { field: 'address', header: 'Address' }
   ];

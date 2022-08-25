@@ -86,46 +86,66 @@
     <!-- Players Graph -->
     <div class="row my-5">
       <div class="col-md-4 p-0 mx-auto">
-        <div class="custom-card min-h">
+        <div class="custom-card min-h ">
           <div class="card-header">
             <b class="py-2 bold">Coming Players Birthday</b>
           </div>
-          <div class="card-container">
-
-
+          <div class="card-container p-1">
+            <div class="row my-1">
+              <div class="col-6 text-align-center"><b> Player Name </b></div>
+              <div class="col-6 text-align-center">
+                <b> Date of Birth </b>
+              </div>
+            </div>
             <ng-container *ngFor="let item of allPlayers; let i = index">
-              <div
-                class="row my-1"
-                *ngIf="isUnder30DaysBirthday(item?.dob)"
-              >
-                <div class="col-6"><canvas class="circle mx-1"></canvas> {{ item.name }}</div>
+              <div class="row my-1" *ngIf="isUnder30DaysBirthday(item?.dob)">
+                <div class="col-6">{{ item.name }}</div>
                 <div class="col-6">
                   {{ item.dob }}
                 </div>
               </div>
             </ng-container>
+            <div class="d-flex justify-content-center mt-5 card-footer mx-auto text-center" *ngIf="
+              auth.getSubAdminData().players?.view || auth.isSuperAdmin()
+            ">
+              <a routerLink="/players">view more</a>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- Scouting Graph -->
       <div class="col-md-4 p-0 mx-auto">
-        <div class="custom-card min-h">
+        <div class="custom-card min-h ">
           <div class="card-header">
             <b class="py-2 bold">Appointments List</b>
           </div>
-          <div class="card-container">
+          <div class="card-container p-1">
+            <div class="row my-1 px-3">
+              <div class="col-md-8 text-align-center px-1">
+                <b> Appointment Title </b>
+              </div>
+              <div class="col-md-4 text-align-center px-1">
+                <b> Date </b>
+              </div>
+            </div>
+
             <ng-container *ngFor="let item of allAppointments; let i = index">
-              <div
-                class="row my-1 p-3"
-                *ngIf="isUnder30DaysBirthday(item?.date)"
-              >
-                <div class="col-md-8 text-align-left  px-1"><canvas class="circle mx-1"></canvas> {{ item.name | slice:0:7 }}..</div>
-                <div class="col-md-4  text-align-right px-1">
+              <div class="row my-1 px-3" *ngIf="isUnder30Days(item?.date)">
+                <div class="col-md-8 text-align-left px-1">
+                  {{ item.name | slice: 0:7 }}..
+                </div>
+                <div class="col-md-4  px-1">
                   {{ item.date }}
                 </div>
               </div>
             </ng-container>
+
+            <div class="d-flex justify-content-center mt-3 card-footer mx-auto text-center" *ngIf="
+              auth.getSubAdminData().appointments?.view || auth.isSuperAdmin()
+            ">
+              <a routerLink="/appointments">view more</a>
+            </div>
           </div>
         </div>
       </div>
@@ -138,21 +158,39 @@
           </div>
           <div class="card-container p-1">
             <ng-container *ngFor="let item of allAgencies; let i = index">
-              <h6 class="text-align-left my-2"> {{ i + 1 }}.) Agency Name :  {{item?.name}}</h6>
-              <ng-container *ngFor="let contract of item?.contracts; let k = index">
-                <div
-                class="row my-1"
-                *ngIf="isUnder30DaysBirthday(contract?.contract_due_date)"
-              >
-              <div class="col-6"> <canvas class="circle mx-1"></canvas>  {{ contract?.contract_name }}</div>
-                <div class="col-6">
-                  {{ contract?.contract_due_date }}
+              <h6 class="text-align-left my-2">
+                {{ i + 1 }}.) Agency Name : {{ item?.name }}
+              </h6>
+              <div class="row my-1">
+                <div class="col-6 text-align-center">
+                  <b> Contract Name </b>
+                </div>
+                <div class="col-6 text-align-center">
+                  <b> Due Date </b>
                 </div>
               </div>
-                </ng-container>
-               <hr>
+              <ng-container
+                *ngFor="let contract of item?.contracts; let k = index"
+              >
+                <div
+                  class="row my-1"
+                  *ngIf="isUnder30Days(contract?.contract_due_date)"
+                >
+                  <div class="col-6">{{ contract?.contract_name }}</div>
+                  <div class="col-6">
+                    {{ contract?.contract_due_date }}
+                  </div>
+                </div>
+              </ng-container>
+              <hr />
             </ng-container>
+            <div class="d-flex justify-content-center mt-3 card-footer mx-auto text-center" *ngIf="
+          auth.getSubAdminData().agencies?.view || auth.isSuperAdmin()
+        ">
+          <a routerLink="/agencies">view more</a>
+        </div>
           </div>
+
         </div>
       </div>
     </div>

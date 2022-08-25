@@ -17,6 +17,8 @@ export class AllClubsComponent implements OnInit {
     { field: 'nation', header: 'Nation' },
     { field: 'captain', header: 'Captain' },
     { field: 'year_founded', header: 'Year Founded' },
+    { field: 'phone', header: 'Phone' },
+    { field: 'email_contact', header: 'Email' },
     { field: 'vice_captain', header: 'Vice Captain' },
     { field: 'region', header: 'Region' }
   ];

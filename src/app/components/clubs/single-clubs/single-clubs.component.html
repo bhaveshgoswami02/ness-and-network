@@ -171,6 +171,58 @@
               </div>
             </div>
           </div>
+          <div class="col-md-6 py-2">
+            <div class="p-fluid">
+              <div class="p-field">
+                <label>Phone Number</label>
+                <input
+                  type="text"
+                  formControlName="phone"
+                  pInputText
+                  placeholder="Enter Phone Number"
+                />
+              </div>
+              <div
+                *ngIf="
+                  validation.phone.errors &&
+                  validation.phone.dirty
+                "
+              >
+                <div
+                  class="text-danger"
+                  *ngIf="validation.phone?.errors?.required"
+                >
+                  Field is required!
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 py-2">
+            <div class="p-fluid">
+              <div class="p-field">
+                <label>Email Contact</label>
+                <input
+                  type="text"
+                  formControlName="email_contact"
+                  pInputText
+                  placeholder="Enter Email Contact"
+                />
+              </div>
+              <div
+                *ngIf="
+                  validation.email_contact.errors &&
+                  validation.email_contact.dirty
+                "
+              >
+                <div
+                  class="text-danger"
+                  *ngIf="validation.email_contact?.errors?.required"
+                >
+                  Field is required!
+                </div>
+              </div>
+            </div>
+          </div>
           <div style="margin-left: -126px;margin-top: 9px;" class="col-md-6 py-2">
             <ngx-star-rating formControlName="rate" ></ngx-star-rating>
             </div>
