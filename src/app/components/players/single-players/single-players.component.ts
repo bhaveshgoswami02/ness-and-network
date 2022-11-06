@@ -61,6 +61,7 @@ export class SinglePlayersComponent implements OnInit {
   constructor(public route: ActivatedRoute,private printService:PrintService, private fb: FormBuilder, public service: PlayersService, public countryService: CountryService) {
     this.formData = this.fb.group({
       'name': ['', [Validators.required]],
+      'gender': ['', [Validators.required]],
       'file': ['', [Validators.required]],
        'document': ['', [Validators.required]],
       'dob': ['', [Validators.required]],
@@ -104,6 +105,7 @@ export class SinglePlayersComponent implements OnInit {
       this.playerData=res
       this.formData = this.fb.group({
         'name': [data.name, [Validators.required]],
+        'gender': [data?.gender, [Validators.required]],
         'file': [''],
         'document':[''],
         'dob': [data.dob, [Validators.required]],

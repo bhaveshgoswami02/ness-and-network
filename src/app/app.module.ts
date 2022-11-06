@@ -8,7 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DropdownModule } from 'primeng/dropdown';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -55,6 +55,7 @@ import { TableModule } from 'primeng/table';
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CardModule } from 'primeng/card';
+import { MultiSelectModule } from 'primeng/multiselect';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { SponsorDetailsComponent } from './components/sponsors/sponsor-details/sponsor-details.component';
 import { SubAdminComponent } from './components/sub-admin/sub-admin.component';
@@ -128,6 +129,7 @@ import { NgxStarRatingModule } from 'ngx-star-rating';
     BrowserAnimationsModule,
     AppRoutingModule,
     DropdownModule,
+    FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
@@ -147,7 +149,8 @@ import { NgxStarRatingModule } from 'ngx-star-rating';
     ProgressBarModule,
     CheckboxModule,
     CaptchaModule,
-    NgxStarRatingModule
+    NgxStarRatingModule,
+    MultiSelectModule
   ],
   providers: [MessageService, DatePipe],
   bootstrap: [AppComponent],

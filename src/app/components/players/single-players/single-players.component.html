@@ -94,6 +94,26 @@
                 </div>
               </div>
             </div>
+            <div class="col-md-6">
+              <div class="p-field p-col">
+                <label>Gender</label>
+                <p-dropdown
+                  [options]="['Male','Female']"
+                  formControlName="gender"
+                  placeholder="Select Gender"
+                >
+                </p-dropdown>
+              </div>
+              <div *ngIf="validation.gender.errors && validation.gender.dirty">
+                <div
+                  class="text-danger"
+                  *ngIf="validation.gender?.errors?.required"
+                >
+                  Field is required!
+                </div>
+              </div>
+            </div>
+
           </div>
 
           <div class="row">
@@ -165,6 +185,7 @@
                       </div>
                     </div>
                   </div>
+
                 </div>
               </div>
             </div>

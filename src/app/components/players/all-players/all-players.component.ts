@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FilterService } from 'primeng/api';
 import { AuthService } from 'src/app/services/auth.service';
 import { PlayersService } from 'src/app/services/players.service';
 
@@ -13,6 +14,7 @@ export class AllPlayersComponent implements OnInit {
   cols = [
     { field: 'id', header: 'Player ID' },
     { field: 'name', header: 'Player Name' },
+    { field: 'gender', header: 'Gender' },
     { field: 'nationality', header: 'Nationality' },
     { field: 'dob', header: 'Birth Date' },
     { field: 'spr', header: 'SPR' },
@@ -21,10 +23,12 @@ export class AllPlayersComponent implements OnInit {
 
   data:any = []
 
-  constructor(public router: Router, public service: PlayersService,public auth:AuthService) { }
+  constructor(public router: Router, public service: PlayersService,public auth:AuthService,private filterService: FilterService) { }
 
   ngOnInit(): void {
     this.getData()
+
+    // this.filterService.filter
   }
 
   getData() {
@@ -48,5 +52,6 @@ export class AllPlayersComponent implements OnInit {
   view(id?: any) {
     this.router.navigateByUrl("/" + this.collection + "/detail/" + id)
   }
+
 
 }
